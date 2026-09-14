@@ -57,3 +57,22 @@ def test_apply_env_sets_and_clears(monkeypatch):
     assert os.environ["OPENAI_API_KEY"] == "sk-x" and os.environ["DISCORD_WEBHOOK_URL"].endswith("/1/a")
     apply_env(Settings())
     assert "OPENAI_API_KEY" not in os.environ and "DISCORD_WEBHOOK_URL" not in os.environ
+
+
+def test_hours_bool_rejected(tmp_path):
+    with pytest.raises(ValueError, match="hours"):
+        save(tmp_path / "s.json", {"hours": True})
+
+
+@pytest.mark.skipif(os.name == "nt", reason="POSIX 파일 권한 전용")
+def test_save_sets_restrictive_permissions(tmp_path):
+    p = tmp_path / "s.json"
+    save(p, {"hours": 10})
+    assert oct(p.stat().st_mode & 0o777) == "0o600"
+
+
+def test_load_malformed_json_raises_value_error(tmp_path):
+    p = tmp_path / "s.json"
+    p.write_text("{not json", encoding="utf-8")
+    with pytest.raises(ValueError, match="settings.json"):
+        load(p)

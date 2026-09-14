@@ -23,7 +23,10 @@ class Settings:
 def load(path: Path) -> Settings:
     if not path.exists():
         return Settings()
-    raw = json.loads(path.read_text(encoding="utf-8"))
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as e:
+        raise ValueError(f"settings.json을 읽을 수 없습니다: {e!r}") from e
     known = {f.name for f in fields(Settings)}
     return Settings(**{k: v for k, v in raw.items() if k in known})
 
@@ -44,7 +47,7 @@ def save(path: Path, updates: dict, validate_openai: Callable[[str, str], None] 
         if k not in ENV_KEYS and k != "hours":
             continue
         setattr(s, k, v)
-    if not isinstance(s.hours, int) or not 1 <= s.hours <= 168:
+    if isinstance(s.hours, bool) or not isinstance(s.hours, int) or not 1 <= s.hours <= 168:
         raise ValueError("hours는 1~168 사이 정수여야 합니다")
     if s.discord_webhook_url and not is_valid_webhook(s.discord_webhook_url):
         raise ValueError("Discord 웹훅 URL 형식이 아닙니다")
@@ -55,6 +58,10 @@ def save(path: Path, updates: dict, validate_openai: Callable[[str, str], None] 
             raise ValueError(f"OpenAI 키가 유효하지 않습니다: {e!r}") from e
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(asdict(s), ensure_ascii=False, indent=1), encoding="utf-8")
+    try:
+        os.chmod(path, 0o600)                         # 평문 API 키 보호, 미지원 환경은 무시
+    except OSError:
+        pass
     return s
 
 
