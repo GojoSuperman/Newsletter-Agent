@@ -32,7 +32,7 @@ class RunRequest(BaseModel):
 @app.post("/api/run")
 def start_run(req: RunRequest):
     with _lock:
-        if any(v.get("running") for v in _pending.values()):
+        if _pending:
             raise HTTPException(409, "이미 실행 중입니다")
         run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
         _pending[run_id] = {"hours": req.hours, "dry_run": req.dry_run, "running": False}
@@ -65,7 +65,8 @@ def run_events(run_id: str):
             yield _sse({"node": "__error__", "error": repr(e)})
             raise
         finally:
-            _pending.pop(run_id, None)
+            with _lock:
+                _pending.pop(run_id, None)
 
     return StreamingResponse(gen(), media_type="text/event-stream")
 

@@ -17,10 +17,11 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["pytest>=8", "httpx>=0.27", "anyio<4.15"]
+dev = ["pytest>=8", "httpx>=0.27"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+filterwarnings = ["ignore:.*BlockingPortal.*:DeprecationWarning"]
 
 [build-system]
 requires = ["hatchling"]

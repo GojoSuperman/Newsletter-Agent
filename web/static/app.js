@@ -1,10 +1,12 @@
 const $ = (s) => document.querySelector(s);
 const logEl = $("#log");
+let draftedCount = 0;
 
 function setFunnel(k, v) { const el = document.querySelector(`[data-k="${k}"]`); if (el) el.textContent = v; }
 
 function resetView() {
   logEl.textContent = "";
+  draftedCount = 0;
   ["collected","picked","drafted","verified","published"].forEach(k => setFunnel(k, "–"));
   $("#cardlist").innerHTML = "";
 }
@@ -13,7 +15,7 @@ function onUpdate(node, u) {
   (u.log || []).forEach(l => logEl.textContent += l + "\n");
   if (u.collected) setFunnel("collected", u.collected.length);
   if (u.picked) setFunnel("picked", u.picked.length);
-  if (u.drafted) setFunnel("drafted", Number($("[data-k=drafted]").textContent) || 0 + u.drafted.length);
+  if (u.drafted) { draftedCount += u.drafted.length; setFunnel("drafted", draftedCount); }
   if (u.verified) setFunnel("verified", u.verified.length);
   if (node === "publish") setFunnel("published", u.published_count ?? "–");
 }

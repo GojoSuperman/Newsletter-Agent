@@ -28,3 +28,13 @@ def test_get_run_returns_saved_state(tmp_path, monkeypatch):
 def test_index_served():
     r = TestClient(webapp.app).get("/")
     assert r.status_code == 200 and "뉴스레터" in r.text
+
+
+def test_second_run_rejected_until_first_stream_ends(tmp_path, monkeypatch):
+    monkeypatch.setattr(webapp, "STORE_DIR", tmp_path)
+    client = TestClient(webapp.app)
+    run_id = client.post("/api/run", json={"hours": 24, "dry_run": True}).json()["run_id"]
+    assert client.post("/api/run", json={"hours": 24, "dry_run": True}).status_code == 409
+    with client.stream("GET", f"/api/run/{run_id}/events") as r:
+        list(r.iter_lines())  # 끝까지 소진해 __end__ 까지 진행시킨다
+    assert client.post("/api/run", json={"hours": 24, "dry_run": True}).status_code == 200
