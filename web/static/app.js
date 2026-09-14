@@ -51,7 +51,22 @@ function renderCards(state) {
   }).join("") || "<p class='meta'>발행 카드가 없습니다.</p>";
   setFunnel("published", state.dry_run ? `${(state.verified||[]).length} (dry)` : (state.verified||[]).length);
 }
-async function loadHistory() { /* Task 10에서 채운다 */ }
+async function loadHistory() {
+  const rows = await (await fetch("/api/runs")).json();
+  const head = "<tr><th>실행</th><th>수집</th><th>선별</th><th>취재</th><th>검수</th><th>발행</th><th>실패 소스</th><th>초</th></tr>";
+  $("#runs").innerHTML = head + rows.slice(-30).reverse().map(r => {
+    const secs = Object.values(r.seconds || {}).reduce((a, b) => a + b, 0).toFixed(1);
+    const id = `<a href="#" data-run="${esc(r.run_id)}">${esc(r.run_id)}</a>${r.dry_run ? " (dry)" : ""}`;
+    return `<tr><td>${id}</td><td>${r.collected}</td><td>${r.picked}</td><td>${r.drafted}</td><td>${r.verified}</td><td>${r.published}</td><td>${esc((r.dead_sources||[]).join(", "))}</td><td>${secs}</td></tr>`;
+  }).join("");
+  $("#runs").querySelectorAll("a[data-run]").forEach(a => a.addEventListener("click", async (ev) => {
+    ev.preventDefault();
+    const s = await (await fetch(`/api/run/${a.dataset.run}`)).json();
+    logEl.textContent = (s.log || []).join("\n");
+    ["collected","picked","drafted","verified"].forEach(k => setFunnel(k, (s[k]||[]).length));
+    renderCards(s);
+  }));
+}
 
 $("#run").addEventListener("click", startRun);
 loadHistory();

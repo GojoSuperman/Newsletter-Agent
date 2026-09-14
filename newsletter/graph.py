@@ -1,3 +1,4 @@
+import time
 from collections.abc import Callable
 
 from langgraph.graph import END, START, StateGraph
@@ -40,6 +41,21 @@ def initial_state(hours: int, dry_run: bool) -> Brief:
 
 def run(nodes: dict[str, Callable], hours: int = 24, dry_run: bool = True) -> Brief:
     return build(nodes).compile().invoke(initial_state(hours, dry_run))
+
+
+def run_timed(nodes: dict[str, Callable], hours: int = 24, dry_run: bool = True) -> tuple[Brief, dict[str, float]]:
+    """노드별 소요 시간을 함께 돌려준다. 대시보드는 stream을 직접 쓰므로 CLI 전용."""
+    state = initial_state(hours, dry_run)
+    seconds: dict[str, float] = {}
+    t = time.perf_counter()
+    for update in build(nodes).compile().stream(state, stream_mode="updates"):
+        for node, delta in update.items():
+            now = time.perf_counter()
+            seconds[node] = seconds.get(node, 0.0) + (now - t)
+            t = now
+            for k, v in delta.items():
+                state[k] = state.get(k, []) + v if k in ("drafted", "log") else v
+    return state, seconds
 
 
 import os

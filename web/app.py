@@ -1,6 +1,8 @@
 """대시보드 서버. 그래프를 stream()으로 돌리며 노드마다 SSE 이벤트를 흘린다."""
 import json
 import threading
+import time
+from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -11,6 +13,7 @@ from pydantic import BaseModel
 
 from newsletter.config import load_config
 from newsletter.graph import build, initial_state, real_nodes
+from newsletter.metrics import append_metrics, read_metrics, summarize
 
 STORE_DIR = Path("store")
 STATIC = Path(__file__).parent / "static"
@@ -55,12 +58,18 @@ def run_events(run_id: str):
             cfg = _pending[run_id]
             state = initial_state(cfg["hours"], cfg["dry_run"])
             graph = build(get_nodes()).compile()
+            seconds: dict[str, float] = {}
+            t = time.perf_counter()
             for update in graph.stream(state, stream_mode="updates"):
                 for node, delta in update.items():
+                    now = time.perf_counter()
+                    seconds[node] = seconds.get(node, 0.0) + (now - t)
+                    t = now
                     yield _sse({"node": node, "update": delta})
                     state = _merge(state, delta)
             state["run_id"] = run_id
             _save(run_id, state)
+            append_metrics(summarize(state, run_id, seconds), STORE_DIR / "metrics.jsonl")
             yield _sse({"node": "__end__", "state": state})
         except Exception as e:                      # 화면에 에러를 보여야 한다
             yield _sse({"node": "__error__", "error": repr(e)})
@@ -91,6 +100,16 @@ def get_run(run_id: str):
     if not f.exists():
         raise HTTPException(404, "저장된 실행이 없습니다")
     return json.loads(f.read_text())
+
+
+@app.get("/api/runs")
+def list_runs():
+    return read_metrics(STORE_DIR / "metrics.jsonl")
+
+
+@app.get("/api/config")
+def get_config():
+    return asdict(load_config())
 
 
 @app.get("/")
