@@ -1,0 +1,19 @@
+# 분야마다 달라지는 것은 전부 여기. 코드에는 AI 뉴스가 박혀 있지 않다.
+audience: 국내 AI 개발팀
+question: 이번 주 우리가 일하는 방식이 바뀔 만한가
+topics: [모델·API, 인프라·비용, 규제·정책, 오픈소스, 제품·서비스]
+pick_count: 5
+tone: 간결한 존댓말. 과장 없이.
+min_body: 600          # 요약을 쓰려면 원문이 최소 이만큼은 있어야 한다 (G1 관문)
+shortlist_batch: 40    # 예선 한 묶음 크기
+tier1_max: 2           # 당사자 발표(tier 1) 경쟁 면제 상한
+
+sources:
+  - {name: OpenAI,      url: https://openai.com/blog/rss.xml,                                          tier: 1, kind: rss}
+  - {name: DeepMind,    url: https://deepmind.google/blog/rss.xml,                                     tier: 1, kind: rss}
+  - {name: HuggingFace, url: https://huggingface.co/blog/feed.xml,                                     tier: 1, kind: rss}
+  - {name: TechCrunch,  url: https://techcrunch.com/category/artificial-intelligence/feed/,            tier: 2, kind: rss}
+  - {name: The Verge,   url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml,        tier: 2, kind: rss}
+  - {name: MIT TR,      url: https://www.technologyreview.com/feed/,                                   tier: 2, kind: rss}
+  - {name: AI타임스,     url: https://www.aitimes.com/rss/allArticle.xml,                               tier: 2, kind: rss}
+  - {name: Hacker News, url: "https://hn.algolia.com/api/v1/search_by_date?tags=story&query=AI",      tier: 2, kind: hn}
