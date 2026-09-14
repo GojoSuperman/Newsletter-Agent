@@ -1,6 +1,6 @@
 # AI 뉴스레터 에이전트 — 수집부터 발행까지
 
-매일 아침 AI 뉴스를 **자동으로 모아서, 중요한 5건만 고르고, 3문장으로 요약하고, 요약이 원문과 맞는지 검사한 뒤, Discord로 보내주는** 에이전트입니다. 같은 파이프라인을 브라우저 대시보드에서 직접 돌리고 결과를 살펴볼 수도 있습니다.
+매일 아침 AI 뉴스를 **자동으로 모아서, 중요한 5건만 고르고, 3문장으로 요약하고, 요약이 원문과 맞는지 검사한 뒤, Discord로 보내주는** 에이전트입니다. 같은 파이프라인을 브라우저 대시보드에서 직접 돌리고 결과를 살펴볼 수도 있습니다. 운영 지표용 대시보드 외에, 잡지처럼 읽고 발송 여부를 직접 고르는 로컬 리더 앱도 함께 제공합니다.
 
 모두의연구소 「에이전트 팀 꾸리기」 캠프의 *뉴스레터 에이전트 — 수집부터 발행까지* 수업을 그대로 구현한 프로젝트입니다. 수업이 제시한 다섯 단계, 설계 선택지, 검증 방법을 코드로 옮겼고, 그 위에 대시보드와 GitHub Actions 자동 실행을 얹었습니다.
 
@@ -91,6 +91,18 @@ uv run python run.py --hours 24 --dry-run     # 한 바퀴 돌려 보기 (Discor
 
 ## 사용법
 
+### 0. 리더 앱 — 버튼으로 만들고 잡지처럼 읽기 (권장)
+
+```bash
+uv run uvicorn app.server:app --port 8100     # http://127.0.0.1:8100
+```
+
+- 처음 열면 설정 패널이 뜹니다. OpenAI 키(필수)와 Discord 웹훅(선택)을 넣으면 `store/local/settings.json`에 저장됩니다. `.env`는 필요 없습니다.
+- **▶ 오늘 치 만들기** → 수집·선별·취재·검수가 차례로 진행되고 끝나면 왼쪽 목록에 새 호가 생깁니다. Discord로는 보내지 않습니다.
+- 본문의 **발행본 / 검수 탈락 / 수집 전체** 탭으로 그날 결과를 읽습니다.
+- 마음에 들면 **Discord로 보내기**를 누릅니다. 한 호는 한 번만 보낼 수 있습니다.
+- 기존 대시보드(`web/`, 포트 8000)는 운영 지표용으로 그대로 남아 있습니다.
+
 ### 1. 터미널에서 한 번 실행
 
 ```bash
@@ -116,9 +128,9 @@ uv run uvicorn web.app:app --port 8000
 
 대시보드에는 로그인이 없습니다. 이 컴퓨터에서만 보는 용도이며, `127.0.0.1`에만 바인딩하세요. 외부에 열면 누구나 OpenAI 크레딧을 쓰고 Discord에 글을 올릴 수 있습니다.
 
-### 3. 매일 아침 자동 실행 (GitHub Actions)
+### 3. GitHub Actions 수동 실행
 
-`.github/workflows/daily.yml`이 매일 **07:30 KST**(22:30 UTC)에 돌아 Discord로 발송하고, 실행 결과를 저장소에 커밋합니다.
+`.github/workflows/daily.yml`은 자동 스케줄이 꺼져 있습니다. Actions 탭에서 수동으로만 돌릴 수 있습니다.
 
 설정:
 
@@ -126,7 +138,7 @@ uv run uvicorn web.app:app --port 8000
    - Secrets: `OPENAI_API_KEY`, `DISCORD_WEBHOOK_URL`
    - Variables(선택): `OPENAI_MODEL`
 2. Actions 탭 → **daily-newsletter** → Run workflow에서 `dry_run`을 체크하고 한 번 수동 실행해 초록 체크를 확인합니다.
-3. 이후 자동으로 돕니다. 실행 기록은 봇이 `chore: 실행 기록 YYYY-MM-DD` 커밋으로 남깁니다.
+3. 이후로도 자동으로는 돌지 않습니다. Actions 탭에서 Run workflow를 눌러야 실행되며, 실행 기록은 봇이 `chore: 실행 기록 YYYY-MM-DD` 커밋으로 남깁니다.
 
 실패하면 GitHub가 저장소 소유자에게 알림 메일을 보냅니다. 수업이 말한 "돌았는지 확인할 경로"입니다.
 
@@ -249,6 +261,10 @@ Newsletter-Agent/
 │     ├─ report.py             # ③ 취재   (섹션 8)
 │     ├─ verify.py             # ④ 검수   (섹션 9)
 │     └─ publish.py            # ⑤ 발행   (섹션 10)
+├─ app/                        # 리더 앱 (독자 화면, 포트 8100)
+│  ├─ server.py                # FastAPI: 설정·호 목록·실행·Discord 발송 API
+│  ├─ settings.py              # store/local/settings.json 로더·검증
+│  └─ static/                  # index.html · app.js · style.css (프레임워크 없음)
 ├─ web/
 │  ├─ app.py                   # FastAPI: /api/run(SSE) · /api/runs · /api/run/{id} · /api/config · /api/sync
 │  └─ static/                  # index.html · app.js · style.css (프레임워크 없음)
@@ -301,7 +317,8 @@ uv run pytest -v tests/test_select.py
 - **스크래핑은 하지 않습니다.** RSS도 API도 없는 분야로 옮기려면 robots.txt 확인과 구조 변경 감지가 통째로 따라옵니다.
 - **GitHub 러너에서 일부 사이트의 본문 추출이 실패합니다.** 로컬에서는 성공하는 기사가 러너에서는 "본문 부족"으로 빠지는 경우가 있습니다(러너 IP 차단으로 추정). `metrics.jsonl`의 추출률로 추적합니다.
 - **검수 노드에서 LLM 호출이 실패하면 그날 실행이 실패합니다.** 건별로 조용히 탈락시키면 검수 없이 누락된 것을 알 수 없어 일부러 예외로 둡니다. Actions 알림으로 드러납니다.
-- **대시보드는 로컬 전용**입니다. 인증이 없으니 외부에 열지 마세요.
+- **대시보드와 리더 앱은 모두 로컬 전용**입니다. 인증이 없으니 외부에 열지 마세요.
+- **리더 앱의 설정 파일(`store/local/settings.json`)에 API 키가 평문으로 저장됩니다.** 파일 권한은 600으로 제한하지만, 공용 컴퓨터에서는 쓰지 마세요.
 
 ---
 

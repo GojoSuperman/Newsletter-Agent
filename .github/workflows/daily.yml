@@ -1,7 +1,5 @@
 name: daily-newsletter
 on:
-  schedule:
-    - cron: "30 22 * * *"        # 07:30 KST
   workflow_dispatch:
     inputs:
       dry_run:
