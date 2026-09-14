@@ -40,6 +40,16 @@ def test_dedupe_key_drops_query_and_slash():
     assert dedupe_key("https://x/a/?utm_source=t") == dedupe_key("https://x/a")
 
 
+def test_parse_hn_skips_hit_without_created_at():
+    payload = {"hits": [
+        {"title": "정상", "url": "https://y/ok", "created_at": "2026-09-14T06:00:00Z", "points": 1, "num_comments": 0},
+        {"title": "날짜없음", "url": "https://y/no-date", "points": 1, "num_comments": 0},
+        {"title": "날짜이상", "url": "https://y/bad-date", "created_at": "not-a-date", "points": 1, "num_comments": 0},
+    ]}
+    out = parse_hn("HN", 2, payload)
+    assert [a["title"] for a in out] == ["정상"]
+
+
 def test_collect_filters_window_dedupes_and_isolates_dead_source():
     fresh, old = NOW - timedelta(hours=2), NOW - timedelta(hours=30)
     feeds = {

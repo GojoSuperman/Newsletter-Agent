@@ -39,7 +39,10 @@ def parse_hn(name: str, tier: int, payload: dict) -> list[Article]:
     for h in payload.get("hits", []):
         if not h.get("url"):
             continue
-        at = datetime.fromisoformat(h["created_at"].replace("Z", "+00:00"))
+        try:
+            at = datetime.fromisoformat(h["created_at"].replace("Z", "+00:00"))
+        except (KeyError, ValueError, TypeError):
+            continue                                  # 날짜 없거나 형식이 이상한 항목은 결과를 바꾸지 않으므로 조용히 버린다
         out.append({"title": h.get("title", ""), "url": h["url"], "source": name, "tier": tier,
                     "at": at.isoformat(),
                     "summary": f"HN 추천 {h.get('points', 0)} · 댓글 {h.get('num_comments', 0)}"})
