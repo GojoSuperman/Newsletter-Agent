@@ -90,3 +90,13 @@ def test_send_requires_webhook_and_articles(tmp_path, monkeypatch):
 def test_index_served():
     r = TestClient(srv.app).get("/")
     assert r.status_code == 200 and "뉴스레터" in r.text
+
+
+def test_malformed_settings_returns_clear_error(tmp_path, monkeypatch):
+    c = _client(tmp_path, monkeypatch, key="")
+    (tmp_path / "local").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "local" / "settings.json").write_text("{not json", encoding="utf-8")
+    r = c.get("/api/settings")
+    assert r.status_code == 500 and "설정 파일" in r.json()["detail"]
+    r = c.post("/api/run", json={})
+    assert r.status_code == 500 and "설정 파일" in r.json()["detail"]

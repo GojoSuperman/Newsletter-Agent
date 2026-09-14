@@ -37,6 +37,14 @@ def get_nodes():
     return real_nodes(load_config())
 
 
+def _load_settings() -> st.Settings:
+    """settings.json이 깨져 있으면(수동 편집 등) 500으로 명확히 알린다 — 파일을 고치거나 지우면 된다."""
+    try:
+        return st.load(SETTINGS_PATH)
+    except ValueError as e:
+        raise HTTPException(500, f"설정 파일을 읽을 수 없습니다: {e}")
+
+
 # ---------- 설정 ----------
 class SettingsIn(BaseModel):
     openai_api_key: str | None = None
@@ -47,7 +55,7 @@ class SettingsIn(BaseModel):
 
 @app.get("/api/settings")
 def get_settings():
-    return st.masked(st.load(SETTINGS_PATH))
+    return st.masked(_load_settings())
 
 
 @app.put("/api/settings")
@@ -91,7 +99,7 @@ class RunIn(BaseModel):
 
 @app.post("/api/run")
 def start_run(body: RunIn):
-    s = st.load(SETTINGS_PATH)
+    s = _load_settings()
     if not s.openai_api_key:
         raise HTTPException(400, "OpenAI 키를 설정하세요")
     st.apply_env(s)
@@ -153,7 +161,7 @@ def send_issue(run_id: str):
     drafts = state.get("verified", [])
     if not drafts:
         raise HTTPException(400, "보낼 기사가 없습니다")
-    s = st.load(SETTINGS_PATH)
+    s = _load_settings()
     if not s.discord_webhook_url:
         raise HTTPException(400, "Discord 웹훅을 설정하세요")
     try:
