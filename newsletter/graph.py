@@ -45,10 +45,12 @@ from functools import partial
 
 from newsletter.config import Config
 from newsletter.nodes.collect import collect
+from newsletter.nodes.select import select
 
 
 def real_nodes(cfg: Config) -> dict[str, Callable]:
     """채워진 노드는 진짜, 아직 안 채운 노드는 stub. 섹션마다 한 줄씩 늘어난다."""
     nodes = stub_nodes()
     nodes["collect"] = partial(collect, sources=cfg.sources)
+    nodes["select"] = partial(select, cfg=cfg)
     return nodes
