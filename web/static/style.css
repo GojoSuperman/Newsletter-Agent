@@ -20,4 +20,5 @@ main { display:grid; grid-template-columns:260px 1fr; gap:16px; padding:16px 24p
 .card .meta { color:var(--muted); font-size:12px; }
 table { width:100%; border-collapse:collapse; font-size:13px; }
 th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); }
+.bar{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:13px} .bar-label{width:110px;color:var(--muted)} .bar-fill{height:10px;background:var(--accent);border-radius:5px;display:inline-block} .bar-n{color:var(--muted)}
 @media (max-width:720px) { main { grid-template-columns:1fr; } }

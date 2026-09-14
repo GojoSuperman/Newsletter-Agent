@@ -1,9 +1,11 @@
 """⑤ 발행. 되돌릴 수 없는 단계라 LLM이 없고, dry_run이 먼저다."""
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 import requests
 
 from newsletter.state import Draft
+
+KST = timezone(timedelta(hours=9))
 
 
 def render_discord(drafts: list[Draft], title: str) -> dict:
@@ -29,7 +31,7 @@ def publish(state: dict, post=requests.post, webhook_url: str | None = None) -> 
         return {"log": [f"⑤ 발행    dry_run · {n}건 (보내지 않음)", *render_text(drafts).splitlines()]}
     if not webhook_url:
         raise RuntimeError("DISCORD_WEBHOOK_URL이 없습니다")
-    title = f"AI 뉴스레터 {datetime.now().strftime('%Y-%m-%d')}"
+    title = f"AI 뉴스레터 {datetime.now(KST).strftime('%Y-%m-%d')}"
     r = post(webhook_url, json=render_discord(drafts, title), timeout=20)
     r.raise_for_status()                              # 실패를 조용히 넘기지 않는다
     return {"log": [f"⑤ 발행    Discord · {n}건"]}

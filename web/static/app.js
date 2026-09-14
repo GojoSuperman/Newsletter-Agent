@@ -44,8 +44,12 @@ function renderCards(state) {
   $("#cardlist").innerHTML = (state.drafted || []).map(d => {
     const ok = okUrls.has(d.url);
     const reason = ok ? "" : `<div class="meta">검수 탈락: ${esc(rejectedReason[`${d.source}::${d.headline.slice(0,30)}`] || "사유 로그 참조")}</div>`;
+    const safeUrl = /^https?:\/\//i.test(d.url);
+    const heading = safeUrl
+      ? `<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.headline)}</a>`
+      : esc(d.headline);
     return `<article class="card ${ok ? "" : "rejected"}">
-      <h3><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.headline)}</a></h3>
+      <h3>${heading}</h3>
       <p>${esc(d.summary)}</p><p class="why">왜 중요한가 · ${esc(d.why)}</p>
       <div class="meta">${esc(d.source)} · ${esc(d.at.slice(0,16).replace("T"," "))}</div>${reason}</article>`;
   }).join("") || "<p class='meta'>발행 카드가 없습니다.</p>";
@@ -53,11 +57,13 @@ function renderCards(state) {
 }
 async function loadHistory() {
   const rows = await (await fetch("/api/runs")).json();
-  const head = "<tr><th>실행</th><th>수집</th><th>선별</th><th>취재</th><th>검수</th><th>발행</th><th>실패 소스</th><th>초</th></tr>";
-  $("#runs").innerHTML = head + rows.slice(-30).reverse().map(r => {
+  const recent = rows.slice(-30).reverse();
+  const head = "<tr><th>실행</th><th>수집</th><th>선별</th><th>취재</th><th>추출률</th><th>검수</th><th>발행</th><th>실패 소스</th><th>초</th></tr>";
+  $("#runs").innerHTML = head + recent.map(r => {
     const secs = Object.values(r.seconds || {}).reduce((a, b) => a + b, 0).toFixed(1);
     const id = `<a href="#" data-run="${esc(r.run_id)}">${esc(r.run_id)}</a>${r.dry_run ? " (dry)" : ""}`;
-    return `<tr><td>${id}</td><td>${r.collected}</td><td>${r.picked}</td><td>${r.drafted}</td><td>${r.verified}</td><td>${r.published}</td><td>${esc((r.dead_sources||[]).join(", "))}</td><td>${secs}</td></tr>`;
+    const rate = r.picked ? `${Math.round((r.drafted / r.picked) * 100)}%` : "–";
+    return `<tr><td>${id}</td><td>${r.collected}</td><td>${r.picked}</td><td>${r.drafted}</td><td>${rate}</td><td>${r.verified}</td><td>${r.published}</td><td>${esc((r.dead_sources||[]).join(", "))}</td><td>${secs}</td></tr>`;
   }).join("");
   $("#runs").querySelectorAll("a[data-run]").forEach(a => a.addEventListener("click", async (ev) => {
     ev.preventDefault();
@@ -66,6 +72,19 @@ async function loadHistory() {
     ["collected","picked","drafted","verified"].forEach(k => setFunnel(k, (s[k]||[]).length));
     renderCards(s);
   }));
+  renderSourceBars(recent);
+}
+
+function renderSourceBars(rows) {
+  const totals = {};
+  rows.forEach(r => Object.entries(r.by_source || {}).forEach(([name, n]) => {
+    totals[name] = (totals[name] || 0) + n;
+  }));
+  const max = Math.max(1, ...Object.values(totals));
+  $("#sourcebars").innerHTML = Object.entries(totals)
+    .sort((a, b) => b[1] - a[1])
+    .map(([name, n]) => `<div class="bar"><span class="bar-label">${esc(name)}</span><span class="bar-fill" style="width:${Math.round((n / max) * 100)}%"></span><span class="bar-n">${n}</span></div>`)
+    .join("") || "<p class='meta'>데이터가 없습니다.</p>";
 }
 
 $("#run").addEventListener("click", startRun);

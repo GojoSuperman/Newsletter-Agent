@@ -1,9 +1,24 @@
+import importlib
 import json
+import os
+import time
 
 from fastapi.testclient import TestClient
 
 import web.app as webapp
 from newsletter.graph import stub_nodes
+
+
+def test_app_loads_dotenv(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / ".env").write_text("NEWSLETTER_TEST_FLAG=1\n")
+    monkeypatch.delenv("NEWSLETTER_TEST_FLAG", raising=False)
+    try:
+        importlib.reload(webapp)
+        assert os.environ.get("NEWSLETTER_TEST_FLAG") == "1"
+    finally:
+        monkeypatch.delenv("NEWSLETTER_TEST_FLAG", raising=False)
+        importlib.reload(webapp)
 
 
 def test_run_streams_five_node_events(tmp_path, monkeypatch):
@@ -41,6 +56,16 @@ def test_second_run_rejected_until_first_stream_ends(tmp_path, monkeypatch):
     assert client.post("/api/run", json={"hours": 24, "dry_run": True}).status_code == 409
     with client.stream("GET", f"/api/run/{run_id}/events") as r:
         list(r.iter_lines())  # 끝까지 소진해 __end__ 까지 진행시킨다
+    assert client.post("/api/run", json={"hours": 24, "dry_run": True}).status_code == 200
+
+
+def test_stale_pending_run_is_evicted(tmp_path, monkeypatch):
+    webapp._pending.clear()          # 이전 테스트가 남긴 pending 항목과 격리
+    monkeypatch.setattr(webapp, "STORE_DIR", tmp_path)
+    monkeypatch.setattr(webapp, "get_nodes", stub_nodes)
+    client = TestClient(webapp.app)
+    run_id = client.post("/api/run", json={"hours": 24, "dry_run": True}).json()["run_id"]
+    webapp._pending[run_id]["created_at"] = time.monotonic() - 120
     assert client.post("/api/run", json={"hours": 24, "dry_run": True}).status_code == 200
 
 

@@ -1,4 +1,14 @@
-from newsletter.graph import build, initial_state, run, stub_nodes
+from newsletter.graph import build, initial_state, merge_delta, run, stub_nodes
+
+
+def test_merge_delta_accumulates_only_reducer_keys():
+    state = {"drafted": [{"url": "a"}], "log": ["1"], "picked": [{"url": "x"}], "hours": 24}
+    out = merge_delta(state, {"drafted": [{"url": "b"}], "log": ["2"], "picked": [{"url": "y"}]})
+    assert out["drafted"] == [{"url": "a"}, {"url": "b"}]
+    assert out["log"] == ["1", "2"]
+    assert out["picked"] == [{"url": "y"}]
+    assert out is not state
+    assert state["drafted"] == [{"url": "a"}]  # 원본 불변
 
 
 def test_stub_pipeline_runs_five_nodes_in_order():

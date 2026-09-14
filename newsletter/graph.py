@@ -1,9 +1,16 @@
+import os
 import time
 from collections.abc import Callable
+from functools import partial
 
 from langgraph.graph import END, START, StateGraph
 
-from newsletter.nodes.report import fan_report
+from newsletter.config import Config
+from newsletter.nodes.collect import collect
+from newsletter.nodes.publish import publish
+from newsletter.nodes.report import fan_report, report_worker
+from newsletter.nodes.select import select
+from newsletter.nodes.verify import verify
 from newsletter.state import Brief
 
 NODE_ORDER = ("collect", "select", "report", "verify", "publish")
@@ -39,6 +46,14 @@ def initial_state(hours: int, dry_run: bool) -> Brief:
             "collected": [], "picked": [], "drafted": [], "verified": [], "log": []}
 
 
+def merge_delta(state: dict, delta: dict) -> dict:
+    """누적 리듀서 키(drafted/log)는 이어붙이고 나머지는 덮어쓴 새 dict를 돌려준다."""
+    out = dict(state)
+    for k, v in delta.items():
+        out[k] = out.get(k, []) + v if k in ("drafted", "log") else v
+    return out
+
+
 def run(nodes: dict[str, Callable], hours: int = 24, dry_run: bool = True) -> Brief:
     return build(nodes).compile().invoke(initial_state(hours, dry_run))
 
@@ -53,20 +68,8 @@ def run_timed(nodes: dict[str, Callable], hours: int = 24, dry_run: bool = True)
             now = time.perf_counter()
             seconds[node] = seconds.get(node, 0.0) + (now - t)
             t = now
-            for k, v in delta.items():
-                state[k] = state.get(k, []) + v if k in ("drafted", "log") else v
+            state = merge_delta(state, delta)
     return state, seconds
-
-
-import os
-from functools import partial
-
-from newsletter.config import Config
-from newsletter.nodes.collect import collect
-from newsletter.nodes.publish import publish
-from newsletter.nodes.report import report_worker
-from newsletter.nodes.select import select
-from newsletter.nodes.verify import verify
 
 
 def real_nodes(cfg: Config) -> dict[str, Callable]:
