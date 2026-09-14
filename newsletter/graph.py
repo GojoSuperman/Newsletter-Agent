@@ -2,6 +2,7 @@ from collections.abc import Callable
 
 from langgraph.graph import END, START, StateGraph
 
+from newsletter.nodes.report import fan_report
 from newsletter.state import Brief
 
 NODE_ORDER = ("collect", "select", "report", "verify", "publish")
@@ -12,7 +13,7 @@ def stub_nodes() -> dict[str, Callable]:
     return {
         "collect": lambda s: {"collected": [], "log": [f"① 수집    {s['hours']}시간 창 · 0건 (빈 노드)"]},
         "select": lambda s: {"picked": [], "log": [f"② 선별    {len(s['collected'])} → 0건 (빈 노드)"]},
-        "report": lambda s: {"drafted": [], "log": [f"③ 취재    {len(s['picked'])}건 (빈 노드)"]},
+        "report": lambda s: {"drafted": [], "log": [f"③ 취재    {s['pick']['title']} (빈 노드)"]},
         "verify": lambda s: {"verified": [], "log": [f"④ 검수    {len(s['drafted'])}건 (빈 노드)"]},
         "publish": lambda s: {"log": [f"⑤ 발행    {len(s['verified'])}건 (빈 노드)"]},
     }
@@ -25,7 +26,7 @@ def build(nodes: dict[str, Callable]) -> StateGraph:
         g.add_node(name, nodes[name])
     g.add_edge(START, "collect")
     g.add_edge("collect", "select")
-    g.add_edge("select", "report")
+    g.add_conditional_edges("select", fan_report, ["report", "verify"])   # 기사 수만큼 펼친다
     g.add_edge("report", "verify")
     g.add_edge("verify", "publish")
     g.add_edge("publish", END)
@@ -45,6 +46,7 @@ from functools import partial
 
 from newsletter.config import Config
 from newsletter.nodes.collect import collect
+from newsletter.nodes.report import report_worker
 from newsletter.nodes.select import select
 
 
@@ -53,4 +55,5 @@ def real_nodes(cfg: Config) -> dict[str, Callable]:
     nodes = stub_nodes()
     nodes["collect"] = partial(collect, sources=cfg.sources)
     nodes["select"] = partial(select, cfg=cfg)
+    nodes["report"] = partial(report_worker, cfg=cfg)
     return nodes

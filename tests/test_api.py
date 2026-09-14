@@ -14,8 +14,8 @@ def test_run_streams_five_node_events(tmp_path, monkeypatch):
     with client.stream("GET", f"/api/run/{run_id}/events") as r:
         events = [json.loads(l[5:]) for l in r.iter_lines() if l.startswith("data:")]
     nodes = [e["node"] for e in events]
-    assert nodes == ["collect", "select", "report", "verify", "publish", "__end__"]
-    assert len(events[-1]["state"]["log"]) == 5
+    assert nodes == ["collect", "select", "verify", "publish", "__end__"]
+    assert len(events[-1]["state"]["log"]) == 4
     saved = json.loads((tmp_path / "runs" / f"{run_id}.json").read_text())
     assert saved["log"] == events[-1]["state"]["log"]
 
