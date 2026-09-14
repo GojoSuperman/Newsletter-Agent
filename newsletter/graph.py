@@ -1,5 +1,4 @@
 import os
-import time
 from collections.abc import Callable
 from functools import partial
 
@@ -59,17 +58,11 @@ def run(nodes: dict[str, Callable], hours: int = 24, dry_run: bool = True) -> Br
 
 
 def run_timed(nodes: dict[str, Callable], hours: int = 24, dry_run: bool = True) -> tuple[Brief, dict[str, float]]:
-    """노드별 소요 시간을 함께 돌려준다. 대시보드는 stream을 직접 쓰므로 CLI 전용."""
-    state = initial_state(hours, dry_run)
-    seconds: dict[str, float] = {}
-    t = time.perf_counter()
-    for update in build(nodes).compile().stream(state, stream_mode="updates"):
-        for node, delta in update.items():
-            now = time.perf_counter()
-            seconds[node] = seconds.get(node, 0.0) + (now - t)
-            t = now
-            state = merge_delta(state, delta)
-    return state, seconds
+    """노드별 소요 시간을 함께 돌려준다. CLI 전용."""
+    from newsletter.runner import stream_run     # 순환 import를 피하려고 지역 import
+    for ev in stream_run(nodes, hours, dry_run):
+        if ev["node"] == "__end__":
+            return ev["state"], ev["seconds"]
 
 
 def real_nodes(cfg: Config) -> dict[str, Callable]:

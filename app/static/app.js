@@ -87,9 +87,10 @@ function renderIssue() {
   $("#tab-rejected").innerHTML = rejected.map(d => card(d, reasons[`${d.source}::${d.headline.slice(0,30)}`] || "사유 로그 참조")).join("") || `<p class="meta">탈락한 기사가 없습니다.</p>`;
   renderCollected();
   showTab(state.tab);
-  const canSend = (s.verified||[]).length > 0 && state.settings && state.settings.webhook_registered && !s.sent_at;
+  const canSend = (s.verified||[]).length > 0 && state.settings && state.settings.webhook_registered && !s.sent_at && s.dry_run !== false;
   $("#send").disabled = !canSend;
   $("#send-status").textContent = s.sent_at ? `${fmtTime(s.sent_at)} 발송됨`
+    : s.dry_run === false ? "이미 발행됨 (GitHub 실행)"
     : !(s.verified||[]).length ? "보낼 기사가 없습니다"
     : !(state.settings && state.settings.webhook_registered) ? "설정에서 Discord 웹훅을 등록하세요"
     : "보낸 적 없음";
@@ -130,7 +131,7 @@ async function makeIssue() {
     const e = JSON.parse(ev.data);
     (e.update && e.update.log || []).forEach(l => $("#run-log").textContent += l + "\n");
     if (e.node === "collect") { setStep("collect", "done", `${(e.update.collected||[]).length}건`); setStep("select", "active"); }
-    if (e.node === "select") { reportTotal = (e.update.picked||[]).length; setStep("select", "done", `${reportTotal}건`); setStep(reportTotal ? "report" : "verify", "active"); }
+    if (e.node === "select") { reportTotal = (e.update.picked||[]).length; setStep("select", "done", `${reportTotal}건`); if (reportTotal) setStep("report", "active"); else { setStep("report", "done", "건너뜀"); setStep("verify", "active"); } }
     if (e.node === "report") { reportDone += 1; setStep("report", reportDone >= reportTotal ? "done" : "active", `${reportDone} / ${reportTotal}`); if (reportDone >= reportTotal) setStep("verify", "active"); }
     if (e.node === "verify") { setStep("verify", "done", `${(e.update.verified||[]).length}건 통과`); setStep("publish", "active"); }
     if (e.node === "publish") { setStep("publish", "done"); }
@@ -193,4 +194,11 @@ $("#overlay-close").addEventListener("click", () => { $("#overlay").hidden = tru
 $("#search").addEventListener("input", renderCollected);
 $$(".tab").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
 
-(async () => { await loadSettings(); await loadIssues(); })();
+(async () => {
+  try { await loadSettings(); await loadIssues(); }
+  catch (e) {
+    $("#empty").hidden = false;
+    $("#empty").textContent = "불러오기 실패: " + e.message;
+    openSettings();
+  }
+})();

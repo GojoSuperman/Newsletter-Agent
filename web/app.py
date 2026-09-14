@@ -66,9 +66,12 @@ def run_events(run_id: str):
         raise HTTPException(404, "모르는 run_id")
 
     def gen():
-        _pending[run_id]["running"] = True
         try:
-            cfg = _pending[run_id]
+            cfg = _pending.get(run_id)
+            if cfg is None:
+                yield _sse({"node": "__error__", "error": "실행 정보가 사라졌습니다"})
+                return
+            cfg["running"] = True
             state = None
             for ev in stream_run(get_nodes(), cfg["hours"], cfg["dry_run"]):
                 if ev["node"] == "__end__":

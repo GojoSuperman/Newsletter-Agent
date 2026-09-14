@@ -1,5 +1,6 @@
 :root { --bg:#f7f6f3; --paper:#fff; --ink:#1c1c1e; --muted:#6e6e73; --accent:#1e2a78; --line:#e6e4df; --danger:#b42318; --ok:#1f7a4d; }
 * { box-sizing:border-box; }
+/* .overlay 등 display를 지정한 요소도 hidden 속성이 이기게 한다 */
 [hidden] { display:none !important; }
 html, body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI","Malgun Gothic","Apple SD Gothic Neo",Pretendard,sans-serif; font-size:16px; line-height:1.65; }
 button { font:inherit; cursor:pointer; border-radius:8px; padding:8px 14px; border:1px solid var(--line); background:var(--paper); color:var(--ink); }

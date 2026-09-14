@@ -100,3 +100,22 @@ def test_malformed_settings_returns_clear_error(tmp_path, monkeypatch):
     assert r.status_code == 500 and "설정 파일" in r.json()["detail"]
     r = c.post("/api/run", json={})
     assert r.status_code == 500 and "설정 파일" in r.json()["detail"]
+
+
+def test_send_blocked_for_already_published_run(tmp_path, monkeypatch):
+    c = _client(tmp_path, monkeypatch)
+    c.put("/api/settings", json={"discord_webhook_url": "https://discord.com/api/webhooks/1/abc"})
+    save_run(tmp_path, "github", "g1", {"collected": [], "verified": [D], "dry_run": False})
+    calls = []
+    class R:
+        def raise_for_status(self): pass
+    monkeypatch.setattr(srv, "post_fn", lambda url, json, timeout: calls.append(url) or R())
+    r = c.post("/api/issues/g1/send")
+    assert r.status_code == 409 and "이미 발행된" in r.json()["detail"]
+    assert calls == []
+
+
+def test_run_rejects_out_of_range_hours(tmp_path, monkeypatch):
+    c = _client(tmp_path, monkeypatch)
+    r = c.post("/api/run", json={"hours": 0})
+    assert r.status_code == 422

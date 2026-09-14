@@ -179,7 +179,7 @@ uv run python -m newsletter.sources_check
 
 - **State에는 단계 사이를 건너가는 것만** 담고, 리듀서(`operator.add`)는 여러 워커가 동시에 쓰는 `drafted`와 모든 노드가 한 줄씩 남기는 `log`에만 붙입니다. 노드는 자기가 바꾼 키만 돌려줍니다.
 - **조용한 실패 금지.** 결과물을 바꾸는 건너뜀(소스 실패, 본문 추출 실패, 검수 탈락)은 반드시 로그나 지표에 남깁니다. 날짜가 없는 항목 한 건이 빠지는 건 조용해도 됩니다.
-- **노드는 의존성을 인자로 받는 순수 함수**입니다(`http_get`, `ask`, `extract`, `post`). `graph.py`가 `functools.partial`로 묶어 LangGraph에 등록하고, 테스트는 가짜를 꽂습니다. 그래서 53개 테스트가 네트워크·OpenAI·Discord를 한 번도 호출하지 않습니다.
+- **노드는 의존성을 인자로 받는 순수 함수**입니다(`http_get`, `ask`, `extract`, `post`). `graph.py`가 `functools.partial`로 묶어 LangGraph에 등록하고, 테스트는 가짜를 꽂습니다. 그래서 76개 테스트가 네트워크·OpenAI·Discord를 한 번도 호출하지 않습니다.
 - **③ 취재는 기사 수만큼 팬아웃**합니다(`Send`). 기사끼리 서로 볼 필요가 없기 때문입니다. ② 선별과 ④ 검수는 다른 항목을 봐야 답할 수 있어 펼치지 않습니다.
 - **대시보드는 파이프라인을 호출만** 합니다. `newsletter/`는 화면이 있는지 모르고, GitHub Actions는 화면 없이 `run.py`만 부릅니다.
 
@@ -271,7 +271,7 @@ Newsletter-Agent/
 ├─ run.py                      # CLI 한 번 실행. Actions가 이것만 부른다
 ├─ audience.yaml               # 독자·기준·토픽·톤·소스
 ├─ store/                      # 실행 기록 (위 표 참고)
-├─ tests/                      # pytest 53개, 네트워크 없음
+├─ tests/                      # pytest 76개, 네트워크 없음
 ├─ docs/superpowers/           # 설계 스펙과 구현 플랜
 └─ .github/workflows/daily.yml # 매일 07:30 KST
 ```
@@ -292,7 +292,7 @@ Newsletter-Agent/
 ## 테스트
 
 ```bash
-uv run pytest            # 53 passed
+uv run pytest            # 76 passed
 uv run pytest -v tests/test_select.py
 ```
 

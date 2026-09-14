@@ -9,7 +9,7 @@ import requests
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app import settings as st
 from newsletter.config import load_config
@@ -94,7 +94,7 @@ def get_issue(run_id: str):
 
 # ---------- 실행 ----------
 class RunIn(BaseModel):
-    hours: int | None = None
+    hours: int | None = Field(default=None, ge=1, le=168)
 
 
 @app.post("/api/run")
@@ -102,7 +102,6 @@ def start_run(body: RunIn):
     s = _load_settings()
     if not s.openai_api_key:
         raise HTTPException(400, "OpenAI 키를 설정하세요")
-    st.apply_env(s)
     with _lock:
         now = time.monotonic()
         for rid in [k for k, v in _pending.items() if not v["running"] and now - v["created_at"] > STALE_SECONDS]:
@@ -124,9 +123,14 @@ def run_events(run_id: str):
         raise HTTPException(404, "모르는 run_id")
 
     def gen():
-        _pending[run_id]["running"] = True
         try:
-            hours = _pending[run_id]["hours"]
+            pending = _pending.get(run_id)
+            if pending is None:
+                yield _sse({"node": "__error__", "error": "실행 정보가 사라졌습니다"})
+                return
+            pending["running"] = True
+            hours = pending["hours"]
+            st.apply_env(_load_settings())    # 설정은 실행 시점의 것을 쓴다
             state, seconds = None, {}
             for ev in stream_run(get_nodes(), hours, True):      # 리더 앱은 항상 dry_run
                 if ev["node"] == "__end__":
@@ -158,6 +162,8 @@ def send_issue(run_id: str):
     state = load_run(STORE_DIR, run_id)
     if state.get("sent_at"):
         raise HTTPException(409, f"이미 보냈습니다 ({state['sent_at']})")
+    if state.get("dry_run") is False:
+        raise HTTPException(409, "이미 발행된 호입니다")
     drafts = state.get("verified", [])
     if not drafts:
         raise HTTPException(400, "보낼 기사가 없습니다")
