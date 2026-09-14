@@ -103,7 +103,7 @@ uv run uvicorn app.server:app --port 8100     # http://127.0.0.1:8100
 - 마음에 들면 **Discord로 보내기**를 누릅니다. 한 호는 한 번만 보낼 수 있습니다.
 - 기존 대시보드(`web/`, 포트 8000)는 운영 지표용으로 그대로 남아 있습니다.
 
-바탕화면 바로가기로 켜고 끄려면 `scripts/windows/`의 두 `.bat` 파일을 Windows 바탕화면에 복사합니다. "AI 뉴스레터 리더.bat"는 WSL에서 서버를 켜고 브라우저를 열며, "AI 뉴스레터 리더 종료.bat"는 서버를 끕니다. (WSL 배포판 이름이 `Ubuntu`가 아니면 `.bat` 안의 `-d Ubuntu`를 바꾸세요.)
+바탕화면 바로가기: `scripts/windows/바로가기-만들기.ps1`을 PowerShell에서 실행하면 아이콘이 붙은 **AI 뉴스레터** 바로가기가 생깁니다. 더블클릭하면 WSL에서 서버를 켜고 앱 창(Edge/Chrome 앱 모드)을 띄우며, 그 창을 닫으면 서버도 꺼집니다. (WSL 배포판 이름이 `Ubuntu`가 아니면 `AI뉴스레터.bat` 안의 `-d Ubuntu`를 바꾸세요.)
 
 ### 1. 터미널에서 한 번 실행
 
