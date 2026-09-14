@@ -22,6 +22,16 @@ def render_text(drafts: list[Draft]) -> str:
     return "\n".join(f"- [{d['source']}] {d['headline']}\n    {d['summary']}\n    → {d['why']}" for d in drafts)
 
 
+def send_discord(drafts: list[Draft], webhook_url: str, title: str | None = None, post=requests.post) -> int:
+    """검수 통과분을 Discord 웹훅으로 보낸다. 0건이면 보내지 않고 0. 실패는 예외."""
+    if not drafts:
+        return 0
+    title = title or f"AI 뉴스레터 {datetime.now(KST).strftime('%Y-%m-%d')}"
+    r = post(webhook_url, json=render_discord(drafts, title), timeout=20)
+    r.raise_for_status()
+    return len(drafts)
+
+
 def publish(state: dict, post=requests.post, webhook_url: str | None = None) -> dict:
     drafts: list[Draft] = state["verified"]
     n = len(drafts)
@@ -31,7 +41,5 @@ def publish(state: dict, post=requests.post, webhook_url: str | None = None) -> 
         return {"log": [f"⑤ 발행    dry_run · {n}건 (보내지 않음)", *render_text(drafts).splitlines()]}
     if not webhook_url:
         raise RuntimeError("DISCORD_WEBHOOK_URL이 없습니다")
-    title = f"AI 뉴스레터 {datetime.now(KST).strftime('%Y-%m-%d')}"
-    r = post(webhook_url, json=render_discord(drafts, title), timeout=20)
-    r.raise_for_status()                              # 실패를 조용히 넘기지 않는다
+    n = send_discord(drafts, webhook_url, post=post)
     return {"log": [f"⑤ 발행    Discord · {n}건"]}

@@ -35,3 +35,19 @@ def test_zero_verified_does_not_post():
 def test_missing_webhook_raises_when_not_dry_run():
     with pytest.raises(RuntimeError, match="DISCORD_WEBHOOK_URL"):
         publish({"dry_run": False, "verified": [D]}, post=lambda *a, **k: None, webhook_url=None)
+
+
+from newsletter.nodes.publish import send_discord
+
+
+def test_send_discord_posts_once_and_returns_count():
+    calls = []
+    class R:
+        def raise_for_status(self): pass
+    n = send_discord([D, {**D, "url": "https://x/2"}], "https://hook", post=lambda url, json, timeout: calls.append(json) or R())
+    assert n == 2 and len(calls) == 1 and len(calls[0]["embeds"]) == 2
+
+
+def test_send_discord_zero_drafts_does_not_post():
+    calls = []
+    assert send_discord([], "https://hook", post=lambda *a, **k: calls.append(1)) == 0 and calls == []
