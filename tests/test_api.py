@@ -31,9 +31,9 @@ def test_run_streams_five_node_events(tmp_path, monkeypatch):
     nodes = [e["node"] for e in events]
     assert nodes == ["collect", "select", "verify", "publish", "__end__"]
     assert len(events[-1]["state"]["log"]) == 4
-    saved = json.loads((tmp_path / "runs" / f"{run_id}.json").read_text())
+    saved = json.loads((tmp_path / "local" / "runs" / f"{run_id}.json").read_text())
     assert saved["log"] == events[-1]["state"]["log"]
-    assert (tmp_path / "metrics.jsonl").exists()
+    assert (tmp_path / "local" / "metrics.jsonl").exists()   # 로컬 실행은 store/local/에 남는다
 
 
 def test_get_run_returns_saved_state(tmp_path, monkeypatch):
@@ -73,6 +73,27 @@ def test_runs_and_config_endpoints(tmp_path, monkeypatch):
     monkeypatch.setattr(webapp, "STORE_DIR", tmp_path)
     (tmp_path / "metrics.jsonl").write_text('{"run_id":"a","collected":3}\n')
     c = TestClient(webapp.app)
-    assert c.get("/api/runs").json() == [{"run_id": "a", "collected": 3}]
+    assert c.get("/api/runs").json() == [{"run_id": "a", "collected": 3, "origin": "github"}]
     cfg = c.get("/api/config").json()
     assert cfg["pick_count"] == 5 and isinstance(cfg["sources"], list)
+
+
+def test_get_run_finds_local_origin_too(tmp_path, monkeypatch):
+    monkeypatch.setattr(webapp, "STORE_DIR", tmp_path)
+    (tmp_path / "local" / "runs").mkdir(parents=True)
+    (tmp_path / "local" / "runs" / "loc.json").write_text(json.dumps({"log": ["local"]}))
+    assert TestClient(webapp.app).get("/api/run/loc").json() == {"log": ["local"]}
+
+
+def test_sync_runs_git_pull_and_reports(monkeypatch):
+    calls = []
+    monkeypatch.setattr(webapp, "_git_pull", lambda: calls.append(1) or (True, "Already up to date."))
+    r = TestClient(webapp.app).post("/api/sync")
+    assert r.status_code == 200 and r.json() == {"ok": True, "output": "Already up to date."}
+    assert calls == [1]
+
+
+def test_sync_failure_is_reported_not_raised(monkeypatch):
+    monkeypatch.setattr(webapp, "_git_pull", lambda: (False, "fatal: not a git repository"))
+    r = TestClient(webapp.app).post("/api/sync")
+    assert r.status_code == 200 and r.json()["ok"] is False and "fatal" in r.json()["output"]

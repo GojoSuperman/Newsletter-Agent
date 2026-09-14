@@ -58,12 +58,13 @@ function renderCards(state) {
 async function loadHistory() {
   const rows = await (await fetch("/api/runs")).json();
   const recent = rows.slice(-30).reverse();
-  const head = "<tr><th>실행</th><th>수집</th><th>선별</th><th>취재</th><th>추출률</th><th>검수</th><th>발행</th><th>실패 소스</th><th>초</th></tr>";
+  const head = "<tr><th>실행</th><th>출처</th><th>수집</th><th>선별</th><th>취재</th><th>추출률</th><th>검수</th><th>발행</th><th>실패 소스</th><th>초</th></tr>";
   $("#runs").innerHTML = head + recent.map(r => {
     const secs = Object.values(r.seconds || {}).reduce((a, b) => a + b, 0).toFixed(1);
     const id = `<a href="#" data-run="${esc(r.run_id)}">${esc(r.run_id)}</a>${r.dry_run ? " (dry)" : ""}`;
     const rate = r.picked ? `${Math.round((r.drafted / r.picked) * 100)}%` : "–";
-    return `<tr><td>${id}</td><td>${r.collected}</td><td>${r.picked}</td><td>${r.drafted}</td><td>${rate}</td><td>${r.verified}</td><td>${r.published}</td><td>${esc((r.dead_sources||[]).join(", "))}</td><td>${secs}</td></tr>`;
+    const origin = r.origin === "github" ? `<span class="origin">GitHub</span>` : `<span class="origin local">로컬</span>`;
+    return `<tr><td>${id}</td><td>${origin}</td><td>${r.collected}</td><td>${r.picked}</td><td>${r.drafted}</td><td>${rate}</td><td>${r.verified}</td><td>${r.published}</td><td>${esc((r.dead_sources||[]).join(", "))}</td><td>${secs}</td></tr>`;
   }).join("");
   $("#runs").querySelectorAll("a[data-run]").forEach(a => a.addEventListener("click", async (ev) => {
     ev.preventDefault();
@@ -87,5 +88,20 @@ function renderSourceBars(rows) {
     .join("") || "<p class='meta'>데이터가 없습니다.</p>";
 }
 
+async function syncFromGithub() {
+  const btn = $("#sync"), msg = $("#syncmsg");
+  btn.disabled = true; msg.textContent = "가져오는 중…";
+  try {
+    const r = await (await fetch("/api/sync", { method: "POST" })).json();
+    msg.textContent = r.ok ? "GitHub 기록을 가져왔습니다" : "가져오기 실패: " + r.output;
+    if (r.ok) await loadHistory();
+  } catch (e) {
+    msg.textContent = "가져오기 실패: " + e;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
 $("#run").addEventListener("click", startRun);
+$("#sync").addEventListener("click", syncFromGithub);
 loadHistory();

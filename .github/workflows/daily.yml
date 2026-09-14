@@ -10,7 +10,7 @@ on:
         default: false
 
 permissions:
-  contents: write                 # metrics.jsonl 커밋용
+  contents: write                 # metrics.jsonl · runs/*.json 커밋용
 
 concurrency:
   group: daily-newsletter
@@ -31,12 +31,12 @@ jobs:
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4o-mini' }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          if [ "${{ inputs.dry_run }}" = "true" ]; then uv run --no-dev python run.py --hours 24 --dry-run; else uv run --no-dev python run.py --hours 24; fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then uv run --no-dev python run.py --hours 24 --dry-run --origin github; else uv run --no-dev python run.py --hours 24 --origin github; fi
       - name: 실행 기록 커밋
         run: |
           git config user.name "newsletter-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add -f store/metrics.jsonl
+          git add -f store/metrics.jsonl store/runs/*.json
           git diff --cached --quiet || git commit -m "chore: 실행 기록 $(date -u +%Y-%m-%d)"
           git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
           git push

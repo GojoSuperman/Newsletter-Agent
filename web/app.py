@@ -1,5 +1,6 @@
 """대시보드 서버. 그래프를 stream()으로 돌리며 노드마다 SSE 이벤트를 흘린다."""
 import json
+import subprocess
 import threading
 import time
 from dataclasses import asdict
@@ -16,10 +17,13 @@ load_dotenv(find_dotenv(usecwd=True))   # real_nodes()가 os.environ을 읽기 �
 
 from newsletter.config import load_config  # noqa: E402
 from newsletter.graph import build, initial_state, merge_delta, real_nodes  # noqa: E402
-from newsletter.metrics import append_metrics, read_metrics, summarize  # noqa: E402
+from newsletter.metrics import append_metrics, summarize  # noqa: E402
+from newsletter.store import list_runs, load_run, metrics_path, save_run  # noqa: E402
 
 STORE_DIR = Path("store")
+REPO_ROOT = Path(__file__).resolve().parent.parent
 STALE_SECONDS = 60
+LOCAL = "local"                      # 대시보드에서 돌린 실행은 로컬 기록으로 남긴다 (커밋 안 됨)
 STATIC = Path(__file__).parent / "static"
 app = FastAPI(title="뉴스레터 에이전트")
 
@@ -76,8 +80,8 @@ def run_events(run_id: str):
                     yield _sse({"node": node, "update": delta})
                     state = merge_delta(state, delta)
             state["run_id"] = run_id
-            _save(run_id, state)
-            append_metrics(summarize(state, run_id, seconds), STORE_DIR / "metrics.jsonl")
+            save_run(STORE_DIR, LOCAL, run_id, state)
+            append_metrics(summarize(state, run_id, seconds), metrics_path(STORE_DIR, LOCAL))
             yield _sse({"node": "__end__", "state": state})
         except Exception as e:                      # 화면에 에러를 보여야 한다
             yield _sse({"node": "__error__", "error": repr(e)})
@@ -89,23 +93,33 @@ def run_events(run_id: str):
     return StreamingResponse(gen(), media_type="text/event-stream")
 
 
-def _save(run_id: str, state: dict) -> None:
-    d = STORE_DIR / "runs"
-    d.mkdir(parents=True, exist_ok=True)
-    (d / f"{run_id}.json").write_text(json.dumps(state, ensure_ascii=False, default=str, indent=1))
-
-
 @app.get("/api/run/{run_id}")
 def get_run(run_id: str):
-    f = STORE_DIR / "runs" / f"{run_id}.json"
-    if not f.exists():
+    state = load_run(STORE_DIR, run_id)
+    if state is None:
         raise HTTPException(404, "저장된 실행이 없습니다")
-    return json.loads(f.read_text())
+    return state
 
 
 @app.get("/api/runs")
-def list_runs():
-    return read_metrics(STORE_DIR / "metrics.jsonl")
+def get_runs():
+    return list_runs(STORE_DIR)
+
+
+def _git_pull() -> tuple[bool, str]:
+    """GitHub Actions가 커밋한 실행 기록을 내려받는다. 실패해도 예외 대신 (False, 출력)."""
+    try:
+        r = subprocess.run(["git", "pull", "--rebase", "--autostash"], cwd=REPO_ROOT,
+                           capture_output=True, text=True, timeout=60)
+    except (OSError, subprocess.TimeoutExpired) as e:
+        return False, repr(e)
+    return r.returncode == 0, (r.stdout + r.stderr).strip()
+
+
+@app.post("/api/sync")
+def sync_from_github():
+    ok, output = _git_pull()
+    return {"ok": ok, "output": output}
 
 
 @app.get("/api/config")
