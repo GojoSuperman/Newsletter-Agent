@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 뉴스레터 에이전트</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>AI 뉴스레터 에이전트</h1>
+  <div class="controls">
+    <label>시간 창 <input id="hours" type="number" value="24" min="1" max="168"></label>
+    <label><input id="dry" type="checkbox" checked> dry_run</label>
+    <button id="run">▶ 실행</button>
+  </div>
+</header>
+<main>
+  <section id="funnel" class="panel">
+    <h2>깔때기</h2>
+    <ul>
+      <li><span>수집</span><b data-k="collected">–</b></li>
+      <li><span>선별</span><b data-k="picked">–</b></li>
+      <li><span>취재</span><b data-k="drafted">–</b></li>
+      <li><span>검수</span><b data-k="verified">–</b></li>
+      <li><span>발행</span><b data-k="published">–</b></li>
+    </ul>
+  </section>
+  <section class="panel">
+    <h2>실시간 로그</h2>
+    <pre id="log"></pre>
+  </section>
+  <section id="cards" class="panel wide"><h2>발행 카드</h2><div id="cardlist"></div></section>
+  <section id="history" class="panel wide"><h2>과거 실행</h2><table id="runs"></table></section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
