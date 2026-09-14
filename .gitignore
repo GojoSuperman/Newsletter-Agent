@@ -1,0 +1,19 @@
+# 시크릿
+.env
+.env.local
+.env.*.local
+.mcp.json
+.claude/settings.local.json
+.claude/.credentials.json
+*.pem
+*.key
+id_rsa*
+*.p12
+*.pfx
+
+# 로컬 도구
+.superpowers/
+.bkit/
+__pycache__/
+.venv/
+store/
