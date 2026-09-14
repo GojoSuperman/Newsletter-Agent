@@ -39,3 +39,16 @@ def initial_state(hours: int, dry_run: bool) -> Brief:
 
 def run(nodes: dict[str, Callable], hours: int = 24, dry_run: bool = True) -> Brief:
     return build(nodes).compile().invoke(initial_state(hours, dry_run))
+
+
+from functools import partial
+
+from newsletter.config import Config
+from newsletter.nodes.collect import collect
+
+
+def real_nodes(cfg: Config) -> dict[str, Callable]:
+    """채워진 노드는 진짜, 아직 안 채운 노드는 stub. 섹션마다 한 줄씩 늘어난다."""
+    nodes = stub_nodes()
+    nodes["collect"] = partial(collect, sources=cfg.sources)
+    return nodes

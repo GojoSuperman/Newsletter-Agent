@@ -3,10 +3,12 @@ import json
 from fastapi.testclient import TestClient
 
 import web.app as webapp
+from newsletter.graph import stub_nodes
 
 
 def test_run_streams_five_node_events(tmp_path, monkeypatch):
     monkeypatch.setattr(webapp, "STORE_DIR", tmp_path)
+    monkeypatch.setattr(webapp, "get_nodes", stub_nodes)
     client = TestClient(webapp.app)
     run_id = client.post("/api/run", json={"hours": 24, "dry_run": True}).json()["run_id"]
     with client.stream("GET", f"/api/run/{run_id}/events") as r:
@@ -32,6 +34,7 @@ def test_index_served():
 
 def test_second_run_rejected_until_first_stream_ends(tmp_path, monkeypatch):
     monkeypatch.setattr(webapp, "STORE_DIR", tmp_path)
+    monkeypatch.setattr(webapp, "get_nodes", stub_nodes)
     client = TestClient(webapp.app)
     run_id = client.post("/api/run", json={"hours": 24, "dry_run": True}).json()["run_id"]
     assert client.post("/api/run", json={"hours": 24, "dry_run": True}).status_code == 409

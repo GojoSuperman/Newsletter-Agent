@@ -9,7 +9,8 @@ from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from newsletter.graph import build, initial_state, stub_nodes
+from newsletter.config import load_config
+from newsletter.graph import build, initial_state, real_nodes
 
 STORE_DIR = Path("store")
 STATIC = Path(__file__).parent / "static"
@@ -20,8 +21,8 @@ _lock = threading.Lock()
 
 
 def get_nodes():
-    """실행에 쓸 노드 매핑. 이후 태스크에서 진짜 노드로 바꾼다."""
-    return stub_nodes()
+    """실행에 쓸 노드 매핑. 채워진 노드는 진짜, 나머지는 stub."""
+    return real_nodes(load_config())
 
 
 class RunRequest(BaseModel):

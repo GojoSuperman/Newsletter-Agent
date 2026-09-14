@@ -1,7 +1,10 @@
 """그래프를 한 번 돌린다. 터미널과 GitHub Actions가 쓴다."""
 import argparse
 
-from newsletter.graph import run, stub_nodes
+from dotenv import load_dotenv
+
+from newsletter.config import load_config
+from newsletter.graph import real_nodes, run
 
 
 def main() -> None:
@@ -9,7 +12,8 @@ def main() -> None:
     p.add_argument("--hours", type=int, default=24)
     p.add_argument("--dry-run", action="store_true")
     a = p.parse_args()
-    result = run(stub_nodes(), hours=a.hours, dry_run=a.dry_run)
+    load_dotenv()
+    result = run(real_nodes(load_config()), hours=a.hours, dry_run=a.dry_run)
     for line in result["log"]:
         print(line)
 
