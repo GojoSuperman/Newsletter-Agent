@@ -48,6 +48,7 @@ from newsletter.config import Config
 from newsletter.nodes.collect import collect
 from newsletter.nodes.report import report_worker
 from newsletter.nodes.select import select
+from newsletter.nodes.verify import verify
 
 
 def real_nodes(cfg: Config) -> dict[str, Callable]:
@@ -56,4 +57,5 @@ def real_nodes(cfg: Config) -> dict[str, Callable]:
     nodes["collect"] = partial(collect, sources=cfg.sources)
     nodes["select"] = partial(select, cfg=cfg)
     nodes["report"] = partial(report_worker, cfg=cfg)
+    nodes["verify"] = verify
     return nodes
