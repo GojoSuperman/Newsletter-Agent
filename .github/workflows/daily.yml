@@ -1,0 +1,37 @@
+name: daily-newsletter
+on:
+  schedule:
+    - cron: "30 22 * * *"        # 07:30 KST
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Discord로 보내지 않고 로그만"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write                 # metrics.jsonl 커밋용
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv python install 3.14
+      - run: uv sync --no-dev
+      - name: 파이프라인 실행
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4o-mini' }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then uv run python run.py --hours 24 --dry-run; else uv run python run.py --hours 24; fi
+      - name: 실행 기록 커밋
+        run: |
+          git config user.name "newsletter-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -f store/metrics.jsonl
+          git diff --cached --quiet || git commit -m "chore: 실행 기록 $(date -u +%Y-%m-%d)"
+          git push
