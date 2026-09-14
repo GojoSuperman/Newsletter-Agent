@@ -16,4 +16,5 @@ id_rsa*
 .bkit/
 __pycache__/
 .venv/
-store/
+store/*
+!store/.gitkeep
