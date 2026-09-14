@@ -68,7 +68,17 @@ async function loadHistory() {
   }).join("");
   $("#runs").querySelectorAll("a[data-run]").forEach(a => a.addEventListener("click", async (ev) => {
     ev.preventDefault();
-    const s = await (await fetch(`/api/run/${a.dataset.run}`)).json();
+    const row = rows.find(r => r.run_id === a.dataset.run) || {};
+    const res = await fetch(`/api/run/${a.dataset.run}`);
+    if (!res.ok) {                                   // 결과 파일이 없는 실행(예: 초기 워크플로) — 요약 숫자만 보여준다
+      resetView();
+      ["collected","picked","drafted","verified"].forEach(k => setFunnel(k, row[k] ?? "–"));
+      setFunnel("published", row.dry_run ? `${row.published ?? 0} (dry)` : (row.published ?? "–"));
+      logEl.textContent = `이 실행(${a.dataset.run})은 건수 요약만 남아 있어 로그와 카드를 볼 수 없습니다.\n결과 파일(store/runs/<id>.json) 저장은 그 이후 실행부터 적용됩니다.`;
+      $("#cardlist").innerHTML = "<p class='meta'>카드 기록 없음</p>";
+      return;
+    }
+    const s = await res.json();
     logEl.textContent = (s.log || []).join("\n");
     ["collected","picked","drafted","verified"].forEach(k => setFunnel(k, (s[k]||[]).length));
     renderCards(s);
