@@ -6,6 +6,7 @@ import requests
 from newsletter.state import Draft
 
 KST = timezone(timedelta(hours=9))
+BOT_NAME = "정충원-AI 뉴스봇"                 # Discord에 표시되는 보낸 사람 이름
 
 
 def render_discord(drafts: list[Draft], title: str) -> dict:
@@ -15,7 +16,7 @@ def render_discord(drafts: list[Draft], title: str) -> dict:
         "description": f"{d['summary']}\n\n**왜 중요한가** · {d['why']}"[:4096],
         "footer": {"text": d["source"]},
     } for d in drafts[:10]]                          # Discord 임베드 상한 10
-    return {"content": f"**{title}** · {len(drafts)}건", "embeds": embeds}
+    return {"username": BOT_NAME, "content": f"**{title}** · {len(drafts)}건", "embeds": embeds}
 
 
 def render_text(drafts: list[Draft]) -> str:

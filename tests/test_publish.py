@@ -10,6 +10,7 @@ def test_render_discord_has_embed_per_draft():
     p = render_discord([D, {**D, "url": "https://x/2"}], "오늘의 AI 뉴스")
     assert p["content"].startswith("**오늘의 AI 뉴스") and len(p["embeds"]) == 2
     assert p["embeds"][0]["url"] == "https://x/1" and "W" in p["embeds"][0]["description"]
+    assert p["username"] == "정충원-AI 뉴스봇"
 
 
 def test_dry_run_never_posts():
