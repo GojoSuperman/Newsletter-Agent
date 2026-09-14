@@ -1,0 +1,1 @@
+{"run_id": "20260914T060614", "hours": 24, "collected": 23, "picked": 5, "drafted": 3, "extract_ok": 3, "verified": 1, "published": 1, "dead_sources": [], "by_source": {"TechCrunch": 1}, "seconds": {"collect": 2.8, "select": 3.97, "report": 2.95, "verify": 2.67, "publish": 0.0}, "dry_run": true}
