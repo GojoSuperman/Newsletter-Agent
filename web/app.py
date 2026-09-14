@@ -16,8 +16,9 @@ from pydantic import BaseModel
 load_dotenv(find_dotenv(usecwd=True))   # real_nodes()가 os.environ을 읽기 전에 .env를 먼저 반영한다
 
 from newsletter.config import load_config  # noqa: E402
-from newsletter.graph import build, initial_state, merge_delta, real_nodes  # noqa: E402
+from newsletter.graph import real_nodes  # noqa: E402
 from newsletter.metrics import append_metrics, summarize  # noqa: E402
+from newsletter.runner import stream_run  # noqa: E402
 from newsletter.store import list_runs, load_run, metrics_path, save_run  # noqa: E402
 
 STORE_DIR = Path("store")
@@ -68,17 +69,12 @@ def run_events(run_id: str):
         _pending[run_id]["running"] = True
         try:
             cfg = _pending[run_id]
-            state = initial_state(cfg["hours"], cfg["dry_run"])
-            graph = build(get_nodes()).compile()
-            seconds: dict[str, float] = {}
-            t = time.perf_counter()
-            for update in graph.stream(state, stream_mode="updates"):
-                for node, delta in update.items():
-                    now = time.perf_counter()
-                    seconds[node] = seconds.get(node, 0.0) + (now - t)
-                    t = now
-                    yield _sse({"node": node, "update": delta})
-                    state = merge_delta(state, delta)
+            state = None
+            for ev in stream_run(get_nodes(), cfg["hours"], cfg["dry_run"]):
+                if ev["node"] == "__end__":
+                    state, seconds = ev["state"], ev["seconds"]
+                    break
+                yield _sse(ev)
             state["run_id"] = run_id
             save_run(STORE_DIR, LOCAL, run_id, state)
             append_metrics(summarize(state, run_id, seconds), metrics_path(STORE_DIR, LOCAL))
