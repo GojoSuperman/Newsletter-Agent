@@ -54,9 +54,14 @@ def final(cands: list[Article], n: int, cfg: Config, ask) -> list[Pick]:
 def select(state: dict, cfg: Config, ask=llm.ask_structured) -> dict:
     collected: list[Article] = state["collected"]
     tier1 = sorted([a for a in collected if a["tier"] == 1], key=lambda a: a["at"], reverse=True)
-    exempt: list[Pick] = [{**a, "reason": "당사자 발표"} for a in tier1[:cfg.tier1_max]]
+    cap = min(cfg.tier1_max, cfg.pick_count)          # 면제도 pick_count는 넘지 않는다
+    exempt: list[Pick] = [{**a, "reason": "당사자 발표"} for a in tier1[:cap]]
     rest = [a for a in collected if a["url"] not in {e["url"] for e in exempt}]
     slots = cfg.pick_count - len(exempt)
+
+    if slots <= 0:                                    # 면제만으로 정원이 찼으면 LLM 호출 없이 종료
+        return {"picked": exempt,
+                "log": [f"② 선별    {len(collected)} → {len(exempt)}건 · 면제로 충족 · 면제 {len(exempt)}"]}
 
     if len(rest) > cfg.shortlist_batch:
         batches = [rest[i:i + cfg.shortlist_batch] for i in range(0, len(rest), cfg.shortlist_batch)]

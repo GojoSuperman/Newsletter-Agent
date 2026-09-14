@@ -43,3 +43,14 @@ def test_small_input_skips_prelim():
     calls = []
     out = select({"collected": [art(1), art(2)]}, CFG, ask=fake_ask_factory(calls))
     assert calls == ["Final"] and len(out["picked"]) == 2
+
+
+def test_exempt_never_exceeds_pick_count():
+    calls = []
+    cfg = Config(audience="a", question="q", topics=["t"], pick_count=2, tone="", min_body=600,
+                 shortlist_batch=4, tier1_max=5, sources=[])
+    state = {"collected": [art(i, tier=1) for i in range(5)] + [art(i) for i in range(5, 7)]}
+    out = select(state, cfg, ask=fake_ask_factory(calls))
+    assert len(out["picked"]) == 2
+    assert all(p["reason"] == "당사자 발표" for p in out["picked"])
+    assert calls == []
