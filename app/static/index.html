@@ -1,1 +1,92 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>AI 뉴스레터</title></head><body><h1>AI 뉴스레터 리더</h1></body></html>
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 뉴스레터</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">◎ AI 뉴스레터</div>
+  <div class="actions">
+    <label class="hours">시간 창
+      <select id="hours"><option value="24">24시간</option><option value="48">48시간</option><option value="72">72시간</option></select>
+    </label>
+    <button id="make" class="primary">▶ 오늘 치 만들기</button>
+    <button id="open-settings" class="ghost" title="설정">설정 ⚙</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h2>발행 목록</h2>
+    <ul id="issue-list"></ul>
+  </aside>
+
+  <main class="content">
+    <div id="empty" class="empty">아직 만든 뉴스레터가 없습니다. 위의 <b>오늘 치 만들기</b>를 눌러 보세요.</div>
+    <article id="issue" hidden>
+      <header class="issue-head">
+        <h1 id="issue-date"></h1>
+        <div id="issue-meta" class="meta"></div>
+      </header>
+      <nav class="tabs">
+        <button data-tab="published" class="tab active">발행본 <span id="n-published"></span></button>
+        <button data-tab="rejected" class="tab">검수 탈락 <span id="n-rejected"></span></button>
+        <button data-tab="collected" class="tab">수집 전체 <span id="n-collected"></span></button>
+      </nav>
+      <section id="tab-published" class="tab-pane"></section>
+      <section id="tab-rejected" class="tab-pane" hidden></section>
+      <section id="tab-collected" class="tab-pane" hidden>
+        <input id="search" type="search" placeholder="제목·출처 검색">
+        <table id="collected-table"></table>
+      </section>
+      <footer class="issue-foot">
+        <button id="send" class="primary">Discord로 보내기</button>
+        <span id="send-status" class="meta"></span>
+      </footer>
+    </article>
+  </main>
+</div>
+
+<div id="overlay" class="overlay" hidden>
+  <div class="dialog">
+    <h2 id="overlay-title">오늘 치 뉴스레터 만드는 중</h2>
+    <ol id="steps" class="steps">
+      <li data-step="collect"><span class="dot"></span>수집 <em></em></li>
+      <li data-step="select"><span class="dot"></span>선별 <em></em></li>
+      <li data-step="report"><span class="dot"></span>취재 <em></em></li>
+      <li data-step="verify"><span class="dot"></span>검수 <em></em></li>
+      <li data-step="publish"><span class="dot"></span>정리 <em></em></li>
+    </ol>
+    <details id="log-details"><summary>상세 로그 보기</summary><pre id="run-log"></pre></details>
+    <div id="overlay-error" class="error" hidden></div>
+    <div class="dialog-foot"><span class="meta">취소할 수 없습니다 · 약 1분</span><button id="overlay-close" class="ghost" hidden>닫기</button></div>
+  </div>
+</div>
+
+<aside id="settings" class="drawer" hidden>
+  <div class="drawer-head"><h2>설정</h2><button id="close-settings" class="ghost">✕</button></div>
+  <form id="settings-form">
+    <label>OpenAI API 키 <span id="key-status" class="meta"></span>
+      <input id="f-key" type="password" autocomplete="off" placeholder="새 키 입력 (비우면 유지)">
+    </label>
+    <label>모델
+      <select id="f-model"><option>gpt-4o-mini</option><option>gpt-4o</option><option>gpt-4.1-mini</option><option>gpt-4.1</option></select>
+    </label>
+    <label>Discord 웹훅 URL <span id="hook-status" class="meta"></span>
+      <input id="f-hook" type="password" autocomplete="off" placeholder="https://discord.com/api/webhooks/… (비우면 유지)">
+      <button type="button" id="clear-hook" class="link">등록 해제</button>
+    </label>
+    <label>기본 수집 시간 창 <input id="f-hours" type="number" min="1" max="168"> 시간</label>
+    <p class="meta">저장 위치: store/local/settings.json · 이 컴퓨터에만 저장되고 Git에 올라가지 않습니다.</p>
+    <div id="settings-error" class="error" hidden></div>
+    <button type="submit" class="primary">저장</button>
+  </form>
+</aside>
+<div id="backdrop" class="backdrop" hidden></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
