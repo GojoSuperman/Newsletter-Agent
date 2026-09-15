@@ -24,3 +24,10 @@ def test_draft_returns_none_when_body_too_short():
 def test_worker_logs_extraction_failure_instead_of_silently_dropping():
     out = report_worker({"pick": PICK}, CFG, ask=fake_ask, extract=lambda u: "")
     assert out["drafted"] == [] and "본문 부족" in out["log"][0]
+
+
+def test_worker_skips_article_when_llm_fails_instead_of_crashing():
+    def broken_ask(system, user, schema):
+        raise RuntimeError("LLM 호출 실패: 429")
+    out = report_worker({"pick": PICK}, CFG, ask=broken_ask, extract=lambda u: "본문" * 400)
+    assert out["drafted"] == [] and "취재 실패" in out["log"][0] and "429" in out["log"][0]

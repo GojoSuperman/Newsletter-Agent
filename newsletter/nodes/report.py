@@ -34,7 +34,10 @@ def draft(pick: Pick, cfg: Config, ask=llm.ask_structured, extract: Callable[[st
 
 def report_worker(state: dict, cfg: Config, ask=llm.ask_structured, extract: Callable[[str], str] = extract_body) -> dict:
     pick: Pick = state["pick"]
-    d = draft(pick, cfg, ask, extract)
+    try:
+        d = draft(pick, cfg, ask, extract)
+    except Exception as e:                             # noqa: BLE001 — 기사 하나 때문에 그날 실행을 멈추지 않는다. 사유는 반드시 남긴다
+        return {"drafted": [], "log": [f"③ 취재    취재 실패 → 제외 · {pick['source']} · {pick['title'][:40]} · {e!r}"]}
     if d is None:
         return {"drafted": [], "log": [f"③ 취재    본문 부족 → 제외 · {pick['source']} · {pick['title'][:40]}"]}
     return {"drafted": [d], "log": [f"③ 취재    완료 · {pick['source']} · {d['headline'][:40]}"]}

@@ -46,15 +46,23 @@ def verify(state: dict, ask=llm.ask_structured, rewrite: Rewrite | None = None) 
     verified: list[Draft] = []
     log: list[str] = []
     for d in drafted:
-        v = check(d, ask)
+        try:
+            v = check(d, ask)
+        except Exception as e:                                     # noqa: BLE001 — 검수 못 한 글은 내보내지 않고 건너뛴다. 조용히는 아니다
+            log.append(f"   ✗ 검수 실패 → 스킵 · {d['source']} · {d['headline'][:30]} · {e!r}")
+            continue
         if v["ok"]:
             verified.append(d)
             continue
         if rewrite is None:                                        # 재생성 수단이 없으면 곧장 스킵
             log.append(f"   ✗ 탈락 · {d['source']} · {d['headline'][:30]} · {v['reason']}")
             continue
-        d2 = {**rewrite(d, v["reason"]), "regenerated": True}      # 딱 한 번만 다시 쓴다
-        v2 = check(d2, ask)
+        try:
+            d2 = {**rewrite(d, v["reason"]), "regenerated": True}  # 딱 한 번만 다시 쓴다
+            v2 = check(d2, ask)
+        except Exception as e:                                     # noqa: BLE001
+            log.append(f"   ↻ 재생성 실패 → 스킵 · {d['source']} · {d['headline'][:30]} · {e!r}")
+            continue
         if v2["ok"]:
             verified.append(d2)
             log.append(f"   ↻ 재생성 후 통과 · {d['source']} · {d2['headline'][:30]} · 1차 사유: {v['reason']}")

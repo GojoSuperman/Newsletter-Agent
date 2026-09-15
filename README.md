@@ -188,7 +188,7 @@ uv run python -m newsletter.sources_check
 
 - **State에는 단계 사이를 건너가는 것만** 담고, 리듀서(`operator.add`)는 여러 워커가 동시에 쓰는 `drafted`와 모든 노드가 한 줄씩 남기는 `log`에만 붙입니다. 노드는 자기가 바꾼 키만 돌려줍니다.
 - **조용한 실패 금지.** 결과물을 바꾸는 건너뜀(소스 실패, 본문 추출 실패, 검수 탈락)은 반드시 로그나 지표에 남깁니다. 날짜가 없는 항목 한 건이 빠지는 건 조용해도 됩니다.
-- **노드는 의존성을 인자로 받는 순수 함수**입니다(`http_get`, `ask`, `extract`, `post`). `graph.py`가 `functools.partial`로 묶어 LangGraph에 등록하고, 테스트는 가짜를 꽂습니다. 그래서 85개 테스트가 네트워크·OpenAI·Discord를 한 번도 호출하지 않습니다.
+- **노드는 의존성을 인자로 받는 순수 함수**입니다(`http_get`, `ask`, `extract`, `post`). `graph.py`가 `functools.partial`로 묶어 LangGraph에 등록하고, 테스트는 가짜를 꽂습니다. 그래서 90개 테스트가 네트워크·OpenAI·Discord를 한 번도 호출하지 않습니다.
 - **③ 취재는 기사 수만큼 팬아웃**합니다(`Send`). 기사끼리 서로 볼 필요가 없기 때문입니다. ② 선별과 ④ 검수는 다른 항목을 봐야 답할 수 있어 펼치지 않습니다.
 - **대시보드는 파이프라인을 호출만** 합니다. `newsletter/`는 화면이 있는지 모르고, GitHub Actions는 화면 없이 `run.py`만 부릅니다.
 
@@ -282,7 +282,7 @@ Newsletter-Agent/
 ├─ requirements.txt            # uv export 산출물 (pip 사용자용)
 ├─ REPORT.md                   # 과제 보고서
 ├─ store/                      # 실행 기록 (위 표 참고)
-├─ tests/                      # pytest 85개, 네트워크 없음
+├─ tests/                      # pytest 90개, 네트워크 없음
 ├─ docs/superpowers/           # 설계 스펙과 구현 플랜
 └─ .github/workflows/daily.yml # 매일 07:30 KST
 ```
@@ -303,7 +303,7 @@ Newsletter-Agent/
 ## 테스트
 
 ```bash
-uv run pytest            # 85 passed
+uv run pytest            # 90 passed
 uv run pytest -v tests/test_select.py
 ```
 
@@ -314,6 +314,8 @@ uv run pytest -v tests/test_select.py
 - 원문 600자 미만이면 "본문 부족" 로그와 함께 제외, 팬아웃이 기사 수만큼 워커를 띄움
 - 검수 프롬프트에 `why`가 들어가지 않음, 탈락 사유가 로그에 남음
 - dry_run이면 HTTP 호출 0회, 0건이면 발송 안 함, 웹훅 URL 없으면 예외
+- 검수 탈락 → 재생성 1회 → 통과/스킵, LLM 호출 실패 시 기사 단위 스킵
+- `tests/test_e2e.py`: 실노드 다섯 개를 가짜 RSS·LLM·웹훅으로 이어 수집→발행을 한 번에 돌림 (죽은 소스 격리, 면제, 팬아웃, 재생성, 웹훅 1회까지)
 - SSE 이벤트 순서, 저장 파일, 버려진 실행의 잠금 해제, `git pull` 실패가 예외가 아닌 응답으로 보고됨
 
 ---
@@ -327,7 +329,7 @@ uv run pytest -v tests/test_select.py
 - **모든 노드가 같은 모델을 씁니다.** 예선처럼 판단이 단순한 곳은 더 싼 모델로 내릴 수 있습니다.
 - **스크래핑은 하지 않습니다.** RSS도 API도 없는 분야로 옮기려면 robots.txt 확인과 구조 변경 감지가 통째로 따라옵니다.
 - **GitHub 러너에서 일부 사이트의 본문 추출이 실패합니다.** 로컬에서는 성공하는 기사가 러너에서는 "본문 부족"으로 빠지는 경우가 있습니다(러너 IP 차단으로 추정). `metrics.jsonl`의 추출률로 추적합니다.
-- **검수 노드에서 LLM 호출이 실패하면 그날 실행이 실패합니다.** 건별로 조용히 탈락시키면 검수 없이 누락된 것을 알 수 없어 일부러 예외로 둡니다. Actions 알림으로 드러납니다.
+- **취재·검수에서 LLM 호출이 (재시도 후에도) 실패하면 그 기사만 사유와 함께 건너뜁니다.** 검수를 못 한 글은 절대 내보내지 않고, 로그에 `취재 실패`·`검수 실패`로 남습니다. 모든 기사가 실패해 0건이면 발송하지 않습니다.
 - **대시보드와 리더 앱은 모두 로컬 전용**입니다. 인증이 없으니 외부에 열지 마세요.
 - **리더 앱의 설정 파일(`store/local/settings.json`)에 API 키가 평문으로 저장됩니다.** 파일 권한은 600으로 제한하지만, 공용 컴퓨터에서는 쓰지 마세요.
 

@@ -70,3 +70,20 @@ def test_rewrite_draft_feeds_reason_to_llm():
     d = rewrite_draft(D, "업계 최초가 원문에 없음", cfg, ask)
     assert "업계 최초가 원문에 없음" in seen["user"] and D["body"] in seen["user"]
     assert d["headline"] == "H2" and d["summary"] == "S2" and d["body"] == D["body"]
+
+
+def test_verify_skips_article_when_llm_fails_and_never_publishes_unverified():
+    def broken_ask(system, user, schema):
+        raise RuntimeError("LLM 호출 실패: timeout")
+    out = verify({"drafted": [D]}, broken_ask, rewrite=lambda d, r: d)
+    assert out["verified"] == []                                   # 검수 못 한 글은 내보내지 않는다
+    assert any("검수 실패" in l and "timeout" in l for l in out["log"])
+
+
+def test_verify_skips_when_rewrite_itself_fails():
+    def ask(system, user, schema):
+        return VerdictOut(grounded=False, reason="근거 없음")
+    def broken_rewrite(d, reason):
+        raise RuntimeError("LLM 호출 실패: 500")
+    out = verify({"drafted": [D]}, ask, rewrite=broken_rewrite)
+    assert out["verified"] == [] and any("재생성 실패" in l for l in out["log"])
