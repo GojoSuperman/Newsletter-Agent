@@ -16,7 +16,7 @@ def fake_ask_factory(calls):
         urls = [l.split()[0] for l in user.splitlines() if l.startswith("https://")]
         if schema is Shortlist:
             return Shortlist(urls=urls[:3] + ["https://unknown"])
-        return Final(picks=[FinalPick(url=u, reason="이유") for u in urls[:5]])   # 일부러 초과 반환
+        return Final(picks=[FinalPick(url=u, reason="이유", topic="t") for u in urls[:5]])   # 일부러 초과 반환
     return ask
 
 
@@ -54,3 +54,15 @@ def test_exempt_never_exceeds_pick_count():
     assert len(out["picked"]) == 2
     assert all(p["reason"] == "당사자 발표" for p in out["picked"])
     assert calls == []
+
+
+def test_final_picks_carry_topic_and_log_each_pick():
+    calls = []
+    out = select({"collected": [art(1), art(2)]}, CFG, ask=fake_ask_factory(calls))
+    assert all(p["topic"] == "t" for p in out["picked"])
+    assert sum(1 for l in out["log"] if "[t]" in l) == 2                 # 건마다 라벨 한 줄
+
+
+def test_exempt_pick_has_topic_label():
+    out = select({"collected": [art(1, tier=1)]}, CFG, ask=fake_ask_factory([]))
+    assert out["picked"][0]["topic"] == "당사자 발표"

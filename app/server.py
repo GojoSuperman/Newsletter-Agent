@@ -25,7 +25,7 @@ STATIC = Path(__file__).parent / "static"
 LOCAL = "local"
 STALE_SECONDS = 60
 
-app = FastAPI(title="AI 뉴스레터 리더")
+app = FastAPI(title="과학·우주 뉴스레터 리더")
 _pending: dict[str, dict] = {}
 _lock = threading.Lock()
 

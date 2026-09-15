@@ -1,0 +1,534 @@
+{
+ "hours": 24,
+ "dry_run": false,
+ "collected": [
+  {
+   "title": "CubeSat Instrument Extends Solar Storm Warnings 10x",
+   "url": "https://www.universetoday.com/articles/cubesat-instrument-extends-solar-storm-warnings-10x",
+   "source": "Universe Today",
+   "tier": 2,
+   "at": "2026-09-15T02:29:49+00:00",
+   "summary": "Our Sun is the very reason life exists on our small, blue planet. It provides solar radiation that warms the planet and ignites the intricate biochemical processes like photosynthesis producing oxygen for life to breathe. However, while the Sun is known for giving life, it can also potentially take "
+  },
+  {
+   "title": "Webinar 9/23: NASA CSDA Program Update 2026",
+   "url": "https://science.nasa.gov/science-research/earth-science/webinar-9-23-nasa-csda-program-update-2026/",
+   "source": "NASA",
+   "tier": 2,
+   "at": "2026-09-14T21:04:04+00:00",
+   "summary": "CSDA Menu\n\n\n\n\nCSDA\nCommercial Data\n\nAvailable Datasets\nEnd User License Agreements\nCommercial Satellite Data Explorer\nSatellite Data Evaluation \n\n\nCSDA Vendors\n\nAirbus\nBlackSky \nCapella \nGeoOptics\nGHGSat\nICEYE \nMDA Space\nOrbital Sidekick\nOroraTech\nPixxel\nPlanet\nPlanetiQ\nPolar Geospatial Center \nSate"
+  },
+  {
+   "title": "The warmest summer on record: 2026 hit a scorching new high in the US",
+   "url": "https://www.space.com/science/climate-change/the-warmest-summer-on-record-2026-hit-a-scorching-new-high-in-the-us",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T20:00:00+00:00",
+   "summary": "null"
+  },
+  {
+   "title": "Trump repeals emissions regulations of fossil-fuel power plants",
+   "url": "https://www.scientificamerican.com/article/trump-epa-to-repeal-emissions-regulations-of-fossil-fuel-power-plants/",
+   "source": "Scientific American",
+   "tier": 2,
+   "at": "2026-09-14T20:00:00+00:00",
+   "summary": "The reversal of a Biden-era cap on emissions from the plants could have devastating effects in efforts to stop climate change"
+  },
+  {
+   "title": "Don't Get Your Hopes Up for a City on the Moon",
+   "url": "https://www.universetoday.com/articles/dont-get-your-hopes-up-for-a-city-on-the-moon",
+   "source": "Universe Today",
+   "tier": 2,
+   "at": "2026-09-14T19:57:52+00:00",
+   "summary": "Bezos said we should move heavy industry to the Moon. Musk says we'll have sustainable lunar cities. We know there's ancient water ice in craters on the Moon's poles, but there's not enough water to support a city."
+  },
+  {
+   "title": "New Crops, Health Research Proposals to Help NASA Advance Exploration",
+   "url": "https://science.nasa.gov/science-research/biological-physical-sciences/new-crops-health-research-proposals-to-help-nasa-advance-exploration/",
+   "source": "NASA",
+   "tier": 2,
+   "at": "2026-09-14T19:00:00+00:00",
+   "summary": "NASA has selected 12 new investigations to help support human explorers in space. Six will help advance the ability to produce food off-planet, while another six advance the understanding of how unique conditions associated with space exploration can impact the health and physiology of astronauts.  "
+  },
+  {
+   "title": "Interstellar comet 3I/ATLAS likely formed where its star's light couldn't touch it",
+   "url": "https://www.space.com/astronomy/comets/interstellar-comet-3i-atlas-likely-formed-where-its-stars-light-couldnt-touch-it",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T19:00:00+00:00",
+   "summary": "null"
+  },
+  {
+   "title": "Tens of Thousands of Fast Radio Bursts Could Help Solve the Greatest Cosmic Mysteries",
+   "url": "https://www.universetoday.com/articles/tens-of-thousands-of-fast-radio-bursts-could-help-solve-the-greatest-cosmic-mysteries",
+   "source": "Universe Today",
+   "tier": 2,
+   "at": "2026-09-14T18:12:00+00:00",
+   "summary": "A new study led by researchers from Caltech demonstrates the effectiveness of Fast Radio Bursts (FRBs) as a tool for measuring cosmological distances and the clustering of matter."
+  },
+  {
+   "title": "A new solar cell could generate electricity underwater",
+   "url": "https://arstechnica.com/science/2026/09/a-new-solar-cell-could-generate-electricity-underwater/",
+   "source": "Ars Technica Science",
+   "tier": 2,
+   "at": "2026-09-14T18:03:16+00:00",
+   "summary": "In one episode of the Hanna-Barbera cartoon Birdman, the eponymous hero struggles to fight the evil Dr. Shark aboard a submarine without solar energy to recharge his powers. So Birdman would surely appreciate the new perovskite solar cells developed by a team led by Simin Ma at Yunnan University, si"
+  },
+  {
+   "title": "Vega C rocket launches 2 European Earth-observing satellites to orbit from South America",
+   "url": "https://www.space.com/space-exploration/launches-spacecraft/vega-rocket-launch-europe-flex-sentinel-3c-earth-observation-satellites",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T18:00:00+00:00",
+   "summary": "null"
+  },
+  {
+   "title": "Prehistoric builders transported Devil's Arrows 11 miles",
+   "url": "https://arstechnica.com/science/2026/09/prehistoric-builders-transported-devils-arrows-11-miles/",
+   "source": "Ars Technica Science",
+   "tier": 2,
+   "at": "2026-09-14T17:10:54+00:00",
+   "summary": "Stonehenge is the most famous example of megalithic architecture across Britain and Ireland, but there are plenty of others, including Calanais, Newgrange, and Avebury, as well as the Devil's Arrows. The latter is Britain's tallest standing stone alignment, yet little is known about the provenance o"
+  },
+  {
+   "title": "The US government is 'sincere in its efforts to understand UAP', new White House council chair says",
+   "url": "https://www.space.com/space-exploration/search-for-life/the-us-government-is-sincere-in-its-efforts-to-understand-uap-new-white-house-council-chair-says",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T17:00:00+00:00",
+   "summary": "null"
+  },
+  {
+   "title": "NASA Welcomes Djibouti as Newest Artemis Accords Signatory",
+   "url": "https://www.nasa.gov/organizations/oiir/artemis-accords/nasa-welcomes-djibouti-as-newest-artemis-accords-signatory/",
+   "source": "NASA",
+   "tier": 2,
+   "at": "2026-09-14T16:46:07+00:00",
+   "summary": "NASA Deputy Administrator Matt Anderson, center, Ambassador of Djibouti to the United States, Mohamed Siad Douale, left, and Assistant Secretary of State for African Affairs, Frank Garcia, right, pose for a group photograph after the Artemis Accord signing, Monday, September 14, 2026, at the Mary W."
+  },
+  {
+   "title": "NASA Kicks Off Inspiration Tour with Steelers vs. Falcons Game",
+   "url": "https://www.nasa.gov/image-article/nasa-kicks-off-inspiration-tour-with-steelers-vs-falcons-game/",
+   "source": "NASA",
+   "tier": 2,
+   "at": "2026-09-14T16:00:11+00:00",
+   "summary": "NASA/Aubrey Gemignani\n\n\nFans pose for a photo with an astronaut in the NASA Experience Zone at an NFL game between the Pittsburgh Steelers and the Atlanta Falcons at Acrisure Stadium, Sunday, Sept. 13, 2026, in Pittsburgh, Pennsylvania.\n\n\n\nNASA’s engagement at NFL games is part of the agency&#8217;s"
+  },
+  {
+   "title": "The original 'Star Wars' is coming to IMAX for the first time ever in 2027",
+   "url": "https://www.space.com/entertainment/space-movies-shows/the-original-star-wars-is-coming-to-imax-for-the-first-time-ever-in-2027",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T16:00:00+00:00",
+   "summary": "null"
+  },
+  {
+   "title": "Black Holes or Black Hole Stars? Astronomers Spar Over Webb Telescope’s ‘Little Red Dots.’",
+   "url": "https://www.quantamagazine.org/black-holes-or-black-hole-stars-astronomers-spar-over-webb-telescopes-little-red-dots-20260914/",
+   "source": "Quanta Magazine",
+   "tier": 2,
+   "at": "2026-09-14T15:20:48+00:00",
+   "summary": "Astronomers built the James Webb Space Telescope to pick up faint light from the first billion years after the Big Bang, a chaotic era when vast swaths of hydrogen and helium gas gathered into the chains of galaxies we see today. Even in the telescope&rsquo;s first images, astronomers could see a wh"
+  },
+  {
+   "title": "Summer Training: Catching Up With NASA’s Astronaut Candidates",
+   "url": "https://www.nasa.gov/centers-and-facilities/johnson/summer-training-catching-up-with-nasas-astronaut-candidates/",
+   "source": "NASA",
+   "tier": 2,
+   "at": "2026-09-14T15:00:00+00:00",
+   "summary": "3 min readPreparations for Next Moonwalk Simulations Underway (and Underwater)\n\nThe members of NASA’s 2025 Astronaut Candidate Class pose with rock samples collected during their geology training at the Rio Grande del Norte National Monument, New Mexico, in May 2026. NASA/Helen Arase Vargas\n\n\nDid yo"
+  },
+  {
+   "title": "No cities on the moon — there isn't enough water, scientists say (op-ed)",
+   "url": "https://www.space.com/astronomy/moon/no-cities-on-the-moon-there-isnt-enough-water-scientists-say-op-ed",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T15:00:00+00:00",
+   "summary": "null"
+  },
+  {
+   "title": "25 winners of math’s ‘Nobel Prize’ decry the AI invasion of their discipline",
+   "url": "https://www.scientificamerican.com/article/25-winners-of-maths-nobel-prize-decry-the-ai-invasion-of-their-discipline/",
+   "source": "Scientific American",
+   "tier": 2,
+   "at": "2026-09-14T15:00:00+00:00",
+   "summary": "A new declaration from winners of the Fields Medal reflects many mathematicians&rsquo; growing alarm over a &ldquo;severe misalignment&rdquo; between the tech industry and their field a week after AI toppled one of math&rsquo;s biggest open problems"
+  },
+  {
+   "title": "On this day in space! Sept. 14, 1966: NASA's Gemini 11 astronauts set altitude record for Earth orbit that went unbroken for 58 years",
+   "url": "https://www.space.com/space-exploration/on-this-day-in-space-september-14-2026",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T14:55:27+00:00",
+   "summary": "null"
+  },
+  {
+   "title": "Cancer is rising in younger adults. Faster biological aging may help explain why",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260913082200.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T14:47:07+00:00",
+   "summary": "Cancer rates are rising in adults under 55, and new research suggests accelerated biological aging may be one piece of the puzzle. Scientists found that people from more recent generations tended to have bodies that appeared biologically older than those of earlier generations at the same chronologi"
+  },
+  {
+   "title": "Hidden brain wiring may help keep the mind sharp as gray matter shrinks",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260913081921.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T14:23:40+00:00",
+   "summary": "Scientists have discovered that the brain’s short-range wiring may help protect cognition even as gray matter shrinks with age. Healthier connections just beneath the brain’s surface were linked to better language skills and appeared to weaken the impact of gray matter loss."
+  },
+  {
+   "title": "Chemistry textbooks have been getting this wrong for nearly 100 years",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260913082157.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T14:13:47+00:00",
+   "summary": "A foundational chemistry concept found in textbooks for almost 100 years may have been taught incorrectly. Researchers say the inductive effect in neutral molecules appears to extend only across one chemical bond, rather than gradually weakening over three or four bonds as traditionally taught. The "
+  },
+  {
+   "title": "Questions? Ask our Hera Space Companion!",
+   "url": "https://www.esa.int/Space_Safety/Hera/Questions_Ask_our_Hera_Space_Companion",
+   "source": "ESA",
+   "tier": 1,
+   "at": "2026-09-14T14:00:00+00:00",
+   "summary": "Meet a key member of our Hera asteroid mission team: the Hera Space Companion, not just an AI chatbot but a dynamic mission-linked communication platform, designed to make the European Space Agency’s first planetary defence mission accessible to everyone!"
+  },
+  {
+   "title": "Cygnus the swan lifts up the International Space Station | Space photo of the day for Sept. 14, 2026",
+   "url": "https://www.space.com/space-exploration/cygnus-the-swan-lifts-up-the-international-space-station-space-photo-of-the-day-for-sept-14-2026",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T14:00:00+00:00",
+   "summary": "null"
+  },
+  {
+   "title": "Scientists find a hidden cause of high blood pressure that routine tests can miss",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260913081916.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T13:57:49+00:00",
+   "summary": "A wearable device has revealed nighttime hormone surges that may expose a frequently missed cause of high blood pressure. The discovery could help explain why primary aldosteronism often escapes standard blood tests and point toward a more accurate way to diagnose it."
+  },
+  {
+   "title": "Crocodiles are famous for finding their way home. These ones didn’t",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260913081913.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T13:46:25+00:00",
+   "summary": "Captive-raised saltwater crocodiles released into Bangladesh’s Sundarbans surprised scientists by settling into the wild rather than trying to return to their breeding facility. The result suggests that releasing larger, mature captive crocodiles could help restore depleted populations more successf"
+  },
+  {
+   "title": "This German submarine sank in 1917. It’s still leaking TNT",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260913081919.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T13:30:51+00:00",
+   "summary": "A World War I submarine wreck off Denmark is leaking TNT into the surrounding water, seabed, and marine life more than a century after it sank. Scientists warn that thousands of similar wrecks could pose growing environmental risks as they continue to corrode."
+  },
+  {
+   "title": "Scientists discover strange link between low vitamin D and pain",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260914042053.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T12:52:54+00:00",
+   "summary": "Low vitamin D levels may make recovery from breast cancer surgery more painful, according to a study of 184 women undergoing mastectomy. Patients with vitamin D deficiency were three times more likely to experience moderate to severe pain during the first 24 hours after surgery and also used substan"
+  },
+  {
+   "title": "Is there a hidden 'Planet 9' in our solar system?",
+   "url": "https://www.space.com/astronomy/solar-system/is-there-a-hidden-planet-9-in-our-solar-system",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T12:00:00+00:00",
+   "summary": "&lt;p&gt;Micah Hanks is a science reporter and podcaster focusing on space and astronomy, and Editor at &lt;a href=&quot;https://thedebrief.org/&quot;&gt;&lt;u&gt;TheDebrief.org&lt;/u&gt;&lt;/a&gt;. Follow him on X &lt;a href=&quot;http://www.twitter.com/MicahHanks&quot; target=&quot;_blank&quot;&gt"
+  },
+  {
+   "title": "Pre-order the Unistellar Envision AR binoculars and learn about the night sky in real-time",
+   "url": "https://www.space.com/stargazing/skywatching-kit/pre-order-the-unistellar-envision-ar-binoculars-and-learn-about-the-night-sky-in-real-time",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T12:00:00+00:00",
+   "summary": "&lt;p&gt;Harry joined Space.com in December 2024 as an e-commerce staff writer covering cameras, optics, and skywatching content. Based in the UK, Harry graduated in 2019 with a Bachelor&#039;s degree in American Literature with Creative Writing from the University of East Anglia.  A keen photograph"
+  },
+  {
+   "title": "James Webb Space Telescope and Hubble discover 27 puzzling new objects orbiting the sun far beyond Neptune",
+   "url": "https://www.space.com/astronomy/james-webb-space-telescope/james-webb-space-telescope-and-hubble-discover-27-puzzling-new-objects-orbiting-the-sun-far-beyond-neptune",
+   "source": "Space.com",
+   "tier": 2,
+   "at": "2026-09-14T10:00:00+00:00",
+   "summary": "&lt;p&gt; &lt;/p&gt;"
+  },
+  {
+   "title": "25 years after 9/11, AI sparks a math debate as data center pollution concerns grow",
+   "url": "https://www.scientificamerican.com/podcast/episode/25-years-after-9-11-ai-sparks-a-math-debate-as-data-center-pollution-concerns-grow/",
+   "source": "Scientific American",
+   "tier": 2,
+   "at": "2026-09-14T10:00:00+00:00",
+   "summary": "As new 9/11 documents emerge, AI transforms math and fuels debates over pollution, power and progress"
+  },
+  {
+   "title": "What caused this woman’s hallucinations? Doctors reveal an infestation of brain worms",
+   "url": "https://www.scientificamerican.com/article/what-caused-this-womans-hallucinations-doctors-reveal-an-infestation-of-brain-worms/",
+   "source": "Scientific American",
+   "tier": 2,
+   "at": "2026-09-14T10:00:00+00:00",
+   "summary": "After months of headaches and visual hallucinations, a woman was finally revealed to have brain cysts filled with tapeworm larvae"
+  },
+  {
+   "title": "ESA Space Environment Report 2026",
+   "url": "https://www.esa.int/Space_Safety/Space_Debris/ESA_Space_Environment_Report_2026",
+   "source": "ESA",
+   "tier": 1,
+   "at": "2026-09-14T08:52:00+00:00",
+   "summary": ""
+  },
+  {
+   "title": "ESA’s FLEX mission reveals the secret glow of plants",
+   "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/09/ESA_s_FLEX_mission_reveals_the_secret_glow_of_plants",
+   "source": "ESA",
+   "tier": 1,
+   "at": "2026-09-14T08:00:00+00:00",
+   "summary": "Video: \n\t\t\t00:06:30\n\t\t\t\tPlants may look still and silent, but every leaf is constantly responding to its environment.As plants photosynthesise, they emit an incredibly faint glow called fluorescence. Invisible to our eyes, this signal can reveal how plants are using sunlight and how they respond to "
+  },
+  {
+   "title": "FLEX and Sentinel-3C ready for liftoff on Vega-C",
+   "url": "https://www.esa.int/Applications/Observing_the_Earth/FLEX_and_Sentinel-3C_ready_for_liftoff_on_Vega-C",
+   "source": "ESA",
+   "tier": 1,
+   "at": "2026-09-14T07:20:00+00:00",
+   "summary": "Two Earth observation satellites – ESA’s Fluorescence Explorer (FLEX) satellite, and the third satellite for the Copernicus Sentinel-3 mission – are encapsulated inside the nose cone of a Vega-C launcher and are awaiting liftoff at Europe’s Spaceport in French Guiana."
+  },
+  {
+   "title": "APOD: 2026 September 14 – Where Your Elements Came From",
+   "url": "https://science.nasa.gov/image-article/apod-2026-september-14-where-your-elements-came-from/",
+   "source": "NASA",
+   "tier": 2,
+   "at": "2026-09-14T04:05:00+00:00",
+   "summary": "APODScienceAPODAPOD: 2026 September 14 –…Today’s APODArchiveSubmissionsIndexSearchCalendarRSSEducationAboutDiscuss \n\n\t\n\t\t\t\t\tAPOD\n\t\t\n\t\t\t\t\t\t\t\t\tAstronomy Picture of the Day\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\tDiscover the cosmos! Each day a different image or photograph of our fascinating universe is featured, along with "
+  },
+  {
+   "title": "An Early Look at Fall Color in Canada",
+   "url": "https://science.nasa.gov/earth/earth-observatory/an-early-look-at-fall-color-in-canada/",
+   "source": "NASA",
+   "tier": 2,
+   "at": "2026-09-14T04:00:00+00:00",
+   "summary": "Earth ObservatoryScienceEarth ObservatoryAn Early Look at Fall Color in…EarthEarth ObservatoryImage of the DayEO ExplorerTopicsAll TopicsAtmosphereLandHeat &#038; RadiationLife on EarthHuman DimensionsNatural EventsOceansRemote Sensing TechnologySnow &#038; IceWaterMore ContentCollectionsGlobal Maps"
+  },
+  {
+   "title": "Scientists find how “zombie” cells fuel inflammation as we age",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260911214301.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T03:48:19+00:00",
+   "summary": "Scientists discovered that aging cells can use malfunctioning mitochondria to unlock inflammatory genes and keep the immune system stuck in a prolonged state of alert. Blocking one part of this process reduced inflammation and improved healthy aging in mice, suggesting a promising new strategy for f"
+  },
+  {
+   "title": "One Mount Etna eruption took weeks. Another happened in hours",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260912220100.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T03:18:35+00:00",
+   "summary": "Mount Etna’s ancient eruptions followed radically different paths, with some magma lingering near the surface for weeks while other magma raced upward from nearly 30 kilometers deep in just hours. Scientists traced the difference to volcanic gases such as carbon dioxide and water, offering a powerfu"
+  }
+ ],
+ "picked": [
+  {
+   "title": "Questions? Ask our Hera Space Companion!",
+   "url": "https://www.esa.int/Space_Safety/Hera/Questions_Ask_our_Hera_Space_Companion",
+   "source": "ESA",
+   "tier": 1,
+   "at": "2026-09-14T14:00:00+00:00",
+   "summary": "Meet a key member of our Hera asteroid mission team: the Hera Space Companion, not just an AI chatbot but a dynamic mission-linked communication platform, designed to make the European Space Agency’s first planetary defence mission accessible to everyone!",
+   "reason": "당사자 발표",
+   "topic": "당사자 발표"
+  },
+  {
+   "title": "CubeSat Instrument Extends Solar Storm Warnings 10x",
+   "url": "https://www.universetoday.com/articles/cubesat-instrument-extends-solar-storm-warnings-10x",
+   "source": "Universe Today",
+   "tier": 2,
+   "at": "2026-09-15T02:29:49+00:00",
+   "summary": "Our Sun is the very reason life exists on our small, blue planet. It provides solar radiation that warms the planet and ignites the intricate biochemical processes like photosynthesis producing oxygen for life to breathe. However, while the Sun is known for giving life, it can also potentially take ",
+   "reason": "CubeSat의 신기술이 태양폭풍 경고 시스템의 정확성을 10배 향상시켜 기후 변화에 대한 대비가 가능해졌다.",
+   "topic": "지구·기후"
+  },
+  {
+   "title": "Cancer is rising in younger adults. Faster biological aging may help explain why",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260913082200.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T14:47:07+00:00",
+   "summary": "Cancer rates are rising in adults under 55, and new research suggests accelerated biological aging may be one piece of the puzzle. Scientists found that people from more recent generations tended to have bodies that appeared biologically older than those of earlier generations at the same chronologi",
+   "reason": "젊은 성인의 암 발생률이 증가하고 있으며, 생물학적 노화가 그 원인일 수 있다는 연구 결과가 중요한 의료 정보를 제공한다.",
+   "topic": "생명·의학"
+  },
+  {
+   "title": "Trump repeals emissions regulations of fossil-fuel power plants",
+   "url": "https://www.scientificamerican.com/article/trump-epa-to-repeal-emissions-regulations-of-fossil-fuel-power-plants/",
+   "source": "Scientific American",
+   "tier": 2,
+   "at": "2026-09-14T20:00:00+00:00",
+   "summary": "The reversal of a Biden-era cap on emissions from the plants could have devastating effects in efforts to stop climate change",
+   "reason": "미국의 새로운 환경 정책 변화가 기후 변화 대응에 심각한 영향을 미칠 것으로 예상된다.",
+   "topic": "과학정책·산업"
+  },
+  {
+   "title": "Scientists find how “zombie” cells fuel inflammation as we age",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260911214301.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T03:48:19+00:00",
+   "summary": "Scientists discovered that aging cells can use malfunctioning mitochondria to unlock inflammatory genes and keep the immune system stuck in a prolonged state of alert. Blocking one part of this process reduced inflammation and improved healthy aging in mice, suggesting a promising new strategy for f",
+   "reason": "'좀비' 세포가 염증 반응의 기전으로 작용하는 것을 발견한 연구는 노화 관련 의학 분야에 중요한 통찰을 제공한다.",
+   "topic": "생명·의학"
+  }
+ ],
+ "drafted": [
+  {
+   "title": "Questions? Ask our Hera Space Companion!",
+   "url": "https://www.esa.int/Space_Safety/Hera/Questions_Ask_our_Hera_Space_Companion",
+   "source": "ESA",
+   "tier": 1,
+   "at": "2026-09-14T14:00:00+00:00",
+   "summary": "헤라 스페이스 컴패니언은 유럽우주국의 첫 번째 행성 방어 미션을 위해 설계된 AI 챗봇입니다. 이 플랫폼은 실시간으로 미션과 관련된 질문에 답하고, 복잡한 주제를 쉽게 설명해 주며, 개인 맞춤형 학습을 제공합니다. 사용자는 게스트로 이용하거나 로그인하여 대화를 기억하게 할 수 있어 더욱 깊이 있는 학습이 가능합니다.",
+   "reason": "당사자 발표",
+   "topic": "당사자 발표",
+   "headline": "우주 미션을 쉽게 배울 수 있는 헤라 스페이스 컴패니언 소개",
+   "why": "오늘 저녁 대화 소재로 우주 탐사에 대한 질문을 던질 수 있는 기회를 제공하므로 흥미로운 주제가 됩니다.",
+   "body": "Questions? Ask our Hera Space Companion!\nMeet a key member of our Hera asteroid mission team: the Hera Space Companion, not just an AI chatbot but a dynamic mission-linked communication platform, designed to make the European Space Agency’s first planetary defence mission accessible to everyone!\nThe Hera Space Companion has access to approved operational, scientific and mission knowledge, allowing it to explain the Hera mission as it unfolds, answer questions in real time and guide users through complex topics ranging from asteroid science and planetary defence to spacecraft operations and autonomous navigation. Its purpose is simple: transform curiosity into understanding.\nInstead of publishing static information and expecting audiences to find and understand it, we invite people to ask questions. The conversation becomes the entry point, and learning becomes personalised, interactive and continuous.\nBecause everyone starts from a different level of knowledge, the Companion can adapt explanations while maintaining scientific accuracy and consistency. Try it as a guest, or sign in so that it remembers your conversation and tailors its answers accordingly.\nThis is responsible AI in action. The Hera Space Companion is built around transparency, trust and scientific integrity. It clearly identifies itself as AI, relies on approved sources, distinguishes facts from uncertainty, avoids speculation, respects privacy and directs questions to official ESA channels when human expertise is required.\nHera is the first major space mission where the public does not simply watch and read the story of exploration. Instead they can talk to it, question it and learn from it via a trusted digital companion.",
+   "regenerated": false
+  },
+  {
+   "title": "Trump repeals emissions regulations of fossil-fuel power plants",
+   "url": "https://www.scientificamerican.com/article/trump-epa-to-repeal-emissions-regulations-of-fossil-fuel-power-plants/",
+   "source": "Scientific American",
+   "tier": 2,
+   "at": "2026-09-14T20:00:00+00:00",
+   "summary": "트럼프 행정부의 환경보호청(EPA)은 석탄 및 천연가스 발전소의 온실가스 배출에 제한을 두던 규제를 해제했습니다. 이 조치는 기후 과학자들과 환경운동가들이 건강과 기후 변화에 부정적인 영향을 미칠 것이라고 경고하고 있습니다. 발전소는 미국에서 가장 큰 온실가스 배출원으로, 이들 규제가 폐지됨에 따라 배출량이 증가할 가능성이 있습니다.",
+   "reason": "미국의 새로운 환경 정책 변화가 기후 변화 대응에 심각한 영향을 미칠 것으로 예상된다.",
+   "topic": "과학정책·산업",
+   "headline": "트럼프 행정부, 화석연료 발전소의 온실가스 규제 완화",
+   "why": "이번 규제 완화는 기후 변화와 공공 건강에 대한 중대한 영향을 미칠 수 있어, 저녁 대화에서 신선한 논의 주제가 될 것입니다.",
+   "body": "The Trump administration’s Environmental Protection Agency (EPA) has moved to lift all rules putting limits on greenhouse gas emissions from coal and natural gas–fueled power plants, a move that climate scientists and activists say will harm public health and contribute to climate change. The rules required fossil fuel–based power plants to capture 90 percent of their greenhouse gas emissions.\nThe change was first proposed more than a year ago as part of sweeping deregulation that the EPA said will save $310 billion. Climate scientists and the EPA under the Biden administration said that regulating the emissions would save tens of billions of dollars in terms of public health.\n\"For over 15 years, the Obama and Biden administrations implemented a war on coal to destroy reliable and affordable energy. The Trump Administration has come in to protect American energy and to make sure you can afford to keep the lights on,” said EPA Administrator Lee Zeldin in a statement. “Americans will see a decrease in electricity prices, but this is just the beginning. We are working to go even further so that American energy can be fully unleashed. Realizing the full potential of American energy means more jobs, lower prices, and a more prosperous America.”\nOn supporting science journalism\nIf you're enjoying this article, consider supporting our award-winning journalism by subscribing. By purchasing a subscription you are helping to ensure the future of impactful stories about the discoveries and ideas shaping our world today.\nThough Zeldin acknowledged in his Senate confirmation hearing that carbon dioxide and other greenhouse gases trap heat and lead to global climate change, much of his focus at the agency has been oriented towards eliminating emissions standards, including reversing a rule called the “endangerment finding” in February. The rule was based on a 2009 agency report declaring, based on longstanding scientific evidence, that six greenhouse gases threatened the health and welfare of Americans because of the threat they posed to the climate. It followed a Supreme Court decision two years earlier that allowed the EPA to set limits on greenhouse gases as air pollutants under the Clean Air Act.\n“Everything Lee Zeldin is doing is contrary to the science,” says Rachel Cleetus, senior policy director at the Union of Concerned Scientists.\nLifting the regulations on fossil-fuel power plants has long been expected, Cleetus says. The president has claimed that climate change is a “hoax” perpetrated by China, and members of the administration have dismissed scientific evidence of its harmful effects as alarmism.\n“I know the administration has in the past made fallacious arguments, faulty arguments about the significance, but these are very significant contributors to global heat-trapping emissions,” says Cleetus, noting that the United Nations recently said surpassing the 1.5-degree-Celsius global warming target set in the Paris Agreement, which Trump withdrew the U.S. from in January, is now inevitable. “That is a very sobering scientific context for this announcement.”\nAccording to the EPA’s website, power plants are the largest stationary source of greenhouse gas emissions in the U.S. Though the amount emitted by power plants had been steadily declining since 2011, they still accounted for more than 1.4 billion metric tons of carbon dioxide and other emissions in 2023, the most recent year for which data is available. Transportation is the top source of all U.S. emissions, accounting for more than a quarter of them. After revoking the endangerment finding, the Trump administration had already repealed previous regulations on greenhouse gas emissions and fuel-efficiency standards set during the Biden administration.\nRescinding the transportation and power plant regulations as well as the endangerment finding could also make it more difficult for future administrations to issue regulations without specific new laws or amendments to the Clean Air Act by Congress.\n“With millions of Americans facing wildfires, heat waves and deadly storms fueled by climate change, the Trump administration is cutting the biggest polluters loose to do more damage than ever,” said Natural Resources Defense Council federal climate legal director Meredith Hankins in a statement on Monday. “For the health of our families and good of our nation, this cannot stand. Ignoring the immense harm to the public from this power plant pollution is a clear violation of the Clean Air Act and of Supreme Court precedent. We will be seeing them in court.\"",
+   "regenerated": false
+  },
+  {
+   "title": "CubeSat Instrument Extends Solar Storm Warnings 10x",
+   "url": "https://www.universetoday.com/articles/cubesat-instrument-extends-solar-storm-warnings-10x",
+   "source": "Universe Today",
+   "tier": 2,
+   "at": "2026-09-15T02:29:49+00:00",
+   "summary": "런던 임페리얼 대학교 연구팀이 HENON(헬리오스pheric pioneer for solar and interplanetary threats defence) 큐브샛을 소개하였습니다. 이 큐브샛은 15시간의 경고 시간을 3시간으로 줄이는 데 기여할 것으로 기대됩니다. HENON은 현재의 우주 날씨 위성보다 10배 먼 거리에서 태양의 자기장을 측정하여 경고의 정확성을 향상시키는 것을 목표로 합니다.",
+   "reason": "CubeSat의 신기술이 태양폭풍 경고 시스템의 정확성을 10배 향상시켜 기후 변화에 대한 대비가 가능해졌다.",
+   "topic": "지구·기후",
+   "headline": "큐브샛 인스트루먼트, 태양폭풍 경고 시간을 10배 늘리다",
+   "why": "오늘 저녁 대화 소재로 우주 날씨 예측의 정확도가 높아지면 우리의 안전과 인프라 보호에 얼마나 중요한지 논의할 수 있을 것입니다.",
+   "body": "Our Sun is the very reason life exists on our small, blue planet. It provides solar radiation that warms the planet and ignites the intricate biochemical processes like photosynthesis producing oxygen for life to breathe. However, while the Sun is known for giving life, it can also potentially take it away with its solar flares, geomagnetic storms, and solar radiation storms, all of which are referred to as space weather. But how can space weather be forecasted so industries can better prepare and protect their assets, including Earth infrastructure, satellites, and even human safety?\nNow, a team of researchers from the Imperial College London might be one step closer to answering this conundrum as they introduced the HENON (Heliospheric pioneer for solar and interplanetary threats defence) CubeSat with the goal of improving space weather forecasting. HENON was introduced during the Royal Astronomical Society's National Astronomy Meeting, which took place from July 20-24, 2026, along with its key instrument, MAGIC (MAGnetometer from Imperial College).\nAs noted, the primary motivation behind HENON is to improve space weather forecasts, specifically improving upon advance warning time, which currently only allows between 15 to 60 minutes of notice before a space weather event strikes Earth. Another goal of HENON is to improve upon identifying the severity of the incoming space weather event, which requires measuring the solar magnetic field.\nThe reason for the limited warning time is because current space weather satellites are positioned at the Sun-Earth L1 Lagrange point, or about 1.5 million kilometers (932,000 miles) from Earth. This is where HENON’s concept stands out, as the CubeSat is slated to be orbiting 15 million kilometers (9.32 million miles) from Earth, or 10 times farther than current spacecraft. As a result, the researchers estimate that this could improve the advance warning time from 15 hours to up to 3 hours.\n\"The success of HENON will be a step change in our ability to forecast space weather and paves the way for a future operational space weather mission, SHIELD, that is being developed by the European Space Agency, [ESA]\" said Dr. Jonathan Eastwood, who is a Professor of Space Physics in the Department of Physics (Blackett Laboratory) at Imperial College London and lead author of the study.\nThe Carrington Event is arguably the most intense space weather event in the technological age, occurring from September 1-2, 1859, and resulting in global auroras and global disruptions to telegraph systems. However, several space weather events have occurred since then, though not as powerful, including the “Jennifer Gannon” superstorm from May 7-11, 2024, which was designated as a G5 (extreme) storm, and an S4 (severe) solar radiation storm occurring on January 19, 2026.\nFor context, the National Oceanic and Atmospheric Administration (NOAA) has a rating system called the Space Weather Scales comprised of G-, S-, and R- scales, indicating Geomagnetic Storms, Solar Radiation Storms, and Radio Blackouts, respectively, all rated from 1 (Minor) to 5 (Extreme).\nAs Dr. Eastwood mentions, the future ESA SHIELD mission (which is its direct name and no formal acronym) is slated to continue improving space weather forecasting based on the work of HENON. This is because SHIELD is slated to be an upscaled version of HENON, positioned at about 15 million kilometers from Earth and providing a potential continuous advance warning of incoming space weather events up to the estimated three hours that HENON is expected to produce.\nHow will the HENON CubeSat mission deliver more accurate space weather predictions in the coming years and decades? Only time will tell, and this is why we science!\nAs always, keep doing science & keep looking up!",
+   "regenerated": false
+  },
+  {
+   "title": "Scientists find how “zombie” cells fuel inflammation as we age",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260911214301.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T03:48:19+00:00",
+   "summary": "과학자들은 노화하면서 세포가 어떻게 기능하지 않는 미토콘드리아를 이용해 염증 유전자들을 활성화하는지를 발견했습니다. 이 연구는 쥐를 대상으로 한 실험에서 염증을 줄이고 건강한 노화를 촉진하는 가능성을 보여주었습니다. 이 발견은 노화와 관련된 질병을 예방하는 새로운 전략이 될 수 있다는 점에서 주목받고 있습니다.",
+   "reason": "'좀비' 세포가 염증 반응의 기전으로 작용하는 것을 발견한 연구는 노화 관련 의학 분야에 중요한 통찰을 제공한다.",
+   "topic": "생명·의학",
+   "headline": "노화에 따른 염증을 유발하는 '좀비 세포'의 비밀이 밝혀졌다",
+   "why": "오늘 저녁 대화 소재로 적절하며, 우리가 나이가 들어감에 따라 겪는 염증 문제 해결의 힌트를 제공할 수 있습니다.",
+   "body": "Scientists find how “zombie” cells fuel inflammation as we age\nBlocking a mitochondrial trigger of chronic inflammation helped mice age more healthfully.\n- Date:\n- September 13, 2026\n- Source:\n- Sanford Burnham Prebys\n- Summary:\n- Scientists discovered that aging cells can use malfunctioning mitochondria to unlock inflammatory genes and keep the immune system stuck in a prolonged state of alert. Blocking one part of this process reduced inflammation and improved healthy aging in mice, suggesting a promising new strategy for fighting age-related decline.\n- Share:\nInflammation is one of the immune system's most important defenses. When the body detects an infection or injury, it sends out alarm signals that recruit immune cells and other cells to eliminate the threat and begin repairing damaged tissue.\nThis response is essential, but it is supposed to shut down once the danger has passed. As people age, however, certain cells accumulate that can keep inflammation active for much longer than necessary. This persistent inflammation has been associated with numerous diseases that become more common later in life.\nResearchers at Sanford Burnham Prebys Medical Discovery Institute, Mayo Clinic, and collaborating institutions have now uncovered a previously unknown connection between mitochondria, cell metabolism, and this chronic inflammation. Their findings, published in Nature, also showed that interfering with part of the process reduced inflammation and supported healthier aging in mice.\nHow \"Zombie\" Cells Accumulate With Age\nMany cells in the body are capable of dividing, allowing us to grow and helping tissues repair themselves after injury. But as we get older, increasing numbers of cells enter a state known as senescence. These zombie-like senescent cells stop dividing, yet they remain alive and active.\n\"Senescent cells are not completely inert,\" said co-corresponding author Peter Adams, PhD, the Jeanne and Gary Herberger Leadership Chair in Cancer Research at Sanford Burnham Prebys. Adams also is director of and professor in the Cancer Genome and Epigenetics Program.\n\"They remain metabolically active and have an inflammatory program causing them to secrete inflammatory molecules.\"\nWhen senescent cells activate this inflammatory program, they are described as having the senescence-associated secretory phenotype (SASP). SASP has been linked to widespread inflammation associated with aging as well as a range of chronic diseases.\nThe research team, led by the laboratory of senior and co-corresponding author João Passos, PhD, a professor of Physiology at Mayo Clinic, set out to identify the molecular processes that drive SASP. Their broader goal was to determine whether those processes might be interrupted or reduced.\n\"It turns out that there is a convergence of at least two biological pathways related to mitochondria,\" said Adams. \"One alters how DNA is stored to promote areas related to SASP, and the other boosts the expression of the exposed SASP genes.\"\nMitochondria Help Unlock Inflammatory Genes\nAlthough senescent cells no longer divide, they continue using energy and carrying out metabolic activity. The researchers found that their mitochondria, the structures responsible for much of a cell's energy production, behave differently from those in healthier cells.\nIn particular, mitochondria in senescent cells produced increased amounts of acetyl-CoA, an important molecule involved in metabolism.\nAcetyl-CoA also interacts with histones, spool-like proteins around which DNA is wrapped. By altering these histones, acetyl-CoA can loosen the way DNA is packaged. This does not change the genetic code itself. Instead, it makes certain genes more accessible, including genes involved in the inflammatory SASP response.\nThat metabolic change alone, however, was not enough to explain why senescent cells continuously release inflammatory molecules.\nTwo Mitochondrial Signals Work Together\nA second process was also required.\nDamaged mitochondria can leak DNA and RNA into parts of the cell where those molecules normally should not be present. The immune system interprets this misplaced genetic material as a danger signal, triggering an inflammatory response.\nThese immune signals activate transcription factors that help switch genes on. Those factors are then able to target the SASP genes that have already been made more accessible by elevated acetyl-CoA.\nIn other words, the researchers found that two separate mitochondrial processes converge. One exposes inflammatory genes, while the other provides the immune signal needed to activate them.\n\"After seeing how these two independent pathways intersect, we wanted to see if interrupting one could prevent their partnership in promoting SASP,\" said Adams.\nBlocking the Metabolic Signal Reduced Inflammation\nTo test that possibility, the researchers used a drug called CTPI-2. The drug blocks a transport protein responsible for carrying a component needed to produce acetyl-CoA.\nWhen CTPI-2 was tested in mice, it reduced inflammation throughout multiple tissues. The treatment also improved tissue function and healthspan during aging.\nImportantly, the immune signals caused by leaking mitochondrial DNA and RNA were still present. But by weakening the metabolic signal involving acetyl-CoA, the researchers made SASP genes more difficult to access and reduced their inflammatory effects.\n\"Even though the immune signaling from leaky mitochondria was still present, disrupting the metabolic signal made SASP genes less accessible and produced functional benefits,\" said Adams. \"Using selective inhibitors such as CTPI-2 to reduce acetyl-CoA and, in turn, inflammation is a novel therapeutic strategy that should be explored.\n\"Also, more broadly, this research shows that targeting metabolic signals that influence DNA accessibility may represent a new approach for mitigating age-associated inflammation and functional decline.\"\nThe findings suggest that changing the metabolic signals controlling access to inflammatory genes could offer a new strategy for addressing chronic inflammation and declining tissue function during aging.\nHélène Martini, PharmD, PhD, a postdoctoral researcher in the Passos lab at Mayo Clinic, is first author of the publication.\nAdditional authors include:\n- Aaron Havas, Rabi Murad, Xue Lei and Rebecca A. Porritt at Sanford Burnham Prebys\n- Anthony B. Lagnado, Nicholas Pirius, Ana Catarina Franco, Gung Lee, Yeaeun Han, Jennifer L. Rowsey, Stella Victorelli, Wazim Mohammed Ismail, Amelia Mazzone, Tianna M. Espe, Taro Hitosugi, Ya Li, Alexander M. Washington, Jair Machado Espindola-Netto, Dominik Saul, Sundeep Khosla, Diana Jurk, Enis Kostallari and Alexandre Gaspar-Maia at Mayo Clinic\n- Jodie Birch at Imperial College London\n- Francisco D. M. Marques at Albert Einstein College of Medicine\n- Oliver D. K. Maddocks at the University of Glasgow\nThe study was supported by the National Institutes of Health, National Institute on Aging, National Cancer Institute, National Institute of Diabetes and Digestive and Kidney Diseases, Department of Defense Ovarian Cancer Research Program, Hevolution Foundation, The Glenn Foundation for Medical Research, Cancer Research UK, and Robert and Arlene Kogod Center on Aging.\nStory Source:\nMaterials provided by Sanford Burnham Prebys. Note: Content may be edited for style and length.\nJournal Reference:\n- Hélène Martini, Jodie Birch, Francisco D. M. Marques, Stella Victorelli, Anthony B. Lagnado, Nicholas Pirius, Ana Catarina Franco, Gung Lee, Yeaeun Han, Jennifer L. Rowsey, Wazim Mohammed Ismail, Amelia Mazzone, Tianna M. Espe, Taro Hitosugi, Ya Li, Alexander M. Washington, Aaron Havas, Rabi Murad, Xue Lei, Rebecca A. Porritt, Oliver D. K. Maddocks, Jair Machado Espindola-Netto, Dominik Saul, Sundeep Khosla, Diana Jurk, Enis Kostallari, Alexandre Gaspar-Maia, Peter D. Adams, João F. Passos. Mitochondrial metabolism and epigenetic crosstalk drive SASP. Nature, 2026; 656 (8129): 980 DOI: 10.1038/s41586-026-10791-2\nCite This Page:",
+   "regenerated": false
+  },
+  {
+   "title": "Cancer is rising in younger adults. Faster biological aging may help explain why",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260913082200.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T14:47:07+00:00",
+   "summary": "55세 이하의 젊은 성인에서 암 발생률이 증가하고 있으며, 생물학적 노화가 가속화되고 있다는 연구 결과가 나왔습니다. 연구팀은 새로운 세대가 같은 나이의 이전 세대보다 신체가 더 생물학적으로 나이가 들었다고 밝혔고, 이는 조기 발병 암의 위험과 관계가 있었습니다. 빠른 생물학적 노화는 폐암, 위장암, 자궁암, 대장암 등 특정 패턴의 암 발생과 연결되어 있습니다.",
+   "reason": "젊은 성인의 암 발생률이 증가하고 있으며, 생물학적 노화가 그 원인일 수 있다는 연구 결과가 중요한 의료 정보를 제공한다.",
+   "topic": "생명·의학",
+   "headline": "젊은 성인에서 암 발생률 증가, 생물학적 노화 가속이 원인일 수 있어",
+   "why": "최근 암 발생률이 증가하는 현상은 우리 사회의 건강 상태에 대한 중요한 대화 소재가 될 것이며, 개인 맞춤형 예방 방법에 대한 논의를 촉발할 수 있습니다.",
+   "body": "Cancer is rising in younger adults. Faster biological aging may help explain why\nYounger generations may be biologically aging faster, and that hidden acceleration could be contributing to the rise in early onset cancer.\n- Date:\n- September 14, 2026\n- Source:\n- WashU Medicine\n- Summary:\n- Cancer rates are rising in adults under 55, and new research suggests accelerated biological aging may be one piece of the puzzle. Scientists found that people from more recent generations tended to have bodies that appeared biologically older than those of earlier generations at the same chronological age. Greater biological age acceleration was linked to a higher risk of early onset cancers, with specific patterns seen for lung, gastrointestinal, uterine and colorectal cancers.\n- Share:\nCancer is strongly associated with age. The longer people live, the more opportunities their cells have to accumulate damage that can contribute to tumor growth. But cancer is increasingly being diagnosed in younger adults, and each newer generation appears to face a greater risk than the one before it.\nThat trend has prompted researchers to investigate a provocative possibility: Are younger generations accumulating biological damage more quickly, causing their bodies to age faster than expected?\nA study led by researchers at Washington University School of Medicine in St. Louis offers evidence that this may be happening. The team found signs that younger generations are aging more rapidly on a biological level than older generations did at comparable ages.\nScientists are still working to understand what is driving these changes. The question is being investigated through international efforts involving research members of Siteman Cancer Center, based at Barnes-Jewish Hospital and WashU Medicine, and Cancer Grand Challenges, a global initiative co-founded by the National Cancer Institute and Cancer Research U.K.\nImportantly, the researchers also found that accelerated biological aging was associated with a greater risk of early-onset cancers among younger generations. In general, early-onset cancers are those diagnosed at age 55 or younger.\nA Gap Between Biological Age and Actual Age\nChronological age simply measures how many years a person has been alive. Biological age, by contrast, reflects how old the body appears based on measurable changes in cells, organs, metabolism, and other physiological systems.\nAccording to the researchers, cancer risk increased as the difference between biological age and chronological age grew. People from more recent generations tended to have larger gaps than those born earlier, suggesting their bodies appeared biologically older at the same chronological age.\nThat generational shift could help explain at least part of the rise in cancer among younger adults.\nThe team also found that aging did not appear to affect every organ system in the same way. Faster aging in specific parts of the body was associated with particular cancers. An immune system that appeared biologically older, for example, was linked to early-onset lung cancer. Older-appearing fat tissue was associated with early-onset colorectal cancer.\nThe findings were published in the journal Nature Medicine.\nResearchers say measurements of accelerated aging could eventually help doctors identify younger people who face unusually high cancer risks, potentially allowing prevention or screening to begin earlier.\n\"Our ultimate goal is to decode how modern environments become biologically embedded to drive cancer risk, transforming prevention from broad recommendations to personalized interventions,\" said Yin Cao, ScD, a molecular epidemiologist and an associate professor of surgery and of medicine at WashU Medicine. \"This brings us closer to identifying risk earlier and developing prevention strategies that are tailored to an individual's biology.\"\nLooking Beyond Individual Cancer Risk Factors\nCao's team has previously studied numerous factors that can shape cancer risk over a person's lifetime, including obesity, metabolic dysregulation, alcohol consumption, sedentary behavior, poor diet quality and cesarean delivery.\nEach of these factors can provide clues about why cancer develops at younger ages. However, no single factor appears to explain very much of the overall trend on its own.\nThat led Cao, who is also a research member of Siteman, and her colleagues to look for a broader way of measuring how many different influences may work together over time to increase cancer susceptibility.\nSupport from Cancer Grand Challenges has allowed Cao, as co-lead of Team PROSPECT, to investigate this question on a much larger scale.\nFor the new study, the researchers examined data from more than 154,000 young adults enrolled in the UK Biobank, which contains extensive biological, health, and lifestyle information.\nThey also analyzed more than 10,000 participants in the United States who are part of the National Institutes of Health's (NIH) All of Us Research Program, an initiative designed to create a comprehensive health database involving more than 1 million people living in the U.S.\nMeasuring How Fast the Body Is Aging\nTo determine biological aging, the researchers, including first author Ruiyi Tian, a doctoral student in the Cao lab, looked at two different scales.\nOne was systemic aging, which measures aging across the body as a whole. The other was organ-specific aging, which estimates how rapidly individual organs or biological systems are aging.\nFor systemic aging, the researchers relied on established approaches that use clinical biomarkers, including PhenoAge and the Klemera-Doubal Method. They also used a metabolomic age score designed to capture age-related patterns in a person's metabolism.\nPhenoAge, for example, uses nine blood biochemistry markers to estimate biological aging. These include albumin, made by the liver, and creatinine, a waste product removed by the kidneys.\nFor organ-specific aging, the researchers analyzed blood proteomic data, which measure levels of numerous proteins associated with specific organ systems. Those protein patterns were then used to estimate the biological age of individual organs.\nThe team calculated the average difference between biological and chronological age within each birth cohort. They then used standard deviation to measure how far each group differed from the overall study average. Standard deviation is a measure of how spread out data points are around the average.\nYounger Generations Show Older Biological Profiles\nThe generational differences were apparent in both the UK and U.S. populations.\nAmong UK participants, people born between 1965 and 1974 had systemic aging that was 23% of one standard deviation higher than people born between 1950 and 1954, even after chronological age was taken into account.\nPut more simply, members of the younger generation tended to have slightly older biological profiles than members of the older generation when researchers compared them at the same chronological age.\nAn even larger difference appeared in the U.S. data.\nParticipants born between 1990 and 1999 had systemic aging that was 92% of one standard deviation higher than those born between 1965 and 1969.\nThe researchers then examined whether these biological aging differences were connected to cancer.\nFaster Aging Linked to Early-Onset Cancer\nGreater systemic aging in the younger group was associated with an 8% increased risk of early-onset solid cancers. The strongest associations involved lung, gastrointestinal, and uterine cancers.\nWhen the participants were separated into three groups according to their level of systemic aging, another pattern emerged.\nPeople with the most advanced systemic aging had a 15% increased risk of early-onset solid cancer compared with participants showing the least advanced aging.\nThe association remained even after researchers accounted for inherited genetic cancer risks and genetic susceptibility to accelerated aging.\nLooking at individual biological systems revealed more specific connections.\nAdvanced immune system aging was associated with a higher risk of early-onset lung cancer. Advanced adipose (fat) tissue aging was linked to a higher risk of early-onset colorectal cancer.\n\"If we can identify younger people with the highest cancer risk when they are still healthy, we can focus on prevention and early-detection strategies for the individuals who will benefit most from early interventions,\" Cao said.\nSearching for the Causes of Cancer in Younger Adults\nThe research is part of Team PROSPECT, a Cancer Grand Challenges team co-led by Cao.\nCancer Grand Challenges is an international research funding initiative co-founded by Cancer Research UK and the National Cancer Institute (NCI). It brings together scientists from different specialties and countries to investigate some of the most difficult problems in cancer research.\nOne of those problems is explaining why early-onset cancers are becoming more common.\n\"Right now, we don't have a definitive answer to what's driving the rise of early-onset cancers around the world, but studies like this are helping us piece together the bigger picture, showing that cancer may be influenced not just by changes inside individual cells, but by wider changes happening across the body as a whole,\" said David Scott, PhD, director of Cancer Grand Challenges. \"Research on this scale is possible through Cancer Grand Challenges, which brings together scientists from different fields around the world to tackle these complex questions together.\"\nCao and her colleagues are now working to better understand why cancer is increasingly affecting younger generations.\nA major focus is determining how changes in the environment, lifestyle and society may leave long-lasting biological marks on the body. Those effects could include accelerated aging as well as other signs that make some people more vulnerable to disease.\nBy tracing how these risks accumulate throughout life, researchers hope to uncover more of the biological origins of early-onset cancers.\nThe ultimate goal is not simply to understand why cancer develops earlier, but to identify people at elevated risk while they are still healthy. That could make it possible to move prevention and screening earlier and tailor interventions to an individual's biology, shifting cancer care toward stopping disease before it begins.\nThis work was part of the PROSPECT team supported by the Cancer Grand Challenges initiative funded by Cancer Research UK, grant numbers CGCATF-2023/100043 and CGCATF-2023/100037; the National Cancer Institute of the NIH, grant numbers OT2CA297577 and OT2CA297576; the French National Cancer Institute; and the Bowelbabe Fund for Cancer Research UK. The project was also supported by grants from NIH/National Cancer Institute, grant number R37CA246175; the NIH/National Institute of Diabetes and Digestive and Kidney Diseases, grant number P30DK052574; the Alvin J. Siteman Cancer Center through the Foundation for Barnes-Jewish Hospital. Further support was provided by a pre-doctoral fellowship in the Cancer Biology pathway supported by NIH Molecular Oncology Training Grant T32CA113275 to Washington University School of Medicine in St. Louis; the Pediatric Gastroenterology Research Training Program grant T32DK077653 to Washington University School of Medicine in St. Louis; the Washington University School of Medicine in St. Louis Institute of Clinical and Translational Sciences, grant number UL1TR002345; and the Foundation for Barnes-Jewish Hospital. The content is solely the responsibility of the authors and does not necessarily represent the official views of the NIH.\nStory Source:\nMaterials provided by WashU Medicine. Original written by Julia Evangelou Strait. Note: Content may be edited for style and length.\nJournal Reference:\n- Ruiyi Tian, Xiaoyu Zong, Duo Ren, Stefani Tica, Daniel Hong, Oluseye Oduyale, Jason D. Buenrostro, Ramaswamy Govindan, Yin Cao. Biological aging and generational shifts in early-onset cancer risk. Nature Medicine, 2026; 32 (8): 2983 DOI: 10.1038/s41591-026-04448-w\nCite This Page:",
+   "regenerated": false
+  }
+ ],
+ "verified": [
+  {
+   "title": "Questions? Ask our Hera Space Companion!",
+   "url": "https://www.esa.int/Space_Safety/Hera/Questions_Ask_our_Hera_Space_Companion",
+   "source": "ESA",
+   "tier": 1,
+   "at": "2026-09-14T14:00:00+00:00",
+   "summary": "헤라 스페이스 컴패니언은 유럽우주국의 첫 번째 행성 방어 미션을 위해 설계된 AI 챗봇입니다. 이 플랫폼은 실시간으로 미션과 관련된 질문에 답하고, 복잡한 주제를 쉽게 설명해 주며, 개인 맞춤형 학습을 제공합니다. 사용자는 게스트로 이용하거나 로그인하여 대화를 기억하게 할 수 있어 더욱 깊이 있는 학습이 가능합니다.",
+   "reason": "당사자 발표",
+   "topic": "당사자 발표",
+   "headline": "우주 미션을 쉽게 배울 수 있는 헤라 스페이스 컴패니언 소개",
+   "why": "오늘 저녁 대화 소재로 우주 탐사에 대한 질문을 던질 수 있는 기회를 제공하므로 흥미로운 주제가 됩니다.",
+   "body": "Questions? Ask our Hera Space Companion!\nMeet a key member of our Hera asteroid mission team: the Hera Space Companion, not just an AI chatbot but a dynamic mission-linked communication platform, designed to make the European Space Agency’s first planetary defence mission accessible to everyone!\nThe Hera Space Companion has access to approved operational, scientific and mission knowledge, allowing it to explain the Hera mission as it unfolds, answer questions in real time and guide users through complex topics ranging from asteroid science and planetary defence to spacecraft operations and autonomous navigation. Its purpose is simple: transform curiosity into understanding.\nInstead of publishing static information and expecting audiences to find and understand it, we invite people to ask questions. The conversation becomes the entry point, and learning becomes personalised, interactive and continuous.\nBecause everyone starts from a different level of knowledge, the Companion can adapt explanations while maintaining scientific accuracy and consistency. Try it as a guest, or sign in so that it remembers your conversation and tailors its answers accordingly.\nThis is responsible AI in action. The Hera Space Companion is built around transparency, trust and scientific integrity. It clearly identifies itself as AI, relies on approved sources, distinguishes facts from uncertainty, avoids speculation, respects privacy and directs questions to official ESA channels when human expertise is required.\nHera is the first major space mission where the public does not simply watch and read the story of exploration. Instead they can talk to it, question it and learn from it via a trusted digital companion.",
+   "regenerated": false
+  },
+  {
+   "title": "Cancer is rising in younger adults. Faster biological aging may help explain why",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260913082200.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T14:47:07+00:00",
+   "summary": "55세 이하의 젊은 성인에서 암 발생률이 증가하고 있으며, 생물학적 노화가 가속화되고 있다는 연구 결과가 나왔습니다. 연구팀은 새로운 세대가 같은 나이의 이전 세대보다 신체가 더 생물학적으로 나이가 들었다고 밝혔고, 이는 조기 발병 암의 위험과 관계가 있었습니다. 빠른 생물학적 노화는 폐암, 위장암, 자궁암, 대장암 등 특정 패턴의 암 발생과 연결되어 있습니다.",
+   "reason": "젊은 성인의 암 발생률이 증가하고 있으며, 생물학적 노화가 그 원인일 수 있다는 연구 결과가 중요한 의료 정보를 제공한다.",
+   "topic": "생명·의학",
+   "headline": "젊은 성인에서 암 발생률 증가, 생물학적 노화 가속이 원인일 수 있어",
+   "why": "최근 암 발생률이 증가하는 현상은 우리 사회의 건강 상태에 대한 중요한 대화 소재가 될 것이며, 개인 맞춤형 예방 방법에 대한 논의를 촉발할 수 있습니다.",
+   "body": "Cancer is rising in younger adults. Faster biological aging may help explain why\nYounger generations may be biologically aging faster, and that hidden acceleration could be contributing to the rise in early onset cancer.\n- Date:\n- September 14, 2026\n- Source:\n- WashU Medicine\n- Summary:\n- Cancer rates are rising in adults under 55, and new research suggests accelerated biological aging may be one piece of the puzzle. Scientists found that people from more recent generations tended to have bodies that appeared biologically older than those of earlier generations at the same chronological age. Greater biological age acceleration was linked to a higher risk of early onset cancers, with specific patterns seen for lung, gastrointestinal, uterine and colorectal cancers.\n- Share:\nCancer is strongly associated with age. The longer people live, the more opportunities their cells have to accumulate damage that can contribute to tumor growth. But cancer is increasingly being diagnosed in younger adults, and each newer generation appears to face a greater risk than the one before it.\nThat trend has prompted researchers to investigate a provocative possibility: Are younger generations accumulating biological damage more quickly, causing their bodies to age faster than expected?\nA study led by researchers at Washington University School of Medicine in St. Louis offers evidence that this may be happening. The team found signs that younger generations are aging more rapidly on a biological level than older generations did at comparable ages.\nScientists are still working to understand what is driving these changes. The question is being investigated through international efforts involving research members of Siteman Cancer Center, based at Barnes-Jewish Hospital and WashU Medicine, and Cancer Grand Challenges, a global initiative co-founded by the National Cancer Institute and Cancer Research U.K.\nImportantly, the researchers also found that accelerated biological aging was associated with a greater risk of early-onset cancers among younger generations. In general, early-onset cancers are those diagnosed at age 55 or younger.\nA Gap Between Biological Age and Actual Age\nChronological age simply measures how many years a person has been alive. Biological age, by contrast, reflects how old the body appears based on measurable changes in cells, organs, metabolism, and other physiological systems.\nAccording to the researchers, cancer risk increased as the difference between biological age and chronological age grew. People from more recent generations tended to have larger gaps than those born earlier, suggesting their bodies appeared biologically older at the same chronological age.\nThat generational shift could help explain at least part of the rise in cancer among younger adults.\nThe team also found that aging did not appear to affect every organ system in the same way. Faster aging in specific parts of the body was associated with particular cancers. An immune system that appeared biologically older, for example, was linked to early-onset lung cancer. Older-appearing fat tissue was associated with early-onset colorectal cancer.\nThe findings were published in the journal Nature Medicine.\nResearchers say measurements of accelerated aging could eventually help doctors identify younger people who face unusually high cancer risks, potentially allowing prevention or screening to begin earlier.\n\"Our ultimate goal is to decode how modern environments become biologically embedded to drive cancer risk, transforming prevention from broad recommendations to personalized interventions,\" said Yin Cao, ScD, a molecular epidemiologist and an associate professor of surgery and of medicine at WashU Medicine. \"This brings us closer to identifying risk earlier and developing prevention strategies that are tailored to an individual's biology.\"\nLooking Beyond Individual Cancer Risk Factors\nCao's team has previously studied numerous factors that can shape cancer risk over a person's lifetime, including obesity, metabolic dysregulation, alcohol consumption, sedentary behavior, poor diet quality and cesarean delivery.\nEach of these factors can provide clues about why cancer develops at younger ages. However, no single factor appears to explain very much of the overall trend on its own.\nThat led Cao, who is also a research member of Siteman, and her colleagues to look for a broader way of measuring how many different influences may work together over time to increase cancer susceptibility.\nSupport from Cancer Grand Challenges has allowed Cao, as co-lead of Team PROSPECT, to investigate this question on a much larger scale.\nFor the new study, the researchers examined data from more than 154,000 young adults enrolled in the UK Biobank, which contains extensive biological, health, and lifestyle information.\nThey also analyzed more than 10,000 participants in the United States who are part of the National Institutes of Health's (NIH) All of Us Research Program, an initiative designed to create a comprehensive health database involving more than 1 million people living in the U.S.\nMeasuring How Fast the Body Is Aging\nTo determine biological aging, the researchers, including first author Ruiyi Tian, a doctoral student in the Cao lab, looked at two different scales.\nOne was systemic aging, which measures aging across the body as a whole. The other was organ-specific aging, which estimates how rapidly individual organs or biological systems are aging.\nFor systemic aging, the researchers relied on established approaches that use clinical biomarkers, including PhenoAge and the Klemera-Doubal Method. They also used a metabolomic age score designed to capture age-related patterns in a person's metabolism.\nPhenoAge, for example, uses nine blood biochemistry markers to estimate biological aging. These include albumin, made by the liver, and creatinine, a waste product removed by the kidneys.\nFor organ-specific aging, the researchers analyzed blood proteomic data, which measure levels of numerous proteins associated with specific organ systems. Those protein patterns were then used to estimate the biological age of individual organs.\nThe team calculated the average difference between biological and chronological age within each birth cohort. They then used standard deviation to measure how far each group differed from the overall study average. Standard deviation is a measure of how spread out data points are around the average.\nYounger Generations Show Older Biological Profiles\nThe generational differences were apparent in both the UK and U.S. populations.\nAmong UK participants, people born between 1965 and 1974 had systemic aging that was 23% of one standard deviation higher than people born between 1950 and 1954, even after chronological age was taken into account.\nPut more simply, members of the younger generation tended to have slightly older biological profiles than members of the older generation when researchers compared them at the same chronological age.\nAn even larger difference appeared in the U.S. data.\nParticipants born between 1990 and 1999 had systemic aging that was 92% of one standard deviation higher than those born between 1965 and 1969.\nThe researchers then examined whether these biological aging differences were connected to cancer.\nFaster Aging Linked to Early-Onset Cancer\nGreater systemic aging in the younger group was associated with an 8% increased risk of early-onset solid cancers. The strongest associations involved lung, gastrointestinal, and uterine cancers.\nWhen the participants were separated into three groups according to their level of systemic aging, another pattern emerged.\nPeople with the most advanced systemic aging had a 15% increased risk of early-onset solid cancer compared with participants showing the least advanced aging.\nThe association remained even after researchers accounted for inherited genetic cancer risks and genetic susceptibility to accelerated aging.\nLooking at individual biological systems revealed more specific connections.\nAdvanced immune system aging was associated with a higher risk of early-onset lung cancer. Advanced adipose (fat) tissue aging was linked to a higher risk of early-onset colorectal cancer.\n\"If we can identify younger people with the highest cancer risk when they are still healthy, we can focus on prevention and early-detection strategies for the individuals who will benefit most from early interventions,\" Cao said.\nSearching for the Causes of Cancer in Younger Adults\nThe research is part of Team PROSPECT, a Cancer Grand Challenges team co-led by Cao.\nCancer Grand Challenges is an international research funding initiative co-founded by Cancer Research UK and the National Cancer Institute (NCI). It brings together scientists from different specialties and countries to investigate some of the most difficult problems in cancer research.\nOne of those problems is explaining why early-onset cancers are becoming more common.\n\"Right now, we don't have a definitive answer to what's driving the rise of early-onset cancers around the world, but studies like this are helping us piece together the bigger picture, showing that cancer may be influenced not just by changes inside individual cells, but by wider changes happening across the body as a whole,\" said David Scott, PhD, director of Cancer Grand Challenges. \"Research on this scale is possible through Cancer Grand Challenges, which brings together scientists from different fields around the world to tackle these complex questions together.\"\nCao and her colleagues are now working to better understand why cancer is increasingly affecting younger generations.\nA major focus is determining how changes in the environment, lifestyle and society may leave long-lasting biological marks on the body. Those effects could include accelerated aging as well as other signs that make some people more vulnerable to disease.\nBy tracing how these risks accumulate throughout life, researchers hope to uncover more of the biological origins of early-onset cancers.\nThe ultimate goal is not simply to understand why cancer develops earlier, but to identify people at elevated risk while they are still healthy. That could make it possible to move prevention and screening earlier and tailor interventions to an individual's biology, shifting cancer care toward stopping disease before it begins.\nThis work was part of the PROSPECT team supported by the Cancer Grand Challenges initiative funded by Cancer Research UK, grant numbers CGCATF-2023/100043 and CGCATF-2023/100037; the National Cancer Institute of the NIH, grant numbers OT2CA297577 and OT2CA297576; the French National Cancer Institute; and the Bowelbabe Fund for Cancer Research UK. The project was also supported by grants from NIH/National Cancer Institute, grant number R37CA246175; the NIH/National Institute of Diabetes and Digestive and Kidney Diseases, grant number P30DK052574; the Alvin J. Siteman Cancer Center through the Foundation for Barnes-Jewish Hospital. Further support was provided by a pre-doctoral fellowship in the Cancer Biology pathway supported by NIH Molecular Oncology Training Grant T32CA113275 to Washington University School of Medicine in St. Louis; the Pediatric Gastroenterology Research Training Program grant T32DK077653 to Washington University School of Medicine in St. Louis; the Washington University School of Medicine in St. Louis Institute of Clinical and Translational Sciences, grant number UL1TR002345; and the Foundation for Barnes-Jewish Hospital. The content is solely the responsibility of the authors and does not necessarily represent the official views of the NIH.\nStory Source:\nMaterials provided by WashU Medicine. Original written by Julia Evangelou Strait. Note: Content may be edited for style and length.\nJournal Reference:\n- Ruiyi Tian, Xiaoyu Zong, Duo Ren, Stefani Tica, Daniel Hong, Oluseye Oduyale, Jason D. Buenrostro, Ramaswamy Govindan, Yin Cao. Biological aging and generational shifts in early-onset cancer risk. Nature Medicine, 2026; 32 (8): 2983 DOI: 10.1038/s41591-026-04448-w\nCite This Page:",
+   "regenerated": false
+  },
+  {
+   "title": "Trump repeals emissions regulations of fossil-fuel power plants",
+   "url": "https://www.scientificamerican.com/article/trump-epa-to-repeal-emissions-regulations-of-fossil-fuel-power-plants/",
+   "source": "Scientific American",
+   "tier": 2,
+   "at": "2026-09-14T20:00:00+00:00",
+   "summary": "트럼프 행정부의 환경보호청(EPA)은 석탄 및 천연가스 발전소의 온실가스 배출에 제한을 두던 규제를 해제했습니다. 이 조치는 기후 과학자들과 환경운동가들이 건강과 기후 변화에 부정적인 영향을 미칠 것이라고 경고하고 있습니다. 발전소는 미국에서 가장 큰 온실가스 배출원으로, 이들 규제가 폐지됨에 따라 배출량이 증가할 가능성이 있습니다.",
+   "reason": "미국의 새로운 환경 정책 변화가 기후 변화 대응에 심각한 영향을 미칠 것으로 예상된다.",
+   "topic": "과학정책·산업",
+   "headline": "트럼프 행정부, 화석연료 발전소의 온실가스 규제 완화",
+   "why": "이번 규제 완화는 기후 변화와 공공 건강에 대한 중대한 영향을 미칠 수 있어, 저녁 대화에서 신선한 논의 주제가 될 것입니다.",
+   "body": "The Trump administration’s Environmental Protection Agency (EPA) has moved to lift all rules putting limits on greenhouse gas emissions from coal and natural gas–fueled power plants, a move that climate scientists and activists say will harm public health and contribute to climate change. The rules required fossil fuel–based power plants to capture 90 percent of their greenhouse gas emissions.\nThe change was first proposed more than a year ago as part of sweeping deregulation that the EPA said will save $310 billion. Climate scientists and the EPA under the Biden administration said that regulating the emissions would save tens of billions of dollars in terms of public health.\n\"For over 15 years, the Obama and Biden administrations implemented a war on coal to destroy reliable and affordable energy. The Trump Administration has come in to protect American energy and to make sure you can afford to keep the lights on,” said EPA Administrator Lee Zeldin in a statement. “Americans will see a decrease in electricity prices, but this is just the beginning. We are working to go even further so that American energy can be fully unleashed. Realizing the full potential of American energy means more jobs, lower prices, and a more prosperous America.”\nOn supporting science journalism\nIf you're enjoying this article, consider supporting our award-winning journalism by subscribing. By purchasing a subscription you are helping to ensure the future of impactful stories about the discoveries and ideas shaping our world today.\nThough Zeldin acknowledged in his Senate confirmation hearing that carbon dioxide and other greenhouse gases trap heat and lead to global climate change, much of his focus at the agency has been oriented towards eliminating emissions standards, including reversing a rule called the “endangerment finding” in February. The rule was based on a 2009 agency report declaring, based on longstanding scientific evidence, that six greenhouse gases threatened the health and welfare of Americans because of the threat they posed to the climate. It followed a Supreme Court decision two years earlier that allowed the EPA to set limits on greenhouse gases as air pollutants under the Clean Air Act.\n“Everything Lee Zeldin is doing is contrary to the science,” says Rachel Cleetus, senior policy director at the Union of Concerned Scientists.\nLifting the regulations on fossil-fuel power plants has long been expected, Cleetus says. The president has claimed that climate change is a “hoax” perpetrated by China, and members of the administration have dismissed scientific evidence of its harmful effects as alarmism.\n“I know the administration has in the past made fallacious arguments, faulty arguments about the significance, but these are very significant contributors to global heat-trapping emissions,” says Cleetus, noting that the United Nations recently said surpassing the 1.5-degree-Celsius global warming target set in the Paris Agreement, which Trump withdrew the U.S. from in January, is now inevitable. “That is a very sobering scientific context for this announcement.”\nAccording to the EPA’s website, power plants are the largest stationary source of greenhouse gas emissions in the U.S. Though the amount emitted by power plants had been steadily declining since 2011, they still accounted for more than 1.4 billion metric tons of carbon dioxide and other emissions in 2023, the most recent year for which data is available. Transportation is the top source of all U.S. emissions, accounting for more than a quarter of them. After revoking the endangerment finding, the Trump administration had already repealed previous regulations on greenhouse gas emissions and fuel-efficiency standards set during the Biden administration.\nRescinding the transportation and power plant regulations as well as the endangerment finding could also make it more difficult for future administrations to issue regulations without specific new laws or amendments to the Clean Air Act by Congress.\n“With millions of Americans facing wildfires, heat waves and deadly storms fueled by climate change, the Trump administration is cutting the biggest polluters loose to do more damage than ever,” said Natural Resources Defense Council federal climate legal director Meredith Hankins in a statement on Monday. “For the health of our families and good of our nation, this cannot stand. Ignoring the immense harm to the public from this power plant pollution is a clear violation of the Clean Air Act and of Supreme Court precedent. We will be seeing them in court.\"",
+   "regenerated": false
+  },
+  {
+   "title": "Scientists find how “zombie” cells fuel inflammation as we age",
+   "url": "https://www.sciencedaily.com/releases/2026/09/260911214301.htm",
+   "source": "Science Daily",
+   "tier": 2,
+   "at": "2026-09-14T03:48:19+00:00",
+   "summary": "과학자들은 노화하면서 세포가 어떻게 기능하지 않는 미토콘드리아를 이용해 염증 유전자들을 활성화하는지를 발견했습니다. 이 연구는 쥐를 대상으로 한 실험에서 염증을 줄이고 건강한 노화를 촉진하는 가능성을 보여주었습니다. 이 발견은 노화와 관련된 질병을 예방하는 새로운 전략이 될 수 있다는 점에서 주목받고 있습니다.",
+   "reason": "'좀비' 세포가 염증 반응의 기전으로 작용하는 것을 발견한 연구는 노화 관련 의학 분야에 중요한 통찰을 제공한다.",
+   "topic": "생명·의학",
+   "headline": "노화에 따른 염증을 유발하는 '좀비 세포'의 비밀이 밝혀졌다",
+   "why": "오늘 저녁 대화 소재로 적절하며, 우리가 나이가 들어감에 따라 겪는 염증 문제 해결의 힌트를 제공할 수 있습니다.",
+   "body": "Scientists find how “zombie” cells fuel inflammation as we age\nBlocking a mitochondrial trigger of chronic inflammation helped mice age more healthfully.\n- Date:\n- September 13, 2026\n- Source:\n- Sanford Burnham Prebys\n- Summary:\n- Scientists discovered that aging cells can use malfunctioning mitochondria to unlock inflammatory genes and keep the immune system stuck in a prolonged state of alert. Blocking one part of this process reduced inflammation and improved healthy aging in mice, suggesting a promising new strategy for fighting age-related decline.\n- Share:\nInflammation is one of the immune system's most important defenses. When the body detects an infection or injury, it sends out alarm signals that recruit immune cells and other cells to eliminate the threat and begin repairing damaged tissue.\nThis response is essential, but it is supposed to shut down once the danger has passed. As people age, however, certain cells accumulate that can keep inflammation active for much longer than necessary. This persistent inflammation has been associated with numerous diseases that become more common later in life.\nResearchers at Sanford Burnham Prebys Medical Discovery Institute, Mayo Clinic, and collaborating institutions have now uncovered a previously unknown connection between mitochondria, cell metabolism, and this chronic inflammation. Their findings, published in Nature, also showed that interfering with part of the process reduced inflammation and supported healthier aging in mice.\nHow \"Zombie\" Cells Accumulate With Age\nMany cells in the body are capable of dividing, allowing us to grow and helping tissues repair themselves after injury. But as we get older, increasing numbers of cells enter a state known as senescence. These zombie-like senescent cells stop dividing, yet they remain alive and active.\n\"Senescent cells are not completely inert,\" said co-corresponding author Peter Adams, PhD, the Jeanne and Gary Herberger Leadership Chair in Cancer Research at Sanford Burnham Prebys. Adams also is director of and professor in the Cancer Genome and Epigenetics Program.\n\"They remain metabolically active and have an inflammatory program causing them to secrete inflammatory molecules.\"\nWhen senescent cells activate this inflammatory program, they are described as having the senescence-associated secretory phenotype (SASP). SASP has been linked to widespread inflammation associated with aging as well as a range of chronic diseases.\nThe research team, led by the laboratory of senior and co-corresponding author João Passos, PhD, a professor of Physiology at Mayo Clinic, set out to identify the molecular processes that drive SASP. Their broader goal was to determine whether those processes might be interrupted or reduced.\n\"It turns out that there is a convergence of at least two biological pathways related to mitochondria,\" said Adams. \"One alters how DNA is stored to promote areas related to SASP, and the other boosts the expression of the exposed SASP genes.\"\nMitochondria Help Unlock Inflammatory Genes\nAlthough senescent cells no longer divide, they continue using energy and carrying out metabolic activity. The researchers found that their mitochondria, the structures responsible for much of a cell's energy production, behave differently from those in healthier cells.\nIn particular, mitochondria in senescent cells produced increased amounts of acetyl-CoA, an important molecule involved in metabolism.\nAcetyl-CoA also interacts with histones, spool-like proteins around which DNA is wrapped. By altering these histones, acetyl-CoA can loosen the way DNA is packaged. This does not change the genetic code itself. Instead, it makes certain genes more accessible, including genes involved in the inflammatory SASP response.\nThat metabolic change alone, however, was not enough to explain why senescent cells continuously release inflammatory molecules.\nTwo Mitochondrial Signals Work Together\nA second process was also required.\nDamaged mitochondria can leak DNA and RNA into parts of the cell where those molecules normally should not be present. The immune system interprets this misplaced genetic material as a danger signal, triggering an inflammatory response.\nThese immune signals activate transcription factors that help switch genes on. Those factors are then able to target the SASP genes that have already been made more accessible by elevated acetyl-CoA.\nIn other words, the researchers found that two separate mitochondrial processes converge. One exposes inflammatory genes, while the other provides the immune signal needed to activate them.\n\"After seeing how these two independent pathways intersect, we wanted to see if interrupting one could prevent their partnership in promoting SASP,\" said Adams.\nBlocking the Metabolic Signal Reduced Inflammation\nTo test that possibility, the researchers used a drug called CTPI-2. The drug blocks a transport protein responsible for carrying a component needed to produce acetyl-CoA.\nWhen CTPI-2 was tested in mice, it reduced inflammation throughout multiple tissues. The treatment also improved tissue function and healthspan during aging.\nImportantly, the immune signals caused by leaking mitochondrial DNA and RNA were still present. But by weakening the metabolic signal involving acetyl-CoA, the researchers made SASP genes more difficult to access and reduced their inflammatory effects.\n\"Even though the immune signaling from leaky mitochondria was still present, disrupting the metabolic signal made SASP genes less accessible and produced functional benefits,\" said Adams. \"Using selective inhibitors such as CTPI-2 to reduce acetyl-CoA and, in turn, inflammation is a novel therapeutic strategy that should be explored.\n\"Also, more broadly, this research shows that targeting metabolic signals that influence DNA accessibility may represent a new approach for mitigating age-associated inflammation and functional decline.\"\nThe findings suggest that changing the metabolic signals controlling access to inflammatory genes could offer a new strategy for addressing chronic inflammation and declining tissue function during aging.\nHélène Martini, PharmD, PhD, a postdoctoral researcher in the Passos lab at Mayo Clinic, is first author of the publication.\nAdditional authors include:\n- Aaron Havas, Rabi Murad, Xue Lei and Rebecca A. Porritt at Sanford Burnham Prebys\n- Anthony B. Lagnado, Nicholas Pirius, Ana Catarina Franco, Gung Lee, Yeaeun Han, Jennifer L. Rowsey, Stella Victorelli, Wazim Mohammed Ismail, Amelia Mazzone, Tianna M. Espe, Taro Hitosugi, Ya Li, Alexander M. Washington, Jair Machado Espindola-Netto, Dominik Saul, Sundeep Khosla, Diana Jurk, Enis Kostallari and Alexandre Gaspar-Maia at Mayo Clinic\n- Jodie Birch at Imperial College London\n- Francisco D. M. Marques at Albert Einstein College of Medicine\n- Oliver D. K. Maddocks at the University of Glasgow\nThe study was supported by the National Institutes of Health, National Institute on Aging, National Cancer Institute, National Institute of Diabetes and Digestive and Kidney Diseases, Department of Defense Ovarian Cancer Research Program, Hevolution Foundation, The Glenn Foundation for Medical Research, Cancer Research UK, and Robert and Arlene Kogod Center on Aging.\nStory Source:\nMaterials provided by Sanford Burnham Prebys. Note: Content may be edited for style and length.\nJournal Reference:\n- Hélène Martini, Jodie Birch, Francisco D. M. Marques, Stella Victorelli, Anthony B. Lagnado, Nicholas Pirius, Ana Catarina Franco, Gung Lee, Yeaeun Han, Jennifer L. Rowsey, Wazim Mohammed Ismail, Amelia Mazzone, Tianna M. Espe, Taro Hitosugi, Ya Li, Alexander M. Washington, Aaron Havas, Rabi Murad, Xue Lei, Rebecca A. Porritt, Oliver D. K. Maddocks, Jair Machado Espindola-Netto, Dominik Saul, Sundeep Khosla, Diana Jurk, Enis Kostallari, Alexandre Gaspar-Maia, Peter D. Adams, João F. Passos. Mitochondrial metabolism and epigenetic crosstalk drive SASP. Nature, 2026; 656 (8129): 980 DOI: 10.1038/s41586-026-10791-2\nCite This Page:",
+   "regenerated": false
+  }
+ ],
+ "log": [
+  "① 수집    24시간 창 · 41건 · 소스 9/9",
+  "② 선별    41 → 5건 · 본선만 · 면제 1",
+  "   · [당사자 발표] ESA · Questions? Ask our Hera Space Companion! · 당사자 발표",
+  "   · [지구·기후] Universe Today · CubeSat Instrument Extends Solar Storm W · CubeSat의 신기술이 태양폭풍 경고 시스템의 정확성을 10배 향상시켜 기후 변화에 대한 대비가 가능해졌다.",
+  "   · [생명·의학] Science Daily · Cancer is rising in younger adults. Fast · 젊은 성인의 암 발생률이 증가하고 있으며, 생물학적 노화가 그 원인일 수 있다는 연구 결과가 중요한 의료 정보를 제공한다.",
+  "   · [과학정책·산업] Scientific American · Trump repeals emissions regulations of f · 미국의 새로운 환경 정책 변화가 기후 변화 대응에 심각한 영향을 미칠 것으로 예상된다.",
+  "   · [생명·의학] Science Daily · Scientists find how “zombie” cells fuel  · '좀비' 세포가 염증 반응의 기전으로 작용하는 것을 발견한 연구는 노화 관련 의학 분야에 중요한 통찰을 제공한다.",
+  "③ 취재    완료 · ESA · 우주 미션을 쉽게 배울 수 있는 헤라 스페이스 컴패니언 소개",
+  "③ 취재    완료 · Scientific American · 트럼프 행정부, 화석연료 발전소의 온실가스 규제 완화",
+  "③ 취재    완료 · Universe Today · 큐브샛 인스트루먼트, 태양폭풍 경고 시간을 10배 늘리다",
+  "③ 취재    완료 · Science Daily · 노화에 따른 염증을 유발하는 '좀비 세포'의 비밀이 밝혀졌다",
+  "③ 취재    완료 · Science Daily · 젊은 성인에서 암 발생률 증가, 생물학적 노화 가속이 원인일 수 있어",
+  "④ 검수    4/5 통과",
+  "   ↻ 재생성 후 탈락 · Universe Today · HENON 큐브샛, 태양폭풍 경고 시간을 15시간에서  · 태양폭풍 경고 시간을 15시간에서 3시간으로 개선한다고 주장하지만, 원문에서는 현재의 경고 시간이 15분에서 60분이라고 명시되어 있습니다.",
+  "⑤ 발행    Discord · 4건"
+ ],
+ "run_id": "20260915T024544"
+}

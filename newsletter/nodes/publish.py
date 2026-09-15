@@ -6,7 +6,7 @@ import requests
 from newsletter.state import Draft
 
 KST = timezone(timedelta(hours=9))
-BOT_NAME = "정충원-AI 뉴스봇"                 # Discord에 표시되는 보낸 사람 이름
+BOT_NAME = "정충원-과학 뉴스봇"                 # Discord에 표시되는 보낸 사람 이름
 
 
 def render_discord(drafts: list[Draft], title: str) -> dict:
@@ -27,7 +27,7 @@ def send_discord(drafts: list[Draft], webhook_url: str, title: str | None = None
     """검수 통과분을 Discord 웹훅으로 보낸다. 0건이면 보내지 않고 0. 실패는 예외."""
     if not drafts:
         return 0
-    title = title or f"AI 뉴스레터 {datetime.now(KST).strftime('%Y-%m-%d')}"
+    title = title or f"과학·우주 뉴스레터 {datetime.now(KST).strftime('%Y-%m-%d')}"
     r = post(webhook_url, json=render_discord(drafts, title), timeout=20)
     r.raise_for_status()
     return len(drafts)

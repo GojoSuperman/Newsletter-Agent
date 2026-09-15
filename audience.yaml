@@ -1,19 +1,21 @@
-# 분야마다 달라지는 것은 전부 여기. 코드에는 AI 뉴스가 박혀 있지 않다.
-audience: 국내 AI 개발팀
-question: 이번 주 우리가 일하는 방식이 바뀔 만한가
-topics: [모델·API, 인프라·비용, 규제·정책, 오픈소스, 제품·서비스]
+# 분야마다 달라지는 것은 전부 여기. 코드에는 분야가 박혀 있지 않다.
+audience: 과학을 좋아하는 일반 성인 독자 (출근길에 5분 읽는 교양 독자)
+question: 오늘 저녁 대화 소재가 될 만한 발견·발사·사건인가
+topics: [우주·천문, 물리·화학, 생명·의학, 지구·기후, 과학정책·산업]
 pick_count: 5
-tone: 간결한 존댓말. 과장 없이.
+tone: 쉬운 말로 풀어 쓴 존댓말. 전문용어에는 한 줄 설명을 붙인다. 과장 없이.
 min_body: 600          # 요약을 쓰려면 원문이 최소 이만큼은 있어야 한다 (G1 관문)
 shortlist_batch: 40    # 예선 한 묶음 크기
-tier1_max: 2           # 당사자 발표(tier 1) 경쟁 면제 상한
+tier1_max: 1           # 당사자 발표(tier 1) 경쟁 면제 상한. 2로 두면 행정 공지가 자리를 차지해 1로 조정 (REPORT 실행 기록 참고)
 
+# 채택 근거는 REPORT.md '소스 채택표' (2026-09-15 실측). 과제 제외 목록 6곳은 쓰지 않는다.
 sources:
-  - {name: OpenAI,      url: https://openai.com/blog/rss.xml,                                          tier: 1, kind: rss}
-  - {name: DeepMind,    url: https://deepmind.google/blog/rss.xml,                                     tier: 1, kind: rss}
-  - {name: HuggingFace, url: https://huggingface.co/blog/feed.xml,                                     tier: 1, kind: rss}
-  - {name: TechCrunch,  url: https://techcrunch.com/category/artificial-intelligence/feed/,            tier: 2, kind: rss}
-  - {name: The Verge,   url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml,        tier: 2, kind: rss}
-  - {name: MIT TR,      url: https://www.technologyreview.com/feed/,                                   tier: 2, kind: rss}
-  - {name: AI타임스,     url: https://www.aitimes.com/rss/allArticle.xml,                               tier: 2, kind: rss}
-  - {name: Hacker News, url: "https://hn.algolia.com/api/v1/search_by_date?tags=story&query=AI",      tier: 2, kind: hn}
+  - {name: NASA,                url: https://www.nasa.gov/news-release/feed/,                          tier: 2, kind: rss}   # 하루 3건, 웨비나·공모 공지가 섞여 면제 대신 경쟁
+  - {name: ESA,                 url: https://www.esa.int/rssfeed/Our_Activities/Space_News,            tier: 1, kind: rss}
+  - {name: CERN,                url: https://home.cern/news/feed,                                      tier: 1, kind: rss}
+  - {name: Science Daily,       url: https://www.sciencedaily.com/rss/all.xml,                         tier: 2, kind: rss}
+  - {name: Space.com,           url: https://www.space.com/feeds/all,                                  tier: 2, kind: rss}
+  - {name: Scientific American, url: https://www.scientificamerican.com/platform/syndication/rss/,     tier: 2, kind: rss}
+  - {name: Universe Today,      url: https://www.universetoday.com/feed/,                              tier: 2, kind: rss}
+  - {name: Ars Technica Science, url: https://feeds.arstechnica.com/arstechnica/science,               tier: 2, kind: rss}
+  - {name: Quanta Magazine,     url: https://www.quantamagazine.org/feed/,                             tier: 2, kind: rss}

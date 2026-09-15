@@ -13,6 +13,7 @@ class Article(TypedDict):
 
 class Pick(Article):
     reason: str        # 본선에서 고른 이유
+    topic: str         # 어느 관심 토픽에 해당하는지 (선별 근거 라벨)
 
 
 class Draft(Pick):
@@ -20,6 +21,7 @@ class Draft(Pick):
     summary: str       # 3문장 요약 (원문과 대조 가능)
     why: str           # 왜 중요한가 (해석, 대조 대상 아님)
     body: str          # 추출한 원문
+    regenerated: bool  # 검수 탈락 후 다시 쓴 요약인가
 
 
 class Verdict(TypedDict):

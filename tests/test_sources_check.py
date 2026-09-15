@@ -51,3 +51,10 @@ def test_gate_access_sends_our_user_agent():
 def test_gate_access_true_when_robots_missing():
     http_get = lambda url, headers, timeout: FakeResponse(404)
     assert gate_access("https://x/rss.xml", http_get=http_get) is True
+
+
+def test_gate_rate_estimates_items_per_day():
+    from newsletter.sources_check import gate_rate
+    arts = [art("a", 0), art("b", 1), art("c", 2), art("d", 3)]          # 3일 간격에 4건
+    assert gate_rate(arts) == 1.3
+    assert gate_rate([art("a", 0)]) is None

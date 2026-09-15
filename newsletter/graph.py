@@ -9,7 +9,7 @@ from newsletter.nodes.collect import collect
 from newsletter.nodes.publish import publish
 from newsletter.nodes.report import fan_report, report_worker
 from newsletter.nodes.select import select
-from newsletter.nodes.verify import verify
+from newsletter.nodes.verify import rewrite_draft, verify
 from newsletter.state import Brief
 
 NODE_ORDER = ("collect", "select", "report", "verify", "publish")
@@ -71,6 +71,6 @@ def real_nodes(cfg: Config) -> dict[str, Callable]:
     nodes["collect"] = partial(collect, sources=cfg.sources)
     nodes["select"] = partial(select, cfg=cfg)
     nodes["report"] = partial(report_worker, cfg=cfg)
-    nodes["verify"] = verify
+    nodes["verify"] = partial(verify, rewrite=partial(rewrite_draft, cfg=cfg))
     nodes["publish"] = partial(publish, webhook_url=os.environ.get("DISCORD_WEBHOOK_URL"))
     return nodes

@@ -27,6 +27,15 @@ def gate_alive(articles: list[dict], now: datetime, days: int = 14) -> int:
     return sum(1 for a in articles if datetime.fromisoformat(a["at"]) >= cutoff)
 
 
+def gate_rate(articles: list[dict], sample: int = 20) -> float | None:
+    """피드가 덮는 기간으로 하루 평균 건수를 어림한다. 최신 sample건만 본다(고정 항목 배제)."""
+    ats = sorted(datetime.fromisoformat(a["at"]) for a in articles)[-sample:]
+    if len(ats) < 2:
+        return None
+    span_days = max((ats[-1] - ats[0]).total_seconds() / 86400, 1 / 24)
+    return round(len(ats) / span_days, 1)
+
+
 def gate_access(url: str, http_get=requests.get) -> bool:
     """robots.txt를 우리 UA로 직접 받아 판단한다.
 
@@ -52,18 +61,19 @@ def gate_access(url: str, http_get=requests.get) -> bool:
 def main() -> None:
     cfg = load_config()
     now = datetime.now(timezone.utc)
-    print(f"{'소스':<12}{'건수':>5}{'G1 본문':>9}{'G2 14일':>9}{'G3 접근':>9}")
-    print("-" * 44)
+    print(f"{'소스':<20}{'건수':>5}{'하루':>7}{'G1 본문':>9}{'G2 14일':>9}{'G3 접근':>9}")
+    print("-" * 59)
     for src in cfg.sources:
         try:
             arts = fetch(src)
         except Exception as e:
-            print(f"{src.name:<12}  실패: {e!r}")
+            print(f"{src.name:<20}  실패: {e!r}")
             continue
         ok, n = gate_body(arts, extract_text, cfg.min_body)
         alive = gate_alive(arts, now)
         access = "허용" if gate_access(src.url) else "금지"
-        print(f"{src.name:<12}{len(arts):>5}{f'{ok}/{n}':>9}{alive:>9}{access:>9}")
+        rate = gate_rate(arts)
+        print(f"{src.name:<20}{len(arts):>5}{'-' if rate is None else rate:>7}{f'{ok}/{n}':>9}{alive:>9}{access:>9}")
 
 
 if __name__ == "__main__":

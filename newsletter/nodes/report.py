@@ -29,7 +29,7 @@ def draft(pick: Pick, cfg: Config, ask=llm.ask_structured, extract: Callable[[st
               "headline은 한 줄, summary는 원문 사실만으로 정확히 세 문장, "
               f"why는 '{cfg.question}' 관점에서 독자에게 왜 중요한지 한 문장. 한국어로 씁니다.")
     r = ask(system, f"제목: {pick['title']}\n출처: {pick['source']}\n\n원문:\n{body[:6000]}", DraftOut)
-    return {**pick, "headline": r.headline, "summary": r.summary, "why": r.why, "body": body}
+    return {**pick, "headline": r.headline, "summary": r.summary, "why": r.why, "body": body, "regenerated": False}
 
 
 def report_worker(state: dict, cfg: Config, ask=llm.ask_structured, extract: Callable[[str], str] = extract_body) -> dict:

@@ -11,6 +11,8 @@ def summarize(state: dict, run_id: str, seconds: dict[str, float]) -> dict:
         m = re.search(r"실패 (.+)$", line) if line.startswith("① 수집") else None
         if m:
             dead = [s.strip() for s in m.group(1).split(",")]
+    log = state.get("log", [])
+    regen = [l for l in log if "↻ 재생성" in l]
     return {
         "run_id": run_id,
         "hours": state.get("hours"),
@@ -20,6 +22,8 @@ def summarize(state: dict, run_id: str, seconds: dict[str, float]) -> dict:
         "extract_ok": len(state.get("drafted", [])),          # drafted에 남은 것 = 본문 추출 성공
         "verified": len(state.get("verified", [])),
         "published": len(state.get("verified", [])),
+        "regenerated": len(regen),                              # 검수 탈락 후 다시 쓴 건수
+        "regen_passed": sum(1 for l in regen if "통과" in l),   # 그중 재검수 통과
         "dead_sources": dead,
         "by_source": dict(Counter(d["source"] for d in state.get("verified", []))),
         "seconds": {k: round(v, 2) for k, v in seconds.items()},

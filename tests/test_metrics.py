@@ -28,3 +28,11 @@ def test_append_and_read_roundtrip(tmp_path):
 
 def test_read_missing_file_is_empty(tmp_path):
     assert read_metrics(tmp_path / "none.jsonl") == []
+
+
+def test_summarize_counts_regenerated_from_log():
+    from newsletter.metrics import summarize
+    state = {"hours": 24, "collected": [], "picked": [], "drafted": [], "verified": [],
+             "log": ["④ 검수    1/2 통과", "   ↻ 재생성 후 통과 · s · h", "   ↻ 재생성 후 탈락 · s · h · 사유"]}
+    row = summarize(state, "r", {})
+    assert row["regenerated"] == 2 and row["regen_passed"] == 1

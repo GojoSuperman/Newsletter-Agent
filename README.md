@@ -1,20 +1,22 @@
-# AI 뉴스레터 에이전트 — 수집부터 발행까지
+# 과학·우주 뉴스레터 에이전트 — 수집부터 발행까지
 
-매일 아침 AI 뉴스를 **자동으로 모아서, 중요한 5건만 고르고, 3문장으로 요약하고, 요약이 원문과 맞는지 검사한 뒤, Discord로 보내주는** 에이전트입니다. 같은 파이프라인을 브라우저 대시보드에서 직접 돌리고 결과를 살펴볼 수도 있습니다. 운영 지표용 대시보드 외에, 잡지처럼 읽고 발송 여부를 직접 고르는 로컬 리더 앱도 함께 제공합니다.
+> 과제 제출용 보고서는 [REPORT.md](REPORT.md)에 있습니다 (분야·독자, 소스 채택표, 선별 로직, 구조도, 실행 기록, 회고).
 
-모두의연구소 「에이전트 팀 꾸리기」 캠프의 *뉴스레터 에이전트 — 수집부터 발행까지* 수업을 그대로 구현한 프로젝트입니다. 수업이 제시한 다섯 단계, 설계 선택지, 검증 방법을 코드로 옮겼고, 그 위에 대시보드와 GitHub Actions 자동 실행을 얹었습니다.
+매일 아침 과학·우주 뉴스를 **자동으로 모아서, 중요한 5건만 고르고, 3문장으로 요약하고, 요약이 원문과 맞는지 검사하고(탈락하면 한 번 다시 쓰고, 그래도 탈락이면 건너뜀), Discord로 보내주는** 에이전트입니다. 같은 파이프라인을 브라우저 대시보드에서 직접 돌리고 결과를 살펴볼 수도 있습니다. 운영 지표용 대시보드 외에, 잡지처럼 읽고 발송 여부를 직접 고르는 로컬 리더 앱도 함께 제공합니다.
+
+모두의연구소 「에이전트 팀 꾸리기」 캠프의 *뉴스레터 에이전트 — 수집부터 발행까지* 수업을 그대로 구현한 프로젝트입니다. 수업이 제시한 다섯 단계, 설계 선택지, 검증 방법을 코드로 옮겼고, 그 위에 대시보드와 GitHub Actions 자동 실행을 얹었습니다. 처음에는 AI 뉴스로 만들었고, 실습 과제에서 분야를 과학·우주로 바꿨습니다. 코드는 분야를 모르며 `audience.yaml`만 바뀌었습니다.
 
 ```
- 인터넷 뉴스 (RSS 7곳 + Hacker News API, 24시간 창, 약 20~120건)
+ 인터넷 뉴스 (RSS 9곳: NASA·ESA·CERN·Science Daily·Space.com 등, 24시간 창, 약 40건)
       │
       ▼
  ① 수집   ── 시간 창 필터 · URL 중복 제거 · 죽은 소스 격리
       ▼
- ② 선별   ── 40건 묶음 예선 → 본선, 정확히 5건 (LLM)
+ ② 선별   ── 40건 묶음 예선 → 본선, 정확히 5건 + 토픽 라벨 (LLM)
       ▼
  ③ 취재   ── 원문 추출(trafilatura) → headline / summary / why 3칸 (LLM, 기사별 병렬)
       ▼
- ④ 검수   ── 요약이 원문에 근거하는지 LLM이 대조, 탈락 사유 기록
+ ④ 검수   ── 요약이 원문에 근거하는지 LLM이 대조 → 탈락 시 재생성 1회 → 그래도 탈락이면 스킵
       ▼
  ⑤ 발행   ── Discord 웹훅 (dry_run이면 미리보기만, 이 단계에 LLM 없음)
 ```
@@ -41,25 +43,29 @@
 | 단계 | 하는 일 | 핵심 규칙 |
 |---|---|---|
 | ① 수집 | `audience.yaml`의 소스 목록을 돌며 최근 N시간 기사를 모은다 | 소스 하나가 죽어도 나머지는 계속, 죽은 소스는 로그에 이름을 남긴다 |
-| ② 선별 | 후보 전체를 서로 견주어 가장 중요한 5건을 고른다 | 40건씩 묶어 예선 → 본선. 당사자 발표(tier 1)는 상한 내에서 경쟁 면제. 건수는 코드가 강제 |
+| ② 선별 | 후보 전체를 서로 견주어 가장 중요한 5건을 고른다 | 40건씩 묶어 예선 → 본선. 당사자 발표(tier 1)는 상한 내에서 경쟁 면제. 건수는 코드가 강제. 건마다 이유와 토픽 라벨을 로그에 남김 |
 | ③ 취재 | 기사 원문을 가져와 세 칸으로 요약한다 | 원문 600자 미만이면 "본문 부족"으로 제외. `why`는 해석이라 검수 대상이 아님 |
-| ④ 검수 | 요약의 headline·summary가 원문에 근거하는지 판정한다 | 번역·단위 환산은 허용, 원문에 없는 주장("업계 최초")은 탈락. 통과분만 발행 |
+| ④ 검수 | 요약의 headline·summary가 원문에 근거하는지 판정한다 | 번역·단위 환산은 허용, 원문에 없는 주장은 탈락. 탈락하면 사유를 주고 한 번 다시 쓴 뒤 재검수, 그래도 탈락이면 스킵. 통과분만 발행 |
 | ⑤ 발행 | Discord 채널에 임베드 카드로 보낸다 | dry_run이면 보내지 않고 미리보기. 0건이면 보내지 않음. 웹훅 실패는 예외 |
 
-실제 실행 예시 (2026-09-14):
+실제 실행 예시 (2026-09-15, 실발송):
 
 ```
-① 수집    24시간 창 · 23건 · 소스 8/8
-② 선별    23 → 5건 · 본선만 · 면제 1
-③ 취재    본문 부족 → 제외 · Hacker News · A.I. Slopware Is Everywhere Now...
-③ 취재    완료 · AI타임스 · 아모데이 "AI 속도 조절 최대 난제는 중국과의 경쟁"
-③ 취재    완료 · TechCrunch · 오바마, 인공지능 안전망 구축의 필요성 강조
-③ 취재    완료 · OpenAI · Perplexity, GPT-6 Astra로 끝까지 신뢰할 수 있는 시스템
-③ 취재    완료 · Hacker News · 버니 샌더스, ASI 개발자에게 20년 형량 제안
-④ 검수    2/4 통과
-   ✗ 탈락 · OpenAI · Perplexity, GPT-6 Astra로... · 업계 최초와 관련된 주장이 원문에 언급되지 않았다.
-   ✗ 탈락 · Hacker News · 버니 샌더스... · 법안에 대한 구체적인 내용이나 지지 의사를 명시하는 부분이 원문에 없습니다.
-⑤ 발행    Discord · 2건
+① 수집    24시간 창 · 41건 · 소스 9/9
+② 선별    41 → 5건 · 본선만 · 면제 1
+   · [당사자 발표] ESA · Questions? Ask our Hera Space Companion! · 당사자 발표
+   · [지구·기후] Universe Today · CubeSat Instrument Extends Solar Storm W · CubeSat의 신기술이 …
+   · [생명·의학] Science Daily · Cancer is rising in younger adults. Fast · 젊은 성인의 암 발생률이 …
+   · [과학정책·산업] Scientific American · Trump repeals emissions regulations of f · 미국의 새로운 환경 정책 …
+   · [생명·의학] Science Daily · Scientists find how "zombie" cells fuel  · '좀비' 세포가 염증 반응의 …
+③ 취재    완료 · ESA · 우주 미션을 쉽게 배울 수 있는 헤라 스페이스 컴패니언 소개
+③ 취재    완료 · Scientific American · 트럼프 행정부, 화석연료 발전소의 온실가스 규제 완화
+③ 취재    완료 · Universe Today · 큐브샛 인스트루먼트, 태양폭풍 경고 시간을 10배 늘리다
+③ 취재    완료 · Science Daily · 노화에 따른 염증을 유발하는 '좀비 세포'의 비밀이 밝혀졌다
+③ 취재    완료 · Science Daily · 젊은 성인에서 암 발생률 증가, 생물학적 노화 가속이 원인일 수 있어
+④ 검수    4/5 통과
+   ↻ 재생성 후 탈락 · Universe Today · HENON 큐브샛, 태양폭풍 경고 시간을 15시간에서 · … 원문에서는 현재의 경고 시간이 15분에서 60분이라고 명시되어 있습니다.
+⑤ 발행    Discord · 4건
 ```
 
 ---
@@ -154,6 +160,7 @@ uv run python -m newsletter.sources_check
 
 | 관문 | 뜻 | 기준 |
 |---|---|---|
+| 하루 | 하루 평균 몇 건 올라오는가 | 최신 20건이 덮는 기간으로 어림. 0.5~15건이 적당 |
 | G1 본문 | 요약을 쓸 재료가 뽑히는가 | 원문 600자 이상 (없으면 LLM이 제목만 보고 지어냄) |
 | G2 생존 | 최근에도 글이 올라오는가 | 14일 내 건수 |
 | G3 접근 | 자동 수집을 막지 않는가 | robots.txt 허용 여부 (우리 User-Agent로 확인) |
@@ -181,7 +188,7 @@ uv run python -m newsletter.sources_check
 
 - **State에는 단계 사이를 건너가는 것만** 담고, 리듀서(`operator.add`)는 여러 워커가 동시에 쓰는 `drafted`와 모든 노드가 한 줄씩 남기는 `log`에만 붙입니다. 노드는 자기가 바꾼 키만 돌려줍니다.
 - **조용한 실패 금지.** 결과물을 바꾸는 건너뜀(소스 실패, 본문 추출 실패, 검수 탈락)은 반드시 로그나 지표에 남깁니다. 날짜가 없는 항목 한 건이 빠지는 건 조용해도 됩니다.
-- **노드는 의존성을 인자로 받는 순수 함수**입니다(`http_get`, `ask`, `extract`, `post`). `graph.py`가 `functools.partial`로 묶어 LangGraph에 등록하고, 테스트는 가짜를 꽂습니다. 그래서 76개 테스트가 네트워크·OpenAI·Discord를 한 번도 호출하지 않습니다.
+- **노드는 의존성을 인자로 받는 순수 함수**입니다(`http_get`, `ask`, `extract`, `post`). `graph.py`가 `functools.partial`로 묶어 LangGraph에 등록하고, 테스트는 가짜를 꽂습니다. 그래서 85개 테스트가 네트워크·OpenAI·Discord를 한 번도 호출하지 않습니다.
 - **③ 취재는 기사 수만큼 팬아웃**합니다(`Send`). 기사끼리 서로 볼 필요가 없기 때문입니다. ② 선별과 ④ 검수는 다른 항목을 봐야 답할 수 있어 펼치지 않습니다.
 - **대시보드는 파이프라인을 호출만** 합니다. `newsletter/`는 화면이 있는지 모르고, GitHub Actions는 화면 없이 `run.py`만 부릅니다.
 
@@ -191,22 +198,22 @@ uv run python -m newsletter.sources_check
 
 ## 설정 파일 audience.yaml
 
-분야마다 달라지는 내용은 전부 여기 있습니다. 코드에는 "AI 뉴스"가 박혀 있지 않아서, 이 파일만 바꾸면 채용 공고·논문·주식 뉴스레터로 옮길 수 있습니다.
+분야마다 달라지는 내용은 전부 여기 있습니다. 코드에는 "AI 뉴스"가 박혀 있지 않아서, 이 파일만 바꾸면 다른 분야로 옮길 수 있습니다. 실제로 AI 뉴스 → 과학·우주 전환에서 파이프라인 코드는 바뀌지 않았습니다. 소스 선정 근거는 [REPORT.md 2장](REPORT.md#2-소스-채택표)에 있습니다.
 
 ```yaml
-audience: 국내 AI 개발팀                      # 프롬프트에 들어가는 독자
-question: 이번 주 우리가 일하는 방식이 바뀔 만한가   # 선별 기준
-topics: [모델·API, 인프라·비용, 규제·정책, 오픈소스, 제품·서비스]
+audience: 과학을 좋아하는 일반 성인 독자          # 프롬프트에 들어가는 독자
+question: 오늘 저녁 대화 소재가 될 만한 발견·발사·사건인가   # 선별 기준
+topics: [우주·천문, 물리·화학, 생명·의학, 지구·기후, 과학정책·산업]
 pick_count: 5           # 발행 목표 건수
 tone: 간결한 존댓말. 과장 없이.
 min_body: 600           # G1 관문. 원문이 이보다 짧으면 요약하지 않는다
 shortlist_batch: 40     # 예선 한 묶음 크기
-tier1_max: 2            # 당사자 발표(tier 1) 경쟁 면제 상한
+tier1_max: 1            # 당사자 발표(tier 1) 경쟁 면제 상한
 
 sources:
-  - {name: OpenAI,     url: https://openai.com/blog/rss.xml, tier: 1, kind: rss}
-  - {name: TechCrunch, url: https://techcrunch.com/category/artificial-intelligence/feed/, tier: 2, kind: rss}
-  - {name: Hacker News, url: "https://hn.algolia.com/api/v1/search_by_date?tags=story&query=AI", tier: 2, kind: hn}
+  - {name: ESA,           url: https://www.esa.int/rssfeed/Our_Activities/Space_News, tier: 1, kind: rss}
+  - {name: Science Daily, url: https://www.sciencedaily.com/rss/all.xml,              tier: 2, kind: rss}
+  - {name: Hacker News,   url: "https://hn.algolia.com/api/v1/search_by_date?tags=story&query=space", tier: 2, kind: hn}
 ```
 
 - `tier: 1`은 사건의 당사자가 직접 발표하는 곳(공식 블로그)입니다. 매체 대여섯 곳이 같은 사건을 기사로 쓸 때 자리를 독점하지 않도록, 상한(`tier1_max`) 안에서 경쟁 없이 통과시키고 나머지는 경쟁에 참여합니다.
@@ -222,13 +229,13 @@ sources:
 | 파일 | 내용 |
 |---|---|
 | `runs/<run_id>.json` | 최종 State 전체. 수집 목록, 선별 이유, 요약 3칸, 원문, 검수 통과분, 로그 |
-| `metrics.jsonl` | 실행당 JSON 한 줄. 깔때기 숫자와 소요 시간 |
+| `metrics.jsonl` | 실행당 JSON 한 줄. 깔때기 숫자, 재생성 건수, 소요 시간 |
 
 ```json
-{"run_id": "20260914T060133", "hours": 24, "collected": 23, "picked": 5, "drafted": 4,
- "extract_ok": 4, "verified": 2, "published": 2, "dead_sources": [],
- "by_source": {"AI타임스": 1, "TechCrunch": 1},
- "seconds": {"collect": 3.1, "select": 4.2, "report": 18.4, "verify": 6.0, "publish": 0.4},
+{"run_id": "20260915T024544", "hours": 24, "collected": 41, "picked": 5, "drafted": 5,
+ "extract_ok": 5, "verified": 4, "published": 4, "regenerated": 1, "regen_passed": 0,
+ "dead_sources": [], "by_source": {"ESA": 1, "Science Daily": 2, "Scientific American": 1},
+ "seconds": {"collect": 9.4, "select": 6.8, "report": 4.3, "verify": 8.8, "publish": 0.7},
  "dry_run": false}
 ```
 
@@ -272,8 +279,10 @@ Newsletter-Agent/
 │  └─ static/                  # index.html · app.js · style.css (프레임워크 없음)
 ├─ run.py                      # CLI 한 번 실행. Actions가 이것만 부른다
 ├─ audience.yaml               # 독자·기준·토픽·톤·소스
+├─ requirements.txt            # uv export 산출물 (pip 사용자용)
+├─ REPORT.md                   # 과제 보고서
 ├─ store/                      # 실행 기록 (위 표 참고)
-├─ tests/                      # pytest 76개, 네트워크 없음
+├─ tests/                      # pytest 85개, 네트워크 없음
 ├─ docs/superpowers/           # 설계 스펙과 구현 플랜
 └─ .github/workflows/daily.yml # 매일 07:30 KST
 ```
@@ -294,7 +303,7 @@ Newsletter-Agent/
 ## 테스트
 
 ```bash
-uv run pytest            # 76 passed
+uv run pytest            # 85 passed
 uv run pytest -v tests/test_select.py
 ```
 
